@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "a39f284c-0035-42da-9788-05035d87ff66",
+		"name": "data_everywhere",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14379120"
+	},
+	"item": [
+		{
+			"name": "/api/user/log_in",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiNjQwNmNkMWM5ZWRlNmFjMzQ2YmE5NDgxIn19.O7F_3RBkkuFq77W2cD5RUjTlZz4hHoqv4Q9NIHPSQVI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://103.200.20.180:8086/api/user/log_in",
+					"protocol": "http",
+					"host": [
+						"103",
+						"200",
+						"20",
+						"180"
+					],
+					"port": "8086",
+					"path": [
+						"api",
+						"user",
+						"log_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/sign_up",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiNjQwNmNkMWM5ZWRlNmFjMzQ2YmE5NDgxIn19.O7F_3RBkkuFq77W2cD5RUjTlZz4hHoqv4Q9NIHPSQVI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"123456\", \n    \"confirm_password\": \"123456\", \n    \"full_name\": \"Cao Dinh Sy Vy\",\n    \"birthday\": \"15/04/2001\",\n    \"address\": \"Quang Binh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/user/sign_up",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/detail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/user/detail",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"full_name\": \"Cao Dinh Sy Vy\",\n    \"birthday\": \"15/04/2001\",\n    \"address\": \"Quang Binh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/user/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/user/update_password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"old_password\": \"123456\",\n    \"new_password\": \"1234567\",\n    \"confirm_password\": \"1234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/user/update_password",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"update_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/dataset_collection/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiNjQwNmNkMWM5ZWRlNmFjMzQ2YmE5NDgxIn19.O7F_3RBkkuFq77W2cD5RUjTlZz4hHoqv4Q9NIHPSQVI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"page\": 1,\n    \"size\": 5, \n    \"keyword\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/dataset_collection/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dataset_collection",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/dataset_collection/purchased",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"page\": 1,\n    \"size\": 5, \n    \"keyword\": \"6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/dataset_collection/purchased",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dataset_collection",
+						"purchased"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/dataset_collection/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/dataset_collection/64076f219ede6ac346c8c236",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dataset_collection",
+						"64076f219ede6ac346c8c236"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/dataset_collection/preview/{id}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiNjQwNmNkMWM5ZWRlNmFjMzQ2YmE5NDgxIn19.O7F_3RBkkuFq77W2cD5RUjTlZz4hHoqv4Q9NIHPSQVI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/dataset_collection/preview/64076f2a9ede6ac346c8da3f",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dataset_collection",
+						"preview",
+						"64076f2a9ede6ac346c8da3f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cart_item/add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dataset_collection_id\": \"64076f5f9ede6ac346c96ae7\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cart_item/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart_item",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cart_item/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"page\": 1, \n    \"size\": 10,\n    \"purchased\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cart_item/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart_item",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/cart_item/purchased",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"page\": 1, \n    \"size\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/cart_item/purchased",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cart_item",
+						"purchased"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/payment/paypal/authorize_payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart_item_ids\": [\n        \"640afc9b814ef7331e81ff2a\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/payment/paypal/authorize_payment",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"payment",
+						"paypal",
+						"authorize_payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/payment/paypal/cart_items/{paymentId}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoie1wiaWRcIjpcIjY0MDlhZDAzMWJmYmFjMmJhN2I0ZWEyOFwifSJ9.of-nBY81SNpqPYcIykg7XeaUWfuTSTN2d-2FLmJMhKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payment_id\": \"PAYID-MQFPZNY3UR55854AA5251036\",\n    \"payer_id\": \"FT73X2LZUBMQ6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/payment/paypal/cart_items/PAYID-MQH7MCA8XR29838HC786135A",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"payment",
+						"paypal",
+						"cart_items",
+						"PAYID-MQH7MCA8XR29838HC786135A"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,7 +1,7 @@
 const serviceData = [
   {
-    icon: "ri-truck-line",
-    title: "Free Shipping",
+    icon: "ri-customer-service-fill",
+    title: "Support 24/24",
     subtitle: "Lorem ipsum dolor sit amet.",
     bg: "#fdefe6",
   },
