@@ -22,7 +22,7 @@
 .product__card-bottom span i {
     font-size: 1.2rem;
     padding: 5px;
-    background: var(--primary-color);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
     color: #fff;
     border-radius: 50px;
 }

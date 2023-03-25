@@ -1,11 +1,12 @@
 .hero__section {
-    background: var(--card-bg-03);
-}
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
+};
+
 
 .hero__content h2 {
-    color: var(--primary-color);
-    font-size: 4rem;
-    font-weight: 600;
+    color: #000000;
+    font-size: 7rem;
+    font-weight: 1000;
     margin: 20px 0px;
 }
 
@@ -26,15 +27,27 @@
     outline: none;
     padding: 8px 20px;
     border-radius: 5px;
-    background: var(--primary-color);
+    background: #171717;
     color: #fff;
     cursor: pointer;
     font-size: 1rem;
     margin-top: 40px;
 }
-
-.buy__btn a:hover {
+.buy__btn a{
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 200;
+}
+.buy__btn button:hover{
+    background: #b721ff;
     color: #fff;
+    transition: all 0.3s ease;
+
+}
+.buy__btn a:hover {
+    color: #b721ff;
+    
+    transition: all 0.3s ease;
 }
 
 .hero__content{
@@ -47,6 +60,9 @@
     }
     .section__title {
         font-size: 1.7rem;
+    }
+    .service__item {
+        padding-top: 1rem;
     }
 }
 
@@ -63,11 +79,17 @@
     .section__title{
         font-size: 1.4rem;
     }
+    .service__item {
+        padding-top: 1rem;
+    }
 }
 
 @media screen and (max-width:576px){
     .hero__content{
         padding-top: 0px;
         margin-bottom: 40px;
+    }
+    .service__item {
+        padding-top: 1rem;
     }
 }

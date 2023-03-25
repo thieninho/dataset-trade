@@ -5,11 +5,12 @@
     column-gap: 0.7rem;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 3px 3px 8px -3px #ddd;
 }
 
 .service__item span i {
     font-size: 2.2rem;
-    background: var(--primary-color);
+    background: linear-gradient(-135deg, #c850c0, #4158d0);
     padding: 10px;
     border-radius: 50px;
     color: #fff;
@@ -17,15 +18,16 @@
 }
 
 .service__item h3 {
-    color: var(--primary-color);
+    color: #fff;
     font-size: 1.1rem;
     font-weight: 600;
+
 }
 
 .service__item p {
     font-size: 0.9rem;
     margin-top: 5px;
-    color: #222;
+    color: #fff;
 }
 
 @media screen and (max-width: 992px){
@@ -38,7 +40,7 @@
         font-size: 1rem;
     }
     .service__item{
-        padding: 10px;
+        padding-top: 10px;
     }
 }
 
@@ -54,4 +56,5 @@
     .service__item {
         padding: 20px;
     }
+    
 }

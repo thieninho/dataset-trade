@@ -24,7 +24,7 @@ const Shop = () => {
     <section>
       <Container>
         <Row>
-          <Col lg='3' md='3'>
+          <Col lg='3' md='6' className='text-end'>
             <div className="filter__widget">
               <select>
                 <option>Sort By</option>
@@ -33,7 +33,7 @@ const Shop = () => {
               </select>
             </div>
           </Col>
-          <Col lg='6' md='6'>
+          <Col lg='6' md='12'>
             <div className="search__box">
               <input type='text' placeholder='Search...'
               onChange={handleSearch}
@@ -52,7 +52,7 @@ const Shop = () => {
         <Row>
           {
             productsData.length === 0? <h1 className='text-center fs-4'>No datasets are found</h1>
-            : <ProductsLists data={productsData}/>
+            : <ProductsLists data={products}/>
           }
         </Row>
       </Container>
