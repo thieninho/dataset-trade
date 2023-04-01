@@ -5,15 +5,16 @@
     column-gap: 0.7rem;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 3px 3px 8px -3px #ddd;
+    box-shadow: 3px 3px 8px -3px #fff;
 }
 
 .service__item span i {
     font-size: 2.2rem;
-    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    background: #fff;
     padding: 10px;
     border-radius: 50px;
-    color: #fff;
+    color: #076585;
+;
     font-weight: 400 !important;
 }
 

@@ -1,7 +1,7 @@
 .footer {
     padding-top: 50px;
     padding-bottom: 30px;
-    background: #171717;
+    background: linear-gradient(to right, #023b4e, #076585);
 }
 
 .footer__logo img {

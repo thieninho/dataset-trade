@@ -8,6 +8,7 @@ import ProductDetails from '../pages/ProductDetails'
 import Checkout from '../pages/Checkout'
 import Login from '../pages/Login1'
 import UserDetails from '../pages/UserDetails'
+import Purchased from '../pages/Purchased'
 
 
 const Routers = () => {
@@ -20,6 +21,7 @@ const Routers = () => {
     <Route path='checkout' element={<Checkout/>} />
     <Route path='login' element={<Login/>} />
     <Route path='userdetail' element={<UserDetails/>} />
+    <Route path='purchased' element={<Purchased/>} />
 
   </Routes>
 }

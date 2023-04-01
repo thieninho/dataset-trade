@@ -3,12 +3,12 @@ import { BASE_URL} from "../global/globalVar";
 import { GET, POST } from "../functionHelper/APIFunction";
 import "../styles/login/main.css"
 import "../styles/login/util.css"
-import logo from "../assets/images/8af4febc154ad406079ce04b7e9f70ee.gif";
 import { toast } from "react-toastify";
+import Helmet from '../components/Helmet/Helmet';
 import ChangePass from './ChangePass';
-
+import CommonSection from '../components/UI/CommonSection';
 const UserDetails = () => {
-  const [openPassModal, setOpenPassModal] = useState(false);
+const [openPassModal, setOpenPassModal] = useState(false);
 
 
   //const [data, setData] = useState({username:'', address:'', full_name:'', birthday:''})
@@ -40,7 +40,6 @@ const [birthday, setBirthday] = useState("")
   };
 
   const getData = () => {
-    console.log("login")
     let apiURL = "api/user/detail";
       GET(
         BASE_URL + apiURL
@@ -59,15 +58,15 @@ const [birthday, setBirthday] = useState("")
   
   return (
     <>
+    <Helmet title="Profile">
     <div class="limiter">
-		<div class="container-login100">
-			
-
-				<form class="login1000-form validate-form">
+    <CommonSection title='' />
+		<div class="container-login222">
+				<form class="login222-form validate-form">
 				
-          <div class="login100-pic js-tilt" data-tilt>
+          {/* <div class="login100-pic js-tilt" data-tilt>
 					<img src={logo} alt="IMG" />
-				  </div>
+				  </div> */}
           <p>Username</p>
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
           
@@ -132,8 +131,12 @@ const [birthday, setBirthday] = useState("")
                         >
 							Save
 						</p>
-            <div class="text-center p-t-30">
-						<p class="login100-form-btn" onClick={() => {
+            <div  
+            
+            class="text-center">
+						<p 
+            style={{background: "#fff", color: "black", border: "1px solid #171717"}}
+            class="login100-form-btn" onClick={() => {
                       handleTooglePass();
                     }}>
 							Change Password!
@@ -147,6 +150,7 @@ const [birthday, setBirthday] = useState("")
     open={openPassModal}
     toggle={handleTooglePass}
     />
+    </Helmet>
     </>
   )
 }

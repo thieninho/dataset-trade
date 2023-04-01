@@ -1,11 +1,11 @@
 import React, {useState}  from 'react'
-import logo from '../assets/images/secure-login.gif'
+import logo from '../assets/images/2.gif'
 import { BASE_URL} from "../global/globalVar";
 import { useNavigate } from "react-router-dom";
 import { POST } from "../functionHelper/APIFunction";
 import { setCookie } from "../functionHelper/GetSetCookie";
 import { toast } from "react-toastify"
-
+import Helmet from '../components/Helmet/Helmet';
 import "../styles/login/main.css"
 import "../styles/login/util.css"
 import Signup from './Signup';
@@ -31,11 +31,10 @@ const handleToogleSignup = () => {
       POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
         console.log(res);
         if (res.status.http_status !== "OK") {
-          //throw res.status.exception_code;
-		  toast.error("Username or password invalid")
+		        toast.error("Username or password invalid")
         }
         setCookie("token", res.payload.token, 3);
-		toast.success("Login successfully");
+		    toast.success("Login successfully");
         navigate("/home");
       });
     } catch (e) {
@@ -45,19 +44,21 @@ const handleToogleSignup = () => {
     
   return (
     <>
+    <Helmet title="Login">
     <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
+				<circle style={{background: "black"}} class="login100-pic js-tilt" data-tilt>
 					<img src={logo} alt="IMG" />
-				</div>
+				</circle>
 
 				<form class="login100-form validate-form">
 					{/* <span class="login100-form-title">
 						Login Dataset Shop
 					</span> */}
-
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+            <p>Username:</p>
+					<div class="wrap-input100 validate-input p-t-10" data-validate = "Valid email is required: ex@abc.xyz">
+            
 						<input class="input100" type="text"
                         value={username} onChange={(e)=> setUsername(e.target.value)}
                         placeholder='Enter your username' />
@@ -66,8 +67,9 @@ const handleToogleSignup = () => {
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+          <p className='p-t-20'>Password:</p>
+					<div class="wrap-input100 validate-input p-t-10" data-validate = "Password is required">
+          
 						<input class="input100" type='password' placeholder='Enter your password'
                         value={password} onChange={(e)=> setPassword(e.target.value)} />
 						<span class="focus-input100"></span>
@@ -84,8 +86,7 @@ const handleToogleSignup = () => {
                         >
 							Login
 						</p>
-					</div>
-						<p class="login100-form-btn"
+            <p style={{background: "#fff", color: "black", border: "1px solid #171717"}} class="login100-form-btn"
                         onClick={() => {
         				//navigate("/signup");
                         handleToogleSignup()
@@ -93,10 +94,13 @@ const handleToogleSignup = () => {
                         >
 							Signup
 						</p>
+					</div>
+						
 				</form>
 			</div>
 		</div>
 	</div>
+  </Helmet>
 	<Signup
     open={openSignupModal}
     toggle={handleToogleSignup}

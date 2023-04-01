@@ -1,6 +1,6 @@
 .common__section {
-    background: linear-gradient(rgba(0, 0, 0, 0.562), rgba(0, 0, 0, 0.562)),
-    url("../assets/images/section.jpg") no-repeat center center;
+    background:
+    url("../assets/images/section1.gif") no-repeat center center;
     background-size: cover;
     padding: 100px 0px;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 .common__section h1 {
-    color: #fff;
+    color: rgb(32, 38, 57) 11.4%;
     font-weight: 600;
 }
 

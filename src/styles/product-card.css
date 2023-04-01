@@ -20,9 +20,9 @@
 }
 
 .product__card-bottom span i {
-    font-size: 1.2rem;
-    padding: 5px;
-    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    font-size: 1.8rem;
+    padding: 3px;
+    background:  linear-gradient(to right, #076585, #bbb9b9);
     color: #fff;
     border-radius: 50px;
 }

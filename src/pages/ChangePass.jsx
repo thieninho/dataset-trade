@@ -29,7 +29,7 @@ const [confirmpass, setconfirmPass] = useState("")
 
   return (
     <>
-    <Modal isOpen={open} style={{ maxWidth: "400px" }}>
+    <Modal isOpen={open} style={{ maxWidth: "325px" }}>
     <ModalHeader> Change Pass </ModalHeader>
     <ModalBody>
         <p>Current Password:</p>
@@ -91,12 +91,12 @@ const [confirmpass, setconfirmPass] = useState("")
     </ModalBody>
     <ModalFooter>
     <Button
-        style={{color:"#fff", background:"linear-gradient(-135deg, #c850c0, #4158d0)"}}
+        style={{color:"#fff", background:"#076585"}}
         onClick={() => {
               handleSave();
             }}>Save</Button>
         <Button
-        style={{color:"#fff", background:"linear-gradient(-135deg, #c850c0, #4158d0)"}}
+        style={{color:"#076585", background:"#fff"}}
         onClick={() => {
               toggle();
             }}>Close</Button>

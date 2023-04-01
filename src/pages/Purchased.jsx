@@ -1,0 +1,109 @@
+import React, {useState, useEffect} from 'react';
+import '../styles/cart.css'
+import Helmet from '../components/Helmet/Helmet'
+import CommonSection from '../components/UI/CommonSection'
+import { Container, Row, Col } from 'reactstrap';
+
+import { Link} from 'react-router-dom';
+import { POST} from "../functionHelper/APIFunction";
+import { BASE_URL} from "../global/globalVar";
+import {
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+} from "reactstrap";
+
+
+const Purchased = (item) => {
+  const [data, setData] = useState([])
+  const [pagination, setPagination] = useState({});
+
+  const addData = (page) => {
+    if (page === undefined) page = 1;
+    let apiURL = "api/cart_item/purchased";
+    let body = {
+      page: page,
+      size: 5
+    };
+    POST(
+      BASE_URL + apiURL, JSON.stringify(body)
+    ).then((res) => {
+      setPagination({
+        totalItem: res.payload.total_items,
+        totalPage: res.payload.total_pages,
+      });
+      setData(res.payload.items)
+      console.log(res.payload.total_pages)
+
+    });
+    
+  };
+  useEffect(() => addData(), [])
+  return (
+    <Helmet title='Cart'>
+      <CommonSection title=''/>
+      <section>
+        <Container>
+          <Row>
+            {/* <h2>{addData()}</h2> */}
+            <Col lg='9'>
+              {data.length===0 ? (
+                <h2 className='fs-4 text-center'>No item added to the cart</h2> ): (
+                <table className='table bordered'>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+  
+              <tbody>
+                {
+                  data.map((item, index) =>(
+                    <tr item={item} key={index}>
+                    <td><img src={item.dataset_collection.picture} alt=""/></td>
+                    <td>{item.dataset_collection.name}</td>
+                    <td>${item.dataset_collection.amount}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+              )}
+    
+            </Col>
+            <Col lg='3'>
+              <div>
+                <button className="buy__btn w-100 mb-4"> 
+                <Link to='/shop'> Continue Shopping</Link></button>
+              </div>
+              <div>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+          <Pagination aria-label="Page navigation example">
+          {Array.from({ length: pagination.totalPage }, (_, i) => (
+            <PaginationItem key={i}>
+              <PaginationLink
+                onClick={() => {
+                  addData(i + 1);
+                }}
+              >
+                {i + 1}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+        </Pagination>
+       
+          </Row>
+          
+        </Container>
+      </section>
+  
+    </Helmet>
+    );
+  };
+
+export default Purchased

@@ -1,5 +1,5 @@
 import React, {useState}  from 'react'
-import { Modal, ModalHeader, ModalBody, Button, ModalFooter} from 'reactstrap'
+import { Modal, ModalBody, Button, ModalFooter} from 'reactstrap'
 import { BASE_URL} from "../global/globalVar";
 import { POST } from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
@@ -40,13 +40,15 @@ function Signup({ open, toggle, value}){
       console.log(e);
     }
   };
+  
     
   return (
     <>
-	<Modal isOpen={open} style={{ maxWidth: "580px" }}>
-    <ModalHeader> Register </ModalHeader>
+	<Modal isOpen={open} style={{ maxWidth: "440px", borderRadius:"70px"}}>
+    {/* <ModalHeader> Register </ModalHeader> */}
 	<ModalBody>
     <div class="limiter">
+	<h4 style={{fontWeight: "500"}}>Register</h4>
 			<div class="wrap-login101">
 				<form class="login101-form validate-form">
 					<p>Username</p>
@@ -116,11 +118,17 @@ function Signup({ open, toggle, value}){
 	</ModalBody>
 	<ModalFooter>
     <Button
-        style={{color:"#fff", background:"linear-gradient(-135deg, #c850c0, #4158d0)"}}
+        style={{color:"#fff", background:"#076585"}}
         onClick={() => {
-              handleLogin();
+			handleLogin();
 			  toggle();
             }}>Save</Button>
+	<Button
+        style={{color:"#076585", background:"#fff"}}
+        onClick={() => {
+              
+			  toggle();
+            }}>Close</Button>
     </ModalFooter>
 	</Modal>
     </>

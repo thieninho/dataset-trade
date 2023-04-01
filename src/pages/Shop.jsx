@@ -1,47 +1,98 @@
-import React, {useState} from 'react';
-
+import React, {useState, useEffect} from 'react';
 import CommonSection from '../components/UI/CommonSection';
 import Helmet from '../components/Helmet/Helmet';
 import { Container, Row, Col } from 'reactstrap';
 import '../styles/shop.css'
-
-import products from '../assets/data/products'
-import ProductsLists from '../components/UI/ProductsList'
-
+import { POST} from "../functionHelper/APIFunction";
+import { BASE_URL} from "../global/globalVar";
+import ProductCard from '../components/UI/ProductCard';
+import {
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+} from "reactstrap";
 const Shop = () => {
 
-  const [productsData, setProductsData] = useState(products)
 
-  const handleSearch = e=>{
-    const searchTerm = e.target.value
-    const searchedProducts = products.filter(item => item.productName.toLowerCase().includes(searchTerm.toLowerCase()))
-    setProductsData(searchedProducts)
-  }
+  //const [data, setData] = useState({id:'', name:'', picture:'', amount:'', short_description: '', description: '', preview: ''})
+  const [data, setData] = useState([])
+  const [pagination, setPagination] = useState({});
+  const [keyword, setKeyword] = useState("")
 
+  const getData = (page) => {
+    
+    if (page === undefined) page = 1;
+    let apiURL = "api/dataset_collection/";
+    let body = {
+      page: page,
+      size: 8,
+    };
+    POST(
+      BASE_URL + apiURL, JSON.stringify(body)
+    ).then((res) => {
+
+      console.log(res.payload.items)
+      setData(res.payload.items)
+      setPagination({
+        totalItem: res.payload.total_items,
+        totalPage: res.payload.total_pages,
+      });
+    });
+  };
+
+  const searchData = (page) => {
+    
+    if (page === undefined) page = 1;
+    let apiURL = "api/dataset_collection/";
+    let body = {
+      page: page,
+      size: 8,
+      keyword: keyword
+    };
+    POST(
+      BASE_URL + apiURL, JSON.stringify(body)
+    ).then((res) => {
+
+      setData(res.payload.items)
+      setPagination({
+        totalItem: res.payload.total_items,
+        totalPage: res.payload.total_pages,
+      });
+      setKeyword(body.keyword)
+      console.log(body.keyword)
+    });
+  };
+  
+    useEffect(() => {
+      getData()
+    }, []);
   return ( <Helmet title='Shop'>
-    <CommonSection title='Products' />
+    <CommonSection title='' />
 
     <section>
       <Container>
         <Row>
           <Col lg='3' md='6' className='text-end'>
-            <div className="filter__widget">
-              <select>
+          
+          </Col>
+          <Col lg='6' md='12'>
+          <div className="search__box">
+              <input type='text' placeholder='Search...' value={keyword}
+              onChange={(e)=> setKeyword(e.target.value)}
+              />
+               <div className="filter__widget">
+              {/* <select>
                 <option>Sort By</option>
                 <option value="ascending">Ascending</option>
                 <option value="descending">Descending</option>
-              </select>
+              </select> */}
+              <button md='0' className='filter__widget' onClick={() =>{searchData()}} 
+              >
+                <i  class="ri-search-line"></i>
+              </button>
             </div>
-          </Col>
-          <Col lg='6' md='12'>
-            <div className="search__box">
-              <input type='text' placeholder='Search...'
-              onChange={handleSearch}
-              />
-              <span>
-                <i class="ri-search-line"></i>
-              </span>
             </div>
+            
           </Col>
         </Row>
       </Container>
@@ -51,9 +102,27 @@ const Shop = () => {
       <Container>
         <Row>
           {
-            productsData.length === 0? <h1 className='text-center fs-4'>No datasets are found</h1>
-            : <ProductsLists data={products}/>
-          }
+            data.length === 0? <h1 className='text-center fs-4'>No datasets are found</h1>
+            : 
+            data?.map((item, index) => (
+              <ProductCard items={item} key={index}/>
+          ))}
+          
+        </Row>
+        <Row>
+        <Pagination aria-label="Page navigation example">
+        {Array.from({ length: pagination.totalPage }, (_, i) => (
+          <PaginationItem key={i}>
+            <PaginationLink
+              onClick={() => {
+                getData(i + 1);
+              }}
+            >
+              {i + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+      </Pagination>
         </Row>
       </Container>
     </section>

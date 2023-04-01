@@ -40,4 +40,30 @@ const DELETE = async (_url, _body) => {
   return res;
 };
 
-export { GET, POST, DELETE };
+const POST1 = async (_url, _body) => {
+  let res = await $.ajax({
+        url: _url,
+        type: 'POST',
+        async: false,
+        contentType: 'application/json',
+        headers: {
+            "Authorization": "Token " + getCookie("token"),
+        },
+        data: _body,
+        dataType: 'json',
+        success: function(result) {
+            if (result == null || result.status == null || result.status.http_status == null) {
+                alert("Something went wrong: " + JSON.stringify(result));
+                return;
+            }
+
+            if (result.status.http_status !== "OK") {
+                alert("Failed: " + result.status.exception_code);
+                return;
+            }
+          }
+  });
+  return res;
+}
+
+export { GET, POST, DELETE, POST1};

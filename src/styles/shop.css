@@ -1,9 +1,11 @@
-.filter__widget select {
+.filter__widget button {
     padding: 8px 20px;
     cursor: pointer;
     border-radius: 5px;
-    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    background: #076585;
     color: #fff;
+    border: 2px solid #fff;
+
 }
 
 .filter__widget select:focus {
@@ -19,9 +21,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #171717;
+    border: 2px solid #076585;
     border-radius: 5px;
-    padding-right: 12px;
+    padding-right: 0px;
     padding-left: 2px;
 }
 
@@ -37,11 +39,14 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .filter__widget {
+    /* .filter__widget {
         margin-bottom: 30px;
-    }
-    .filter__widget select{
+    } */
+    /* .filter__widget button{
         padding: 7px 20px;
         font-size: 0.9rem;
+    } */
+    .search__box{
+        height: 43px;
     }
 }

@@ -1,13 +1,10 @@
 import React, {useRef, useEffect} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import './header.css'
-import {motion} from 'framer-motion'
 
 import logo from '../../assets/images/logo.png'
-import userIcon from '../../assets/images/user-icon.png'
-
 import { Container, Row } from 'reactstrap';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 
 const nav__links = [
   {
@@ -22,15 +19,20 @@ const nav__links = [
     path: 'cart',
     display: 'Cart'
   },
+  {
+    path: 'purchased',
+    display: 'Purchased'
+  },
 ]
 
 
 
 const Header = () => {
+
   const headerRef = useRef(null);
-  const totalQuantity = useSelector(state=> state.cart.totalQuantity)
   const menuRef = useRef(null)
   const navigate = useNavigate()
+
 
 const stickyHeaderFunc = () => {
   window.addEventListener('scroll', ()=>{
@@ -55,8 +57,18 @@ const navigateToCart =()=>{
   navigate('/cart')
 
 }
-const navigateToDetail =()=>{
+
+const navigateToUser = () =>{
   navigate('/userdetail')
+}
+
+const navigateToPurchased = () => {
+  navigate('/purchased')
+}
+const logout =()=>{
+  navigate('/login')
+  localStorage.removeItem('token')
+  sessionStorage.removeItem('token')
 }
   return ( 
   <header className="header" ref={headerRef}>
@@ -90,24 +102,27 @@ const navigateToDetail =()=>{
           </div>
 
         <div className='nav__icons'>
-          <span className='fav__icon'> 
+          <span className='fav__icon' onClick={navigateToPurchased}> 
             <i class="ri-heart-line"></i>
-            <span className='badge'>1</span>
+            <span className='badge'></span>
           </span>
           <span className='cart__icon' onClick={navigateToCart}>
             <i class="ri-shopping-bag-line"></i>
-            <span className='badge'>{totalQuantity}</span>
+            <span className='badge'></span>
           </span>
-          <span>
-             <motion.img whileTap={{ scale: 1.2 }} src={userIcon} alt='' 
-             onClick={navigateToDetail}
-             />
+         
+          <span className='cart__icon' onClick={navigateToUser}>
+          <i class="ri-user-settings-fill"></i>
           </span>
           <div className='mobile__menu'>
           <span onClick={menuToggle}>
             <i class="ri-menu-line"></i>
           </span>
         </div>
+        <span className='fav__icon' onClick={logout}> 
+          <i class="ri-logout-circle-r-line"></i>
+            <span className='badge'></span>
+          </span>
         </div>
 
         
