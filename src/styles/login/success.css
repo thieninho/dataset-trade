@@ -1,0 +1,137 @@
+
+
+
+    .payment
+	{
+		border:1px solid #f2f2f2;
+		height:340px;
+        border-radius:20px;
+        background:#fff;
+	}
+   .payment_header
+   {
+	   background:#076585;
+	   padding:20px;
+       border-radius:20px 20px 0px 0px;
+	   
+   }
+   .payment1_header
+   {
+	   background: #EBB02D;
+	   padding:20px;
+       border-radius:20px 20px 0px 0px;
+	   
+   }
+   
+   .check
+   {
+	   margin:0px auto;
+	   width:50px;
+	   height:50px;
+	   border-radius:100%;
+	   background:#fff;
+	   text-align:center;
+   }
+   
+   .check i
+   {
+	   vertical-align:middle;
+	   line-height:50px;
+	   font-size:30px;
+       color: #076585;
+   }
+
+   .check1
+   {
+	   margin:0px auto;
+	   width:50px;
+	   height:50px;
+	   border-radius:100%;
+	   background:#fff;
+	   text-align:center;
+   }
+
+   .check1 i
+   {
+	   vertical-align:middle;
+	   line-height:50px;
+	   font-size:30px;
+       color: #EBB02D;
+   }
+
+    .content1 
+    {
+        text-align:center;
+    }
+
+    .content1  h1
+    {
+        font-size:25px;
+        padding-top:25px;
+        padding-bottom: 15px;
+
+    }
+    .content1 p{
+        padding-bottom: 15px;
+
+    }
+
+    .content1 a
+    {
+        padding-top: 10px;
+        width:200px;
+        height:35px;
+        color:#fff;
+        border-radius:30px;
+        padding:5px 10px;
+        margin-right: 20;
+        background: #076585;
+        transition:all ease-in-out 0.3s;
+        justify-content: center;
+    }
+
+    .content1 a:hover
+    {
+        text-decoration:none;
+        background:#fff;
+        border: 1px solid #076585;
+        color: #076585;
+    }
+    .content2
+    {
+        text-align:center;
+    }
+
+    .content2  h1
+    {
+        font-size:25px;
+        padding-top:25px;
+        padding-bottom: 15px;
+
+    }
+    .content2 p{
+        padding-bottom: 15px;
+
+    }
+
+    .content2 a
+    {
+        padding-top: 10px;
+        width:200px;
+        height:35px;
+        color:#fff;
+        border-radius:30px;
+        padding:5px 10px;
+        margin-right: 20;
+        background: #EBB02D;
+        transition:all ease-in-out 0.3s;
+        justify-content: center;
+    }
+
+    .content2 a:hover
+    {
+        text-decoration:none;
+        background:#fff;
+        border: 1px solid #EBB02D;
+        color: #EBB02D;
+    }

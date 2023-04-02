@@ -48,7 +48,20 @@ const Purchased = (item) => {
             {/* <h2>{addData()}</h2> */}
             <Col lg='9'>
               {data.length===0 ? (
-                <h2 className='fs-4 text-center'>No item added to the cart</h2> ): (
+                 <div>
+                <table className='table bordered'>
+                 
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              </table>
+              <h2 className='text-center m-t-100'>No item added to the cart</h2> 
+              </div>
+                ): (
                 <table className='table bordered'>
               <thead>
                 <tr>

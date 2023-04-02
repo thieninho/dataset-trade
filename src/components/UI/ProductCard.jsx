@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from "framer-motion"
 import '../../styles/product-card.css'
 import { Col } from "reactstrap"
@@ -12,7 +12,6 @@ import testImg from "../../assets/images/Hero4.png"
 
 const ProductCard = ({items}) => {
 
-  const [show, setShow] =useState(false)
     const addData = (items) => {
     
         let apiURL = "api/cart_item/add";
@@ -30,7 +29,6 @@ const ProductCard = ({items}) => {
           {
             toast.success("Product added successfully");
           }
-          console.log(res.payload.dataset_collection_id)
         });
       };
 const dispatch = useDispatch()

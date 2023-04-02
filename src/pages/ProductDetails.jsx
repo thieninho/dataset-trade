@@ -13,7 +13,7 @@ import { BASE_URL} from "../global/globalVar";
 import testImg from "../assets/images/Hero5.png"
 
 
-const ProductDetails = () => {
+const ProductDetails = ({items}) => {
 const [tab, setTab] = useState('desc')
 const dispatch = useDispatch()
 
@@ -77,6 +77,26 @@ const getDataDetail = () => {
     console.log(e);
   })
 };
+
+const addData = (items) => {
+    
+  let apiURL = "api/cart_item/add";
+  let body = {
+      dataset_collection_id: id
+  };
+  POST(
+    BASE_URL + apiURL, JSON.stringify(body)
+  ).then((res) => {
+    if (res.status.http_status !== "OK")
+    {
+        toast.error("Dataset exist in your cart")
+    }
+    if (res.status.http_status === "OK")
+    {
+      toast.success("Product added successfully");
+    }
+  });
+};
 useEffect(() => getData(), []);
 useEffect(() => getDataSize(), []);
 
@@ -85,13 +105,15 @@ useEffect(() => getDataDetail(), []);
 
 const addToCart =()=> {
   dispatch(cartActions.addItem({
-    id,
-    picture: picture,
-    name: name,
-    amount: amount,
+        id: items.id,
+        name:items.name,
+        amount: items.amount,
+        picture: items.picture,
+        short_description: items.short_description,
+        description: items.description,
   })
   );
-  toast.done('Product added successfully');
+  addData(items)
 };
 // useEffect(()=>{
 //   window.scrollTo(0,0 );
@@ -123,7 +145,7 @@ const addToCart =()=> {
                 <p className='mt-3'>{short_description}</p>
                 <motion.button whileTap={{scale: 1.2}} className="buy__btn" 
                 style={{color: "#fff"}}
-                onClick={addToCart}>Add to Cart</motion.button>
+                onClick={addData}>Add to Cart</motion.button>
               </div>
             </Col>
           </Row>

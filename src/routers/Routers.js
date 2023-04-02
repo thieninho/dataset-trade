@@ -9,7 +9,9 @@ import Checkout from '../pages/Checkout'
 import Login from '../pages/Login1'
 import UserDetails from '../pages/UserDetails'
 import Purchased from '../pages/Purchased'
-
+import ReviewPayment from '../pages/ReviewPayment'
+import Success from '../pages/Success'
+import Cancel from '../pages/Cancel'
 
 const Routers = () => {
   return <Routes>
@@ -22,7 +24,9 @@ const Routers = () => {
     <Route path='login' element={<Login/>} />
     <Route path='userdetail' element={<UserDetails/>} />
     <Route path='purchased' element={<Purchased/>} />
-
+    <Route path='payment/paypal/success' element={<Success/>} />
+    <Route path='payment/paypal/cancel' element={<Cancel/>} />
+    <Route path='payment/paypal/review_payment' element={<ReviewPayment/>}/>
   </Routes>
 }
 

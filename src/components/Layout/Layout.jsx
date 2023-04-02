@@ -10,9 +10,9 @@ const Layout = () => {
   return <>
 
     <div>
-    {pathname !== "/login" && pathname !== "/signup" && <Header />}
+    {pathname !== "/login" && pathname !== "/signup" && pathname !== "/payment/paypal/success" && pathname !== "/payment/paypal/cancel" && <Header />}
         <Routers/>
-    {pathname !== "/login" && pathname !== "/signup" && <Footer />}
+    {pathname !== "/login" && pathname !== "/signup" && pathname !== "/payment/paypal/success" && pathname !== "/payment/paypal/cancel" && <Footer />}
 
     </div>
   </>

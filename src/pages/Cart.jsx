@@ -18,8 +18,6 @@ import {
 import testImg from '../assets/images/Hero4.png'
 const Cart = (item) => {
 
-  //const cartItems = useSelector((state) => state.cart.cartItems)
- // const totalAmount = useSelector((state) => state.cart.totalAmount)
   const [data, setData] = useState([])
   const [dataSize, setDataSize] = useState([])
   const [pagination, setPagination] = useState({});
@@ -66,16 +64,22 @@ const Cart = (item) => {
   }, [size]);
 
   const totalAmount = dataSize.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
-
+  let checkboxes = document.querySelectorAll("[type='checkbox']");
   var cartItemIds = [];
   function myFunc() {
-    let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-    for (let i = 0; i < checkboxes.length; i++) {
-      cartItemIds.push(checkboxes[i].value)
+  let checked = document.querySelectorAll("[type='checkbox']:checked");
+      cartItemIds = []
+      checked.forEach(function(el){
+        cartItemIds.push(el.value)
+      })
     }
-    // Converted array to string & alert
-    console.log(cartItemIds)
-    }
+
+    checkboxes.forEach(function(el) {
+      el.addEventListener("change", function(){
+        myFunc();
+      })
+    })
+    
   const deleteData = (item) => {
     let apiURL = "api/cart_item/remove";
     let body = {
@@ -129,7 +133,6 @@ const Cart = (item) => {
     dispatch(cartActions.deleteItem(item.id))
     //deleteData(item)
     paymentData(item)
-    //window.location.reload(false)
   }
 
   return (
@@ -141,7 +144,20 @@ const Cart = (item) => {
           {/* <h2>{addData()}</h2> */}
           <Col lg='9'>
             {data.length===0 ? (
-              <h2 className='fs-4 text-center'>No item added to the cart</h2> ): (
+               <div>
+               <table className='table bordered'>
+                
+             <thead>
+               <tr>
+                 <th>Image</th>
+                 <th>Title</th>
+                 <th>Price</th>
+               </tr>
+             </thead>
+             </table>
+             <h2 className='text-center m-t-100'>No item added to the cart</h2> 
+             </div>
+               )  : (
               <table className='table bordered'>
             <thead>
               <tr>

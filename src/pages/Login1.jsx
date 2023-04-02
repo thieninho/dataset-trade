@@ -32,7 +32,7 @@ const handleToogleSignup = () => {
         console.log(res);
         if (res.status.http_status !== "OK") {
 		        toast.error("Username or password invalid")
-        }
+        } 
         setCookie("token", res.payload.token, 3);
 		    toast.success("Login successfully");
         navigate("/home");
