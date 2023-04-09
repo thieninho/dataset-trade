@@ -115,13 +115,12 @@ const handlePreview =()=> {
     
 }; 
   return <Helmet title={name}>
-      <CommonSection/>
 
       <section className='section__product pt-09'>
         <Container>
           <Row>
             <Col lg="6">
-              <img src={testImg} alt="" />
+              <img src={picture} alt="" />
             </Col>
             <Col lg="6">
               <div className="product__details">
@@ -137,13 +136,14 @@ const handlePreview =()=> {
                   {/* <p>(<span>{avgRating}</span> ratings)</p> */}
                 </div>
                 <span className="product__price">${amount}</span>
-                <p className='mt-3'>{short_description}</p>
+                <textarea className='short__desc' class='scroll' readOnly  style={{height:"150px", width:"600px", padding:"10px", borderRadius:"10px"}} value={short_description}/>
+                <div>
                 <motion.button whileTap={{scale: 1.2}} className="buy__btn" 
                 style={ {width:"150px"}}
                 onClick={handlePreview}>Preview</motion.button>
-                <div>
+                
                 {show === false}  
-                {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn" 
+                {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn m-l-15" 
                 style={{color: "#fff", width:"150px" }}
                 onClick={handleAddData}>Add to Cart</motion.button>}
                 </div>
@@ -190,7 +190,7 @@ const handlePreview =()=> {
             {
               tab==='desc' ? 
               <div className='tab__content mt-5'>
-                <p>{description}</p>
+                <textarea class='scroll' value={description}/>
               </div> : 
               
               <div className='product__review mt-5'>
@@ -241,6 +241,8 @@ const handlePreview =()=> {
           </Row>
         </Container>
       </section>
+      <CommonSection/>
+
     </Helmet>
 }
 

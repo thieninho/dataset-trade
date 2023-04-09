@@ -66,7 +66,7 @@ const handlePreview =()=> {
     <div className="product__item" onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}>
         <div className="product__img">
-        <Link to={`/shop/${items.id}`}> <motion.img whileHover={{scale: 0.9}} src={testImg} alt="" /></Link>
+        <Link to={`/shop/${items.id}`}> <motion.img whileHover={{scale: 0.9}} src={items.picture} alt="" /></Link>
         </div>
         <div className="p-2 product__info">
         <h3 className="product__name">

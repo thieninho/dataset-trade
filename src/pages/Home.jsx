@@ -55,7 +55,7 @@ const Home = () => {
           <Col lg='6' md='6'>
           
 
-            <div className="hero__img m-t-10">
+            <div className="hero__img m-t-20">
               <img src={heroImg2} alt="" />
             </div>
 

@@ -2,10 +2,15 @@
     cursor: pointer;
     border-radius: 20px;
     box-shadow: 5px 5px 15px -5px  #d7d2cc ;
+    margin: 3px;
 }
 
 .product__img img{
     border-radius: 20px;
+}
+.product__img{
+    height: 300px;
+    width: 300px;
 }
 .product__info h3 a{
     font-size: 1.2rem;
