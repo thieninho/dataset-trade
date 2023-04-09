@@ -111,7 +111,7 @@ for (var i=0; i< data.dataset_items.length; i++) {
 }
 
 const handlePreview =()=> {
-  window.open = BASE_URL + "api/dataset_collection/preview/" + id;
+  window.open(BASE_URL + "api/dataset_collection/preview/" + id);
     
 }; 
   return <Helmet title={name}>

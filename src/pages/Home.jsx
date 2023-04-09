@@ -4,7 +4,7 @@ import { POST} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
 import { Container, Row, Col} from "reactstrap"
 import heroImg from '../assets/images/Heroo.svg'
-import heroImg2 from '../assets/images/3.gif'
+import heroImg2 from '../assets/images/chatbot.png'
 import Services from '../services/Services'
 import ProductsList from '../components/UI/ProductsList'
 import '../styles/home.css'
@@ -55,7 +55,7 @@ const Home = () => {
           <Col lg='6' md='6'>
           
 
-            <div className="hero__img">
+            <div className="hero__img m-t-10">
               <img src={heroImg2} alt="" />
             </div>
 
