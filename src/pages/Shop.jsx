@@ -31,7 +31,6 @@ const Shop = () => {
       BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
 
-      console.log(res.payload.items)
       setData(res.payload.items)
       setPagination({
         totalItem: res.payload.total_items,
@@ -59,15 +58,24 @@ const Shop = () => {
         totalPage: res.payload.total_pages,
       });
       setKeyword(body.keyword)
-      console.log(body.keyword)
     });
   };
   
     useEffect(() => {
       getData()
     }, []);
+    const handleSubmit = (e) => {
+        
+      e.preventDefault();
+
+      searchData()
+      
+    };
+  
+    const onChange = (e) => {
+      setKeyword(e.target.value);
+    };
   return ( <Helmet title='Shop'>
-    <CommonSection title='' />
 
     <section>
       <Container>
@@ -76,9 +84,11 @@ const Shop = () => {
           
           </Col>
           <Col lg='6' md='12'>
+            <form onSubmit={handleSubmit}>
           <div className="search__box">
-              <input type='text' placeholder='Search...' value={keyword}
-              onChange={(e)=> setKeyword(e.target.value)}
+              <input type='text' placeholder='Search...' 
+               onChange={onChange}
+                value={keyword}
               />
                <div className="filter__widget">
               {/* <select>
@@ -86,13 +96,13 @@ const Shop = () => {
                 <option value="ascending">Ascending</option>
                 <option value="descending">Descending</option>
               </select> */}
-              <button md='0' className='filter__widget' onClick={() =>{searchData()}} 
+              <button md='0' className='filter__widget' 
               >
                 <i  class="ri-search-line"></i>
               </button>
             </div>
             </div>
-            
+            </form>
           </Col>
         </Row>
       </Container>

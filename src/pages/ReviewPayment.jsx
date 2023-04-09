@@ -61,7 +61,7 @@ function payMoment(){
 
     
   return (
-    <Helmet title='Cart'>
+    <Helmet title='Review Payment'>
     <CommonSection title=''/>
     <section>
       <Container>

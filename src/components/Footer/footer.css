@@ -1,7 +1,8 @@
 .footer {
     padding-top: 50px;
     padding-bottom: 30px;
-    background: linear-gradient(to right, #023b4e, #076585);
+    background: linear-gradient(to left, #fff, #076585);
+
 }
 
 .footer__logo img {
@@ -12,15 +13,15 @@
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 15px;
-    color: #fff;
+    color: #304352;
 }
 .footer h5{
-    color: #fff;
+    color: #304352;
     margin-bottom: 20px;
 }
 .footer__logo p {
     font-size: 0.9rem;
-    color: #fff;
+    color: #304352;
     line-height: 28px;
 }
 
@@ -31,20 +32,20 @@
 .delivery__time-item span{
     font-weight: 600;
     font-size: 1rem;
-    color: #fff;
+    color: #304352;
 }
 .delivery__time-item p{
-    color: #fff;
+    color: #304352;
 }
 .footer_title {
     font-size: 1.1rem;
-    color: #fff;
+    color: #304352;
     font-weight: 600;
 }
 .newsletter   {
     padding: 7px 10px;
     background: transparent;
-    border: 1px solid #fff;
+    border: 1px solid #304352;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -56,18 +57,18 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #fff;
+    color: #304352;
 }
 .newsletter input:focus{
     outline: none;
 }
 .newsletter span{
-    background: #fff;
+    background: #304352;
     padding: 3px 1px;
     border-radius: 5px;
 }
 .sub {
-    color: #fff;
+    color: #304352;
 }
 .newsletter span i {
     color: #212245;
@@ -75,19 +76,19 @@
     border-radius: 5px;
 }
 .newsletter input::placeholder {
-    color: #fff;
+    color: #304352;
 }
 .social__links p {
-    color: #fff;
+    color: #304352;
 }
 .social__links span i {
     padding: 5px;
     font-size: 1.1rem;
-    background: #fff;
-    color: #212245;
+    background: #304352;
+    color: #fff;
     border-radius: 50%;
 }
 .copyright__text {
     font-size: 0.8rem;
-    color:#fff;
+    color:#304352;
 }

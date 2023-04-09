@@ -1,8 +1,10 @@
 import React from 'react'
 import "../styles/login/success.css"
+import Helmet from '../components/Helmet/Helmet'
 const Success = () => {
   return (
     <>
+    <Helmet title='Success'>
  <div class="container">
    <div class="row">
       <div class="col-md-6 mx-auto mt-5">
@@ -22,6 +24,7 @@ const Success = () => {
       </div>
    </div>
 </div>
+</Helmet>
     </>
   )
 }

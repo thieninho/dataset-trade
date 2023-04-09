@@ -1,3 +1,4 @@
+
 .table tr td img {
     width: 80px !important;
     height: 80px !important;
@@ -10,5 +11,5 @@ td i {
 
 td,
 th {
-    color: var(--primary-color)
+    color: #304352
 }

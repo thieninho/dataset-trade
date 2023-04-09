@@ -1,102 +1,117 @@
 import { POST } from "../functionHelper/APIFunction";
 import React, {useState} from 'react'
-import { Modal, ModalHeader, ModalBody, Button, ModalFooter, Input } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, Button, ModalFooter} from 'reactstrap'
 import { BASE_URL} from "../global/globalVar";
+import FormInput from '../components/FormInput/FormInput';
 import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 
 function ChangePass({ open, toggle, value}){
-const [crrpass, setoldPass] = useState("")
-const [newpass, setnewPass] = useState("")
-const [confirmpass, setconfirmPass] = useState("")
+
+  const navigate = useNavigate()
+
+  const [values, setValues] = useState({
+    new_password: "",
+    current_password: "",
+    confirm_password: "",
+  });
 
   const handleSave = () => {
     let body = {
-      current_password: crrpass,
-      new_password: newpass,
-      confirm_password: confirmpass,
+      current_password: values.current_password,
+      new_password: values.new_password,
+      confirm_password: values.confirm_password,
     };
     let url = "api/user/update_password";
     POST(BASE_URL + url, JSON.stringify(body))
       .then((res) => {
-        toggle();
-        toast.success("Update successfully", "success");
+        console.log(res)
+        if (res.status.http_status !== "OK") {
+          toast.error("Register failure")
+         
+        }
+        if (res.status.http_status === "OK"){
+          toast.success("Register successfully");
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const navigateLogout = () =>{
+    navigate('/login')
+  }
+  const inputs = [
+
+    {
+      id: 4,
+      name: "current_password",
+      type: "password",
+      placeholder: "Password",
+      errorMessage: "Cannot be left blank",
+      label: "Password",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$`,
+      required: true,
+    },
+    {
+      id: 6,
+      name: "new_password",
+      type: "password",
+      placeholder: "New Password",
+      errorMessage:
+        "Password should be 6-20 characters and include at least 1 letter, 1 number!",
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$`,
+      label: "New pasword",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "confirm_password",
+      type: "password",
+      placeholder: "Confirm Password",
+      errorMessage: "Passwords don't match!",
+      label: "Confirm Password",
+      pattern: values.new_password,
+      required: true,
+    },
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSave();
+    navigateLogout();
+  };
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   return (
     <>
-    <Modal isOpen={open} style={{ maxWidth: "325px" }}>
-    <ModalHeader> Change Pass </ModalHeader>
+    <Modal isOpen={open} style={{ maxWidth: "380px" }}>
+    <ModalHeader> Change Password </ModalHeader>
     <ModalBody>
-        <p>Current Password:</p>
-        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-          
-						<Input
-                        style={{color:"black", paddingLeft:"2rem"}}
-                        className="input100" type="text"
-                        value={crrpass}
-                        onChange={(e) => {
-                            setoldPass(e.target.value);
-                          }}
-                        />
-                         
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-        
-                    <p>New Password:</p>
-                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-          
-						<Input
-                        style={{color:"black", paddingLeft:"2rem"}}
-                        className="input100" type="text"
-                        value={newpass}
-                        onChange={(e) => {
-                            setnewPass(e.target.value);
-                          }}
-                        />
-                         
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-
-                    <p>Confirm Password:</p>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-          
-						<Input
-                        style={{color:"black", paddingLeft:"2rem"}}
-                        className="input100" type="text"
-                        value={confirmpass}
-                        onChange={(e) => {
-                            setconfirmPass(e.target.value);
-                          }}
-
-                        />
-                         
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-					</div>
-                    
-
-    </ModalBody>
+        <div className="regis__app">
+          <form onSubmit={handleSubmit}>
+            {inputs.map((input) => (
+              <FormInput
+                key={input.id}
+                {...input}
+                value={values[input.name]}
+                onChange={onChange}
+              />
+              
+            ))}
+            
+            <button className="btn__login">Submit</button>
+            
+          </form>
+        </div>
+        </ModalBody>
     <ModalFooter>
-    <Button
-        style={{color:"#fff", background:"#076585"}}
-        onClick={() => {
-              handleSave();
-            }}>Save</Button>
         <Button
-        style={{color:"#076585", background:"#fff"}}
+        style={{color:"#304352", background:"#fff"}}
         onClick={() => {
               toggle();
             }}>Close</Button>

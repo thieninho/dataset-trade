@@ -10,18 +10,22 @@ import { Link} from 'react-router-dom';
 import { POST} from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
 import { BASE_URL} from "../global/globalVar";
+import { confirmAlert } from 'react-confirm-alert';
 import {
   Pagination,
   PaginationItem,
   PaginationLink,
 } from "reactstrap";
 import testImg from '../assets/images/Hero4.png'
+import loading from '../assets/images/loading.gif'
+import 'react-confirm-alert/src/react-confirm-alert.css';
 const Cart = (item) => {
 
+  const [show, setShow] = useState(true)
+  const [showLoading, setShowLoading] = useState(false)
+
   const [data, setData] = useState([])
-  const [dataSize, setDataSize] = useState([])
   const [pagination, setPagination] = useState({});
-  const [size, setSize] = useState("")
   const addData = (page) => {
     if (page === undefined) page = 1;
     let apiURL = "api/cart_item/";
@@ -39,46 +43,39 @@ const Cart = (item) => {
         totalPage: res.payload.total_pages,
       });
       setData(res.payload.items)
-      setSize(res.payload.total_items)
       console.log(res.payload.total_pages)
 
     });
   };
 
-
   useEffect(() =>{ 
     addData()
-      let apiURL = "api/cart_item/";
-      let body = {
-        page: 1,
-        size: size,
-        purchased: false,
-        has_dataset_collection: true
-      };
-      POST(
-        BASE_URL + apiURL, JSON.stringify(body)
-      ).then((res) => {
-        setDataSize(res.payload.items)
-        console.log(res.payload.total_items)
-      });
-  }, [size]);
+  }, []);
+  console.log(data)
 
-  const totalAmount = dataSize.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
+  const totalAmount = data.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
   let checkboxes = document.querySelectorAll("[type='checkbox']");
   var cartItemIds = [];
+
   function myFunc() {
-  let checked = document.querySelectorAll("[type='checkbox']:checked");
+    let checked = document.querySelectorAll("[type='checkbox']:checked");
       cartItemIds = []
+      
       checked.forEach(function(el){
         cartItemIds.push(el.value)
+        console.log(cartItemIds)
       })
-    }
+  }
 
     checkboxes.forEach(function(el) {
       el.addEventListener("change", function(){
         myFunc();
+       
       })
     })
+
+    
+  
     
   const deleteData = (item) => {
     let apiURL = "api/cart_item/remove";
@@ -92,7 +89,7 @@ const Cart = (item) => {
       console.log(item.id)
       if (res.status.http_status !== "OK")
           {
-		          toast.error("Dataset not exist in your cart")
+		          toast.error("Please choose products")
           }
       if (res.status.http_status === "OK")
           {
@@ -113,11 +110,19 @@ const Cart = (item) => {
       if (res.status.http_status === "OK")
           {
             console.log("success")
+            setTimeout(()=>{
+              setShowLoading(false)
+            }, 5000)
             window.location.href = res.payload.approval_link; 
           }
       if (res.status.http_status !== "OK")
           {
-		        toast.error("Please choose product!")
+            setTimeout(()=>{
+              setShow(true)
+              setShowLoading(false)
+            }, 2000)
+
+		      toast.error("Please choose product!")
           }
     });
   }
@@ -125,15 +130,41 @@ const Cart = (item) => {
   const dispatch = useDispatch()
   const deleteProduct = () => {
     dispatch(cartActions.deleteItem(item.id))
-    deleteData(item)
-    window.location.reload(false);
+    // deleteData(item)
+    // if (window.confirm('Are you sure you wish to delete this item?')) this.onCancel() 
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="react-confirm-alert-body">
+            <p>Are you sure want to remove this product from your cart?</p>
+            <div className="react-confirm-alert-button-group">
+              <button onClick={onClose}>No</button>
+              <button id="btn-confirm-delete-cart"
+                onClick={() => {
+                  deleteData()
+                  onClose();
+                  window.location.reload(false);
+                }}
+              >
+                Yes, Remove it!
+              </button>
+            </div>
+          </div>
+        );
+      }
+    });
   }
 
+ 
+  
   const paymentProduct = () => {
     dispatch(cartActions.deleteItem(item.id))
     //deleteData(item)
     paymentData(item)
+      setShow(!true)
+      setShowLoading(!false)
   }
+  
 
   return (
   <Helmet title='Cart'>
@@ -167,7 +198,10 @@ const Cart = (item) => {
                 <th
                  className="buy__btn" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200"}}> <motion.i
         whileTap={{scale: 1.2}}
-        onClick={deleteProduct}
+        onClick={()=>{
+          deleteProduct()
+        }}
+        
         class="ri-delete-bin-4-fill"
         ></motion.i>
               </th>
@@ -180,9 +214,10 @@ const Cart = (item) => {
                   <tr item={item} key={index}>
                   <td><img src={testImg} alt=""/></td>
                   <td>{item.dataset_collection.name}</td>
-                  <td>${item.dataset_collection.amount}</td>
+                  <td
+                  >${item.dataset_collection.amount}</td>
       <td> 
-        <input type="checkbox" value={item.id} 
+        <input type="checkbox"  value={[item.id]}
         onChange={() => 
           myFunc()
         }
@@ -209,12 +244,18 @@ const Cart = (item) => {
               <Link to='/shop' style={{fontSize:"17px", fontWeight:"700"}}> Continue Shopping</Link></button>
             </div>
             <div>
-            <button className="buy__btn w-100 mt-1" style={{background:"#ffc439"}} onClick={paymentProduct} >
+            {show === true}
+          {show &&  <button className="buy__btn w-100 mt-1" style={{background:"#ffc439"}} onClick={paymentProduct} >
               <span class="paypal-logo">
+                
                   <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"22px", color:"#253b80", fontWeight:"700"}}>Pay</i>
                   <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"20px", color:"#179bd7", fontWeight:"700"}}>Pal</i>
               </span>
-            </button>
+            </button> }
+            </div>
+            <div className='p-l-75'>
+            {showLoading === false}
+             {showLoading && <img src={loading} alt=""  style={{width: "70%"}}/> }
             </div>
           </Col>
         </Row>

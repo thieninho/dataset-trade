@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 
 
-const Purchased = (item) => {
+const Purchased = ({item}) => {
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({});
 
@@ -36,11 +36,10 @@ const Purchased = (item) => {
       console.log(res.payload.total_pages)
 
     });
-    
   };
   useEffect(() => addData(), [])
   return (
-    <Helmet title='Cart'>
+    <Helmet title='Purchased'>
       <CommonSection title=''/>
       <section>
         <Container>
@@ -76,7 +75,7 @@ const Purchased = (item) => {
                   data.map((item, index) =>(
                     <tr item={item} key={index}>
                     <td><img src={item.dataset_collection.picture} alt=""/></td>
-                    <td>{item.dataset_collection.name}</td>
+                    <td> <Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name}</Link></td>
                     <td>${item.dataset_collection.amount}</td>
                     </tr>
                   ))
@@ -88,8 +87,8 @@ const Purchased = (item) => {
             </Col>
             <Col lg='3'>
               <div>
-                <button className="buy__btn w-100 mb-4"> 
-                <Link to='/shop'> Continue Shopping</Link></button>
+               
+                <Link to='/shop'> <button className="buy__btn w-100 mb-4" style={{color:"#fff"}}>  Continue Shopping </button></Link>
               </div>
               <div>
               </div>

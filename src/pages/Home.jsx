@@ -1,30 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import Helmet from '../components/Helmet/Helmet'
-import { Link } from 'react-router-dom'
-import { motion } from "framer-motion"
 import { POST} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
 import { Container, Row, Col} from "reactstrap"
 import heroImg from '../assets/images/Heroo.svg'
+import heroImg2 from '../assets/images/3.gif'
 import Services from '../services/Services'
 import ProductsList from '../components/UI/ProductsList'
 import '../styles/home.css'
 import whyImg from '../assets/images/section1.gif'
 const Home = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState()
   const getData = (page) => {
+    if (page === undefined) page = 1;
     let apiURL = "api/dataset_collection/";
     let body = {
-      page: 1,
-      size: 8,
+      page: page,
+      size: 4,
     };
     POST(
       BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
-      console.log(res.payload.items)
       setData(res.payload.items)
-
-    });
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
   };
   useEffect(() => getData(), []);
 
@@ -33,50 +34,64 @@ const Home = () => {
     <section className='hero__section'>
       <Container>
         <Row>
-          <Col lg='6' md='6'>
-            <div className="hero__content">
-              {/* <p className="hero_subtitle">Trending dataset in {year}</p> */}
-              <h2 style={{fontSize: "4rem", fontWeight: "400", color: "#076585"}}>Get The Best dataset Services</h2>
-              <p className='mt-3'
-              style={{fontSize: "1.12rem", fontWeight: "400", color: "#076585"}}
-              >Find the best dataset services you need to help you successfully meet your project planning goals and deadline</p>
-              <motion.button
+        <div className="hero__content">
+              <h2 style={{fontSize: "5rem", fontWeight: "900", color: "#304352"}}>DATASET SHOP</h2>
+              <p className=''
+              style={{fontSize: "1rem", fontWeight: "300", color: "#304352"}}
+              >Discover or build your own legally clean datasets of people, objects and scenes for Machine Learning and AI.</p>
+              {/* <motion.button
               whileTap={{ scale: 1.2 }} className="buy__btn"
               >
                 <Link to='/shop'
                 style={{fontSize: "0.8rem", fontWeight: "600", color: "#fff"}}
                 >SHOP NOW </Link>
-              </motion.button>
+              </motion.button> */}
 
             </div>
-          </Col>
-
+        </Row>
+        <Row>
+          
+          
           <Col lg='6' md='6'>
+          
+
+            <div className="hero__img">
+              <img src={heroImg2} alt="" />
+            </div>
+
+          </Col>
+          <Col lg='6' md='6'>
+
             <div className="hero__img">
               <img src={heroImg} alt="" />
             </div>
           </Col>
 
         </Row>
+        
       </Container>
+      
     </section>
-
+    <section className='trending__service'>
     <Services/>
+    </section>
     <section className="trending__products">
+      
       <Container>
         <Row>
        
 
         <Col lg="12" className="text-center">
-          <h2 className="section__title">Best Sales Datasets</h2>
+          <h2 className="section__title p-b-40">Best Sales Datasets</h2>
         </Col>
            <ProductsList data={data}/>
         </Row>
-        <Row lg="6" md="6">
-              <img src={whyImg} alt="delivery" className="w-100" />
-        </Row>
+        
       </Container>
     </section>
+    <Row lg="6" md="6">
+              <img src={whyImg} alt="delivery" className="w-100" />
+        </Row>
   </Helmet>
 }
 

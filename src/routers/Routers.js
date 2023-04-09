@@ -6,7 +6,7 @@ import Shop from '../pages/Shop'
 import Cart from '../pages/Cart'
 import ProductDetails from '../pages/ProductDetails'
 import Checkout from '../pages/Checkout'
-import Login from '../pages/Login1'
+import Login from '../pages/Login'
 import UserDetails from '../pages/UserDetails'
 import Purchased from '../pages/Purchased'
 import ReviewPayment from '../pages/ReviewPayment'
@@ -15,7 +15,7 @@ import Cancel from '../pages/Cancel'
 
 const Routers = () => {
   return <Routes>
-    <Route path="/" element={<Navigate to='login'/>}/>
+    <Route path="/" element={<Navigate to='home'/>}/>
     <Route path='home' element={<Home/>} />
     <Route path='shop' element={<Shop/>} />
     <Route path='cart' element={<Cart/>} />

@@ -12,8 +12,8 @@ const Footer = () => {
         <Col lg='3' md='4' sm='6'>
         <div className='footer__logo text-start'>
           <img src= {logo} alt="logo" />
-            {/* <h5>Dataset</h5> */}
-            {/* <p>Best kits in Viet Nam. Best choice for you.</p> */}
+            <h5>DATA EVERYWHERE</h5>
+            <p>Best choice for you.</p>
         </div>
         </Col>
 
@@ -36,7 +36,7 @@ const Footer = () => {
         <h5 className='footer_title'>Contact</h5>
         <ListGroup className='deliver_time-list'>
         <ListGroupItem className='delivery__time-item border-0 ps-0'>
-            <p>Address: Thu Duc city, Ho Chi Minh city, Viet Nam</p>
+            <p>Address: Ho Chi Minh city, Viet Nam</p>
           </ListGroupItem>
           <ListGroupItem className='delivery__time-item border-0 ps-0'>
             <span>Phone: 0977214077</span>
@@ -68,7 +68,7 @@ const Footer = () => {
       <Row className='mt-5'>
         <Col lg='6' md='6'>
           <p className='copyright__text'>
-            Copyright - 2022, made by Thieninho. All Right Reserved.
+            Copyright - 2023, made by Thieninho. All Right Reserved.
           </p>
         </Col>
         <Col lg='6' md='6'>

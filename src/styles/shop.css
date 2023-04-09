@@ -2,7 +2,7 @@
     padding: 8px 20px;
     cursor: pointer;
     border-radius: 5px;
-    background: #076585;
+    background: #304352;
     color: #fff;
     border: 2px solid #fff;
 
@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 2px solid #076585;
+    border: 2px solid #304352;
     border-radius: 5px;
     padding-right: 0px;
     padding-left: 2px;
@@ -35,7 +35,7 @@
 }
 
 .search__box span{
-    color: #171717;
+    color: #304352;
 }
 
 @media only screen and (max-width: 768px) {

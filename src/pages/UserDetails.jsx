@@ -71,10 +71,10 @@ const [birthday, setBirthday] = useState("")
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
           
 						<input
-            style={{color:"black", paddingLeft:"2rem"}}
+            style={{color:"black", paddingLeft:"1rem"}}
             class="input100" type="text"
             readOnly
-                        value={username} 
+                        value={username}
                         onChange={(e)=> setUsename(e.target.value)}
                         />
                          
@@ -87,7 +87,7 @@ const [birthday, setBirthday] = useState("")
 					<div class="wrap-input100 validate-input" data-validate = "">
             
 						<input 
-            style={{color:"black", paddingLeft:"2rem"}}
+            style={{color:"black", paddingLeft:"1rem"}}
             class="input100" type='text' 
                         value={address}
                         onChange={(e)=> setAddress(e.target.value)}
@@ -102,8 +102,9 @@ const [birthday, setBirthday] = useState("")
 					<div class="wrap-input100 validate-input" data-validate = "">
             
 						<input 
-            style={{color:"black", paddingLeft:"2rem"}}
+            style={{color:"black", paddingLeft:"1rem"}}
             class="input100" type='date' 
+            min="1900-01-01" max="2010-01-01"
                         value={birthday} onChange={(e)=> setBirthday(e.target.value)} />
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -115,7 +116,7 @@ const [birthday, setBirthday] = useState("")
 					<div class="wrap-input100 validate-input" data-validate = "">
             
 						<input 
-            style={{color:"black", paddingLeft:"2rem"}}
+            style={{color:"black", paddingLeft:"1rem"}}
             class="input100" type='text' 
                         value={fullname} onChange={(e)=> setFulname(e.target.value)} />
 						<span class="focus-input100"></span>
@@ -135,9 +136,10 @@ const [birthday, setBirthday] = useState("")
             
             class="text-center">
 						<p 
-            style={{background: "#fff", color: "black", border: "1px solid #171717"}}
+            style={{background: "#fff", color: "black", border: "1px solid #304352"}}
             class="login100-form-btn" onClick={() => {
                       handleTooglePass();
+                      
                     }}>
 							Change Password!
 						</p>
