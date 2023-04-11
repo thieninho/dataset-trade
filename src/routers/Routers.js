@@ -12,16 +12,25 @@ import Purchased from '../pages/Purchased'
 import ReviewPayment from '../pages/ReviewPayment'
 import Success from '../pages/Success'
 import Cancel from '../pages/Cancel'
-
+import { Base } from '../functionHelper/APIFunction'
+import Null from '../pages/Null'
 const Routers = () => {
+const token = JSON.stringify(Base.getCookie("token"));
+
+let a = 'login'
+  if (token !== "null"){
+    a = 'home'
+  }
+
   return <Routes>
     <Route path="/" element={<Navigate to='home'/>}/>
+    <Route path='*' element={<Null/>} />
     <Route path='home' element={<Home/>} />
     <Route path='shop' element={<Shop/>} />
     <Route path='cart' element={<Cart/>} />
     <Route path='shop/:id' element={<ProductDetails/>} />
     <Route path='checkout' element={<Checkout/>} />
-    <Route path='login' element={<Login/>} />
+    <Route path={a} element={<Login/>} />
     <Route path='userdetail' element={<UserDetails/>} />
     <Route path='purchased' element={<Purchased/>} />
     <Route path='payment/paypal/success' element={<Success/>} />

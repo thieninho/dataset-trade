@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: center;
     height: 90vh;
-    background: linear-gradient(to right, #304352, #d7d2cc),
-      url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background: linear-gradient(to right, #bbd5de, #076585);
+    
     background-size: cover;
     background-position: center;
   }
@@ -13,7 +13,8 @@
     align-items: center;
     justify-content: center;
     height: 55vh;
-    background:  #d7d2cc;
+    background: linear-gradient(to right, #bbd5de, #076585);
+
     background-size: cover;
     background-position: center;
   }
@@ -22,8 +23,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 85vh;
-    background: #d7d2cc;
+    height: 90vh;
+    background: linear-gradient(to right, #bbd5de, #076585);
+    border-radius: 10px;
     background-size: cover;
     background-position: center;
   }
@@ -32,7 +34,8 @@
     align-items: center;
     justify-content: center;
     height: 40vh;
-    background: #d7d2cc;
+    background: linear-gradient(to right, #bbd5de, #076585);
+
     background-size: cover;
     background-position: center;
   }

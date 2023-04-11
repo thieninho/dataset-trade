@@ -5,7 +5,7 @@ import CommonSection from '../components/UI/CommonSection'
 import { Container, Row, Col } from 'reactstrap';
 import { motion } from 'framer-motion';
 import {cartActions} from '../redux/slices/cartSlice'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link} from 'react-router-dom';
 import { POST} from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
@@ -16,7 +16,6 @@ import {
   PaginationItem,
   PaginationLink,
 } from "reactstrap";
-import testImg from '../assets/images/Hero4.png'
 import loading from '../assets/images/loading.gif'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 const Cart = (item) => {
@@ -26,6 +25,10 @@ const Cart = (item) => {
 
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({});
+  const cartItems = useSelector((state) => state.cart.cartItems)
+  const totalAmount = useSelector((state) => state.cart.totalAmount)
+
+
   const addData = (page) => {
     if (page === undefined) page = 1;
     let apiURL = "api/cart_item/";
@@ -45,6 +48,7 @@ const Cart = (item) => {
       setData(res.payload.items)
       console.log(res.payload.total_pages)
 
+
     });
   };
 
@@ -53,7 +57,6 @@ const Cart = (item) => {
   }, []);
   console.log(data)
 
-  const totalAmount = data.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
   let checkboxes = document.querySelectorAll("[type='checkbox']");
   var cartItemIds = [];
 
@@ -63,19 +66,18 @@ const Cart = (item) => {
       
       checked.forEach(function(el){
         cartItemIds.push(el.value)
-        console.log(cartItemIds)
       })
   }
+
 
     checkboxes.forEach(function(el) {
       el.addEventListener("change", function(){
         myFunc();
-       
+        console.log(el)
       })
     })
+    const totalAmount1 = data.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
 
-    
-  
     
   const deleteData = (item) => {
     let apiURL = "api/cart_item/remove";
@@ -141,9 +143,13 @@ const Cart = (item) => {
               <button onClick={onClose}>No</button>
               <button id="btn-confirm-delete-cart"
                 onClick={() => {
-                  deleteData()
-                  onClose();
-                  window.location.reload(false);
+                  console.log(cartItemIds)
+                  if (cartItemIds !== 0){
+                    deleteData()
+                    onClose();
+                   window.location.reload(false);
+                  }
+                  
                 }}
               >
                 Yes, Remove it!
@@ -199,7 +205,14 @@ const Cart = (item) => {
                  className="buy__btn" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200"}}> <motion.i
         whileTap={{scale: 1.2}}
         onClick={()=>{
-          deleteProduct()
+          if (cartItemIds.length === 0)
+                  {
+		                toast.error("Please choose products")
+
+                  }
+          else{
+                  deleteProduct()
+                  }
         }}
         
         class="ri-delete-bin-4-fill"
@@ -212,16 +225,17 @@ const Cart = (item) => {
               {
                 data.map((item, index) =>(
                   <tr item={item} key={index}>
-                  <td><img src={testImg} alt=""/></td>
-                  <td>{item.dataset_collection.name}</td>
+                  <td><Link to={`/shop/${item.dataset_collection_id}`}><img src={item.dataset_collection.picture} alt=""/></Link></td>
+                  <td><Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
                   <td
                   >${item.dataset_collection.amount}</td>
       <td> 
-        <input type="checkbox"  value={[item.id]}
+        <input type="checkbox"  value={item.id}
         onChange={() => 
           myFunc()
         }
         />
+        
       </td>
                   </tr>
                 ))
@@ -236,7 +250,7 @@ const Cart = (item) => {
             <div>
             
               <h6 className='d-flex align-items-center justify-content-between'>Subtotal
-              <span className='fs-4 fw-bold'>${totalAmount}</span>
+              <span className='fs-4 fw-bold'>${totalAmount1}</span>
               </h6>
             </div>
             <div>
@@ -255,7 +269,7 @@ const Cart = (item) => {
             </div>
             <div className='p-l-75'>
             {showLoading === false}
-             {showLoading && <img src={loading} alt=""  style={{width: "70%"}}/> }
+            {showLoading && <img src={loading} alt=""  style={{width: "70%"}}/> }
             </div>
           </Col>
         </Row>

@@ -24,10 +24,14 @@
     display: none;
 }
 
+.input__input::shadow[focused="true"]{
+    border: 1px solid red;
+}
 .input__input:invalid[focused="true"]{
     border: 1px solid red;
 }
 
 .input__input:invalid[focused="true"] ~ span{
     display: block;
+    
 }

@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react'
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, Routes, Route } from 'react-router-dom';
 import './header.css'
 import { Base } from '../../functionHelper/APIFunction';
 import logo from '../../assets/images/logo.png'
@@ -38,9 +38,10 @@ useEffect(() => {
 const token = JSON.stringify(Base.getCookie("token"));
 useEffect(() => {
   if (token !== "null"){
-
     setShow1(false)
     setShow2(true)
+
+    
   }
   if (token === "null"){
 

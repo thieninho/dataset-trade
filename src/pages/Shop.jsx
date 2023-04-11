@@ -18,7 +18,7 @@ const Shop = () => {
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({});
   const [keyword, setKeyword] = useState("")
-
+  const [show, setShow] = useState(false)
   const getData = (page) => {
     
     if (page === undefined) page = 1;
@@ -58,22 +58,30 @@ const Shop = () => {
         totalPage: res.payload.total_pages,
       });
       setKeyword(body.keyword)
+      
     });
   };
   
     useEffect(() => {
       getData()
+      
     }, []);
     const handleSubmit = (e) => {
         
       e.preventDefault();
 
       searchData()
+      if (keyword !== null)
+      {
+        setShow(true)
+      }
       
     };
   
     const onChange = (e) => {
+      
       setKeyword(e.target.value);
+      
     };
   return ( <Helmet title='Shop'>
 
@@ -101,8 +109,12 @@ const Shop = () => {
                 <i  class="ri-search-line"></i>
               </button>
             </div>
+
             </div>
             </form>
+
+            {show &&<p className='p-t-10' style={{fontSize:"20px"}}>Result for "{keyword}" </p>}
+
           </Col>
         </Row>
       </Container>
@@ -120,7 +132,7 @@ const Shop = () => {
           
         </Row>
         <Row>
-        <Pagination aria-label="Page navigation example">
+        <Pagination aria-label="Page navigation example" className='p-t-20'>
         {Array.from({ length: pagination.totalPage }, (_, i) => (
           <PaginationItem key={i}>
             <PaginationLink

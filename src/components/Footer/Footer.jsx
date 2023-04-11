@@ -48,7 +48,7 @@ const Footer = () => {
         </Col>
 
         <Col lg='3' md='4' sm='6'>
-        <h5 className='footer_title'>Useful link:</h5>
+        <h5 className='footer_title'>Useful link</h5>
         <ListGroup className='deliver_time-list'>
         <ListGroupItem className='delivery__time-item border-0 ps-0'>
             <p>Shop</p>

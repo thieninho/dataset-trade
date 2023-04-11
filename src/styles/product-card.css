@@ -1,8 +1,10 @@
 .product__item {
     cursor: pointer;
     border-radius: 20px;
-    box-shadow: 5px 5px 15px -5px  #d7d2cc ;
+    box-shadow: 5px 5px 15px -5px  #464444 ;
     margin: 3px;
+    background: #fff;
+    margin-top: 20px;
 }
 
 .product__img img{
@@ -14,7 +16,7 @@
 }
 .product__info h3 a{
     font-size: 1.2rem;
-    color: #304352;
+    color: #000000;
     font-weight: 600;
     margin-top: 15px;
 }
@@ -33,7 +35,7 @@
 .product__card-bottom span p {
     font-size: 0.75rem;
     padding: 5px;
-    background: #304352;
+    background: #076585;
     color: #fff;
     border-radius: 10px;
     width: 100%;

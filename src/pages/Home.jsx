@@ -16,7 +16,7 @@ const Home = () => {
     let apiURL = "api/dataset_collection/";
     let body = {
       page: page,
-      size: 4,
+      size: 8,
     };
     POST(
       BASE_URL + apiURL, JSON.stringify(body)
@@ -35,7 +35,7 @@ const Home = () => {
       <Container>
         <Row>
         <div className="hero__content">
-              <h2 style={{fontSize: "5rem", fontWeight: "900", color: "#304352"}}>DATASET SHOP</h2>
+              <h2 style={{fontSize: "5rem", fontWeight: "900", color: "#fff"}}>DATASET SHOP</h2>
               <p className=''
               style={{fontSize: "1rem", fontWeight: "300", color: "#304352"}}
               >Discover or build your own legally clean datasets of people, objects and scenes for Machine Learning and AI.</p>
@@ -82,7 +82,7 @@ const Home = () => {
        
 
         <Col lg="12" className="text-center">
-          <h2 className="section__title p-b-40">Best Sales Datasets</h2>
+          <h2 className="section__title p-b-40">Popular Datasets</h2>
         </Col>
            <ProductsList data={data}/>
         </Row>

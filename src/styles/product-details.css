@@ -3,13 +3,18 @@
     padding: 0px;
     border-radius: 20px;
 }
+
+.product__details h2 {
+    color: #fff;
+}
 .section__product{
-    background: linear-gradient(to left, #fff, #076585);
+    background: linear-gradient(to right, #bbd5de, #076585);
+
 
 }
 .section__product img{
     border-radius: 20px;
-    width: 400px;
+    background: #fff;
 }
 .tab__content textarea{
     height: 300px;
@@ -23,6 +28,7 @@
     text-align: justify;
     padding: 20px;
     border-radius: 20px;
+    
   }
 .short__desc {
     padding: 20px;
@@ -30,7 +36,11 @@
     background: transparent;
     text-align: justify;
 }
+
 .short__desc::-webkit-scrollbar{
+    display: none;
+}
+.form__group::-webkit-scrollbar{
     display: none;
 }
 textarea{
@@ -43,7 +53,7 @@ textarea{
 }
 
 .product__rating span i{
-    color: coral;
+    color: rgb(255, 208, 80);
 }
 
 .product__rating p span {
@@ -55,6 +65,7 @@ textarea{
     font-size: 2rem;
     font-weight: 900;
     color: #df2020;
+    letter-spacing: 5px;
 }
 
 .tab__wrapper {
@@ -62,7 +73,6 @@ textarea{
     font-weight: 500;
     font-size: 1rem;
     cursor: pointer;
-    background: #ddd;
     border-radius: 5px;
 }
 
@@ -70,7 +80,6 @@ textarea{
     font-weight: 600;
     padding: 5px;
     border-radius: 5px;
-    background: #ddd;
     background: #076585;
     color: #fff;
 }
@@ -101,9 +110,14 @@ textarea{
 
 .form__group input, .form__group textarea{
     width: 100%;
-    border: 1px solid var(--primary-color);
     border-radius: 5px;
     padding: 8px 20px;
+    box-shadow: 5px 5px 15px -5px #ffffff27;
+    border: 1px solid #ddd;
+
+}
+.form__group textarea::-webkit-scrollbar{
+    display: none;
 }
 
 .form__group input:focus, .form__group textarea:focus{

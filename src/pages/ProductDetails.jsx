@@ -8,7 +8,6 @@ import {motion} from "framer-motion"
 import { toast } from 'react-toastify'
 import { POST, GET} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
-import testImg from "../assets/images/Hero5.png"
 import { Base } from '../functionHelper/APIFunction'
 
 const ProductDetails = () => {
@@ -39,19 +38,19 @@ const getDataDetail = () => {
       setAmount(res.payload.amount);
       setData(res.payload)
       setDataDownload(res.payload.dataset_items)
-      if (res.payload.purchased){
-        setShow(false)
-      }
       if (!res.payload.purchased){
-        setShow1(false)
+        setShow(true)
+      }
+      if (res.payload.purchased){
+        setShow1(true)
       }
     })
   .catch ((e) => {
     console.log(e);
   })
 };
-const [show, setShow] = useState(true)
-const [show1, setShow1] = useState(true)
+const [show, setShow] = useState(false)
+const [show1, setShow1] = useState(false)
 
 const token = JSON.stringify(Base.getCookie("token"));
  
@@ -119,10 +118,10 @@ const handlePreview =()=> {
       <section className='section__product pt-09'>
         <Container>
           <Row>
-            <Col lg="6">
+            <Col lg="5">
               <img src={picture} alt="" />
             </Col>
-            <Col lg="6">
+            <Col lg="7">
               <div className="product__details">
                 <h2>{name}</h2>
                 <div className="product__rating d-flex align-items-center gap-5 mb-3">
@@ -136,7 +135,8 @@ const handlePreview =()=> {
                   {/* <p>(<span>{avgRating}</span> ratings)</p> */}
                 </div>
                 <span className="product__price">${amount}</span>
-                <textarea className='short__desc' class='scroll' readOnly  style={{height:"150px", width:"600px", padding:"10px", borderRadius:"10px"}} value={short_description}/>
+                <p className='m-t-15 m-b-5' style={{color:"#fff"}}>Shor description: </p>
+                <textarea className='short__desc' class='scroll' readOnly  style={{height:"120px", width:"750px", padding:"10px", borderRadius:"10px", color:"#fff"}} value={short_description}/>
                 <div>
                 <motion.button whileTap={{scale: 1.2}} className="buy__btn" 
                 style={ {width:"150px"}}
@@ -190,7 +190,7 @@ const handlePreview =()=> {
             {
               tab==='desc' ? 
               <div className='tab__content mt-5'>
-                <textarea class='scroll' value={description}/>
+                <textarea readOnly class='scroll' value={description}/>
               </div> : 
               
               <div className='product__review mt-5'>

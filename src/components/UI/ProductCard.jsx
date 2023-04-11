@@ -8,7 +8,6 @@ import { POST } from '../../functionHelper/APIFunction'
 import { toast } from "react-toastify"
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/slices/cartSlice'
-import testImg from "../../assets/images/Hero4.png"
 
 const ProductCard = ({items}) => {
 

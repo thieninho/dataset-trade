@@ -1,11 +1,8 @@
 .header{
     width: 100%;
-    height: 80px;
-    line-height: 70px;
-    background: linear-gradient(to left, #fff, #076585);
-    
-    
-
+    height: 65px;
+    line-height: 60px;
+    background: linear-gradient(to right, #bbd5de, #076585);
     top: 0;
     left: 0;
     box-shadow: 5px 5px 15px -5px #fff
@@ -33,10 +30,10 @@
     font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: 3px;
-    color: #fff;
+    color: #076585;
 }
 .logo p{
-    color: #ddd;
+    color: #076585;
 }
 
 .menu {
@@ -47,7 +44,7 @@
 }
 
 .nav__item a{
-    color: #304352;
+    color: #fff;
     font-weight: 700;
     cursor: pointer;
     font-size: 1.05rem;
@@ -66,7 +63,7 @@
 
 .nav__icons span i {
     font-size: 1.4rem;
-    color: #304352;
+    color: #fff;
 }
 
 .cart__icon, .fav__icon{
@@ -79,9 +76,8 @@
     left: 0;
     display: flex;
     align-items: center;
-    background: #304352;
+    background: #076585;
     color: #fff;
-    border: 1px solid #fff;
     width: 80px;
     border-radius: 5px;
     padding: 5px;
@@ -89,6 +85,8 @@
     flex-direction: column;
     line-height: 30px;
     display: none;
+    box-shadow: 5px 5px 15px -5px #fff
+
 }
 .logout__actions {
     position: absolute;
@@ -96,9 +94,8 @@
     left: 0;
     display: flex;
     align-items: center;
-    background: #fff;
-    color: #304352;
-    border: 1px solid #304352;
+    background: #076585;
+    color: #fff;
     width: 80px;
     border-radius: 5px;
     padding: 5px;
@@ -106,6 +103,8 @@
     flex-direction: column;
     line-height: 30px;
     display: none;
+    box-shadow: 5px 5px 15px -5px #fff
+
 }
 .cart__icon:hover .profile__actions{
     display: block;
@@ -172,7 +171,7 @@
 
 .sticky__header {
     width: 100%;
-    height: 80px;
+    height: 65px;
     line-height: 70px;
     position: sticky;
     top: 0;
@@ -185,9 +184,15 @@
     color: #304352;
 }
 .sticky__header .logo h1 {
-    color: #304352;
+    color: #076585;
+}
+.sticky__header .logo p {
+    color: #076585;
 }
 
+.sticky__header .nav__item a{
+    color: #076585;
+}
 
 
 @media screen and (max-width:768px) {

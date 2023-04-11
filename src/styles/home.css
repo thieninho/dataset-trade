@@ -1,5 +1,5 @@
 .hero__section {
-    background: linear-gradient(to left, #fff, #076585);
+    background: linear-gradient(to right, #bbd5de, #076585);
 
 box-shadow: #ddd;
 };
@@ -7,14 +7,14 @@ box-shadow: #ddd;
 
 
 .hero__content h2 {
-    color: #304352;
+    color: #000000;
     font-size: 7rem;
     font-weight: 1000;
     margin: 20px 0px;
 }
 
 .hero__content p {
-    color: #304352;
+    color: #000000;
     line-height: 28px;
     padding-bottom: 10px;
     font-style: italic;
@@ -75,10 +75,10 @@ box-shadow: #ddd;
     border: solid 50px #d7d2cc;
 } */
 .trending__service{
-    background: linear-gradient(to left, #fff, #076585);
-
-
-
+    background: #fff;
+}
+.trending__products{
+    background: linear-gradient(to left, #bbd5de, #076585);
 
 }
 

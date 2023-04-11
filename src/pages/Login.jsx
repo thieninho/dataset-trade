@@ -108,12 +108,12 @@ const LoginTest = () => {
             ))}
             <button
             className="btn__login" 
-            >Signup</button>
+            >Login</button>
             <p
             style={{color:"#304352", border:"solid 1px #304352", background:"#fff"}}
           onClick={handleToogleLoginChatbot}
             className="btn__loginchatbot mt-1" 
-            >Signup with Chatbot account</p>
+            >Login with Chatbot account</p>
             <p className="btn__register mt-1"
             onClick={() => {
               handleToogleSignup()
