@@ -1,7 +1,8 @@
 .login__app {
 
-    height: 60vh;
+    height: 100%;
     background: #fff;
+    margin-bottom: 5rem;
   }
 
   .regis__app {

@@ -30,9 +30,9 @@ const Hero = () => {
                         <span className='secondaryText'>Forget all difficulties in finding a data for you.</span>
                     </div>
                     <form className="flexCenter search-bar" >
-                        <HiSearch color="var(--blue)" size={25}/>
-                        <input type='text' />
-                        <button className='button'>Search</button>
+                    <button className='button'>
+                        <i class="ri-shopping-cart-fill"></i> &nbsp;
+                           SHOPPING NOW</button>
                     </form>
                 </div>
 
