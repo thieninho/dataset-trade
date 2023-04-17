@@ -43,6 +43,14 @@ function ChangePass({ open, toggle, value}){
   const navigateLogout = () =>{
     navigate('/login')
   }
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // chnage inverse the boolean state passwordShown
+    setPasswordShown(!passwordShown);
+  };
   const inputs = [
 
     {
@@ -52,13 +60,12 @@ function ChangePass({ open, toggle, value}){
       placeholder: "Password",
       errorMessage: "Cannot be left blank",
       label: "Password",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$`,
       required: true,
     },
     {
       id: 6,
       name: "new_password",
-      type: "password",
+      type: passwordShown ? "text" : "password",
       placeholder: "New Password",
       errorMessage:
         "Password should be 6-20 characters and include at least 1 letter, 1 number!",
@@ -69,7 +76,7 @@ function ChangePass({ open, toggle, value}){
     {
       id: 5,
       name: "confirm_password",
-      type: "password",
+      type: passwordShown ? "text" : "password",
       placeholder: "Confirm Password",
       errorMessage: "Passwords don't match!",
       label: "Confirm Password",
@@ -87,6 +94,7 @@ function ChangePass({ open, toggle, value}){
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+ 
   return (
     <>
     <Modal isOpen={open} style={{ maxWidth: "380px" }}>
@@ -103,9 +111,9 @@ function ChangePass({ open, toggle, value}){
               />
               
             ))}
+            <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             
             <button className="btn__login">Submit</button>
-            
           </form>
         </div>
         </ModalBody>
