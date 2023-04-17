@@ -118,7 +118,7 @@ const LoginTest = () => {
                 onChange={onChange}
               />
             ))}
-            <p className='btn_show m-l-6' style={{cursor:"pointer"}} onClick={togglePassword}><input type='checkbox'/>  Show Password</p>
+            <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             <button
             className="button btn__login " 
             >Login</button>

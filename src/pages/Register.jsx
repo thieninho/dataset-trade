@@ -139,7 +139,7 @@ function Register({open, toggle}){
               />
               
             ))}
-            <p className='btn_show' style={{cursor:"pointer"}} onClick={togglePassword}><input type='checkbox'/> Show Password</p>
+            <p className='btn_show' ><input onChange={togglePassword} type='checkbox'/> Show Password</p>
             
             <button className="btn__login">Submit</button>
             
