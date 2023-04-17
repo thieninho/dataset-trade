@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./formInput.css";
-import { Col } from "reactstrap";
 const FormInput = (props) => {
   const [focused, setFocused] = useState(false);
   const { label, errorMessage, onChange, id, ...inputProps } = props;

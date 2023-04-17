@@ -5,8 +5,8 @@ const Null = () => {
   return (
     <>
     <Helmet title='Unknown page'>
-        <section style={{background:"linear-gradient(to right, #bbd5de, #076585)"}}>
- <div class="container" style={{height: "500px"}}>
+        <section style={{background:"#fff"}}>
+ <div class="container" >
    <div class="row">
       <div class="col-md-6 mx-auto mt-5">
          <div class="payment">
@@ -18,7 +18,7 @@ const Null = () => {
                <p>Maybe the link is broken or the page has been removed. </p>
                <p>Please check that the link you are trying to open is correct.</p>
                <p>[Data-everywhere Shop]</p>
-               <a href="/home">Go to Home</a>
+               <a href="/homenew">Go to Home</a>
             </div>
             
          </div>

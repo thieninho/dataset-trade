@@ -71,9 +71,12 @@ const Shop = () => {
       e.preventDefault();
 
       searchData()
-      if (keyword !== null)
+      if (keyword !== "")
       {
         setShow(true)
+      }
+      if (keyword === ""){
+        setShow(false)
       }
       
     };
@@ -104,7 +107,7 @@ const Shop = () => {
                 <option value="ascending">Ascending</option>
                 <option value="descending">Descending</option>
               </select> */}
-              <button md='0' className='filter__widget' 
+              <button md='0' className='button filter__widget' 
               >
                 <i  class="ri-search-line"></i>
               </button>
@@ -113,23 +116,23 @@ const Shop = () => {
             </div>
             </form>
 
-            {show &&<p className='p-t-10' style={{fontSize:"20px"}}>Result for "{keyword}" </p>}
 
           </Col>
         </Row>
       </Container>
     </section>
-
     <section>
+      
       <Container>
         <Row>
+        {show &&<p className='p-t-10' style={{fontSize:"20px"}}>Result for "{keyword}" </p>}
+
           {
             data.length === 0? <h1 className='text-center fs-4'>No datasets are found</h1>
             : 
             data?.map((item, index) => (
               <ProductCard items={item} key={index}/>
           ))}
-          
         </Row>
         <Row>
         <Pagination aria-label="Page navigation example" className='p-t-20'>

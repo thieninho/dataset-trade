@@ -5,6 +5,7 @@ import "../styles/login/main.css"
 import "../styles/login/util.css"
 import { toast } from "react-toastify";
 import Helmet from '../components/Helmet/Helmet';
+import { Base } from '../functionHelper/APIFunction';
 import ChangePass from './ChangePass';
 import CommonSection from '../components/UI/CommonSection';
 const UserDetails = () => {
@@ -55,6 +56,10 @@ const [birthday, setBirthday] = useState("")
     })
   };
   useEffect(() => getData(), []);
+  const logout =()=>{
+    Base.setCookie("token", null, 0);
+    window.location.href = "/login"
+  }
   
   return (
     <>
@@ -143,7 +148,11 @@ const [birthday, setBirthday] = useState("")
                     }}>
 							Change Password!
 						</p>
+   
+						
 					</div>
+          
+          
 					</div>
 				</form>
 			</div>

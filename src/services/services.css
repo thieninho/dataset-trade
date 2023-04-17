@@ -5,7 +5,8 @@
     column-gap: 0.7rem;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 3px 3px 8px -3px #fff;
+    box-shadow: 5px 5px 15px -5px  #464444 ;
+
 }
 
 .service__item span i {

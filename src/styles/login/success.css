@@ -1,23 +1,22 @@
 
-
-
     .payment
 	{
-		border:1px solid #f2f2f2;
+		border:2px solid #f2f2f2;
 		height:340px;
         border-radius:20px;
         background:#fff;
+        margin-bottom: 70px;
 	}
    .payment_header
    {
-	   background:#076585;
+	   background:#fff;
 	   padding:20px;
        border-radius:20px 20px 0px 0px;
 	   
    }
    .payment1_header
    {
-	   background: #EBB02D;
+	   background: #4161df;
 	   padding:20px;
        border-radius:20px 20px 0px 0px;
 	   
@@ -38,7 +37,7 @@
 	   vertical-align:middle;
 	   line-height:50px;
 	   font-size:30px;
-       color: #076585;
+       color: #4161df;
    }
 
    .check1
@@ -56,7 +55,7 @@
 	   vertical-align:middle;
 	   line-height:50px;
 	   font-size:30px;
-       color: #EBB02D;
+       color: #4161df;
    }
 
     .content1 
@@ -85,7 +84,7 @@
         border-radius:30px;
         padding:5px 10px;
         margin-right: 20;
-        background: #076585;
+        background: #4161df;
         transition:all ease-in-out 0.3s;
         justify-content: center;
     }
@@ -94,8 +93,8 @@
     {
         text-decoration:none;
         background:#fff;
-        border: 1px solid #076585;
-        color: #076585;
+        border: 1px solid #4161df;
+        color: #4161df;
     }
     .content2
     {
@@ -123,7 +122,7 @@
         border-radius:30px;
         padding:5px 10px;
         margin-right: 20;
-        background: #EBB02D;
+        background: #4161df;
         transition:all ease-in-out 0.3s;
         justify-content: center;
     }
@@ -132,6 +131,6 @@
     {
         text-decoration:none;
         background:#fff;
-        border: 1px solid #EBB02D;
-        color: #EBB02D;
+        border: 1px solid #4161df;
+        color: #4161df;
     }

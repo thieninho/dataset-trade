@@ -88,7 +88,7 @@ const Purchased = ({item}) => {
             <Col lg='3'>
               <div>
                
-                <Link to='/shop'> <button className="buy__btn w-100 mb-4" style={{color:"#fff"}}>  Continue Shopping </button></Link>
+                <Link to='/shop'> <button className="button buy__btn w-100 mt-4" style={{color:"#fff", fontSize:"1.2rem", fontWeight:"700"}}>  Continue Shopping </button></Link>
               </div>
               <div>
               </div>

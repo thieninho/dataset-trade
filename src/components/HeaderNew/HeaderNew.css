@@ -1,0 +1,121 @@
+.h-wrapper{
+    color: #fff;
+    background: #131110;
+    position: sticky;
+    z-index: 111;
+}
+
+
+.navclass li{
+    padding: 1px solid #111;
+}
+.navclass li:hover{
+    background: #fff;
+}
+.nav:hover{
+    
+    border: 1px solid #3254dd;
+    padding: 5px 20px;
+    box-shadow: 0px 5px 5px -7px  #3254dd ;
+    border-radius: 5px;
+    color: #fff;
+
+}
+ .nav:hover .navclass{
+    display: block;
+    color: #0078d7;
+    padding-top: 22px;
+    z-index: 9999;
+}
+.nav li{
+    padding: 10px;
+    border: 1px solid #3254dd;
+    background: #131110;
+    font-size: 1rem;
+    border-radius: 3px;
+}
+.navclass {
+    z-index: 9999;
+    margin-top: -40px;
+    margin-left: -50px;
+    display: none;
+    position: absolute;
+    margin-top: 10px;
+    color: #fff;
+    border-radius: 5px;
+
+}
+.h-container{
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: var(--secondary);
+}
+.h-container p{
+    color: var(--secondary);
+}
+
+.h-menu{
+    gap:2rem;
+}
+.h-menu a{
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+}
+.h-menu a:hover{
+    color: #0078d7;
+}
+.h-menu p{
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.h-menu button{
+    padding: 3px 15px;
+}
+.h-menu>*:hover{
+    cursor: pointer;
+}
+.menu-icon{
+    display: none;
+}
+.sticky__header {
+    width: 100%;
+    height: 82px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 3px 3px 8px -3px #ddd;
+    background:  #131110;
+    padding-bottom: 1rem;
+}
+.nav__activee {
+    font-weight: 1.2rem !important;
+    color: #3254dd !important;
+}
+@media (max-width: 768px) {
+    .menu-icon{
+        display: block;
+    }
+    .h-menu{
+        color: var(--black);
+        position: absolute;
+        top: 3rem;
+        right: 4rem;
+        background: #fff;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 3rem;
+        border-radius: 10px;
+        align-items: flex-start;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+        transition: all 300ms ease-in-out;
+        z-index: 999999;
+    }
+    .h-menu p{
+        color: black;
+    }
+}

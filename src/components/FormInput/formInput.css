@@ -10,6 +10,12 @@
     border-radius: 5px;
     border: 1px solid #304352;
 }
+.input__input123{
+    padding: 10px;
+    margin: 8px 0px;
+    border-radius: 5px;
+    border: 1px solid #304352;
+}
 
 
 .label__input{
@@ -32,6 +38,17 @@
 }
 
 .input__input:invalid[focused="true"] ~ span{
+    display: block;
+    
+}
+.input__input123::shadow[focused="true"]{
+    border: 1px solid red;
+}
+.input__input123:invalid[focused="true"]{
+    border: 1px solid red;
+}
+
+.input__input123:invalid[focused="true"] ~ span{
     display: block;
     
 }

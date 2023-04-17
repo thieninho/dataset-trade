@@ -17,7 +17,7 @@ const Success = () => {
                <p>I just wanted to drop you a quick note and let you know that I received your payment. Thank you so much. I really appreciate it.</p>
                <p>Have a great day!</p>
                <p>[Data-everywhere Shop]</p>
-               <a href="/home">Go to Home</a>
+               <a href="/homenew">Go to Home</a>
             </div>
             
          </div>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import FormInput from '../components/FormInput/FormInput';
+import FormInput from '../components/FormInput/FormInputRegis';
 import { Modal, ModalBody, Button, ModalFooter} from 'reactstrap'
 import { POST } from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
@@ -43,7 +43,14 @@ function Register({open, toggle}){
           console.log(e);
         }
       };
-    
+      const [passwordShown, setPasswordShown] = useState(false);
+
+      // Password toggle handler
+      const togglePassword = () => {
+        // When the handler is invoked
+        // chnage inverse the boolean state passwordShown
+        setPasswordShown(!passwordShown);
+      };
       const inputs = [
         {
           id: 1,
@@ -52,7 +59,7 @@ function Register({open, toggle}){
           placeholder: "Username",
           errorMessage:
             "Username should be 3-16 characters and shouldn't include any special character!",
-          label: "Username",
+          label: "Username(*)",
           pattern: "^[A-Za-z0-9]{3,16}$",
           required: true,
         },
@@ -62,7 +69,7 @@ function Register({open, toggle}){
           type: "fullname",
           placeholder: "Fullname",
           errorMessage: "Cannot be left blank",
-          label: "Fullname",
+          label: "Fullname(*)",
           required: true,
         },
         {
@@ -72,7 +79,7 @@ function Register({open, toggle}){
           placeholder: "Address",
           errorMessage: "Cannot be left blank",
           label: "Address",
-          required: true,
+          required: false,
         },
         {
           id: 3,
@@ -83,26 +90,26 @@ function Register({open, toggle}){
           errorMessage: "Cannot be left blank",
           placeholder: "Birthday",
           label: "Birthday",
-          required: true,
+          required: false,
         },
         {
           id: 4,
           name: "password",
-          type: "password",
+          type: passwordShown ? "text" : "password",
           placeholder: "Password",
           errorMessage:
             "Password should be 6-20 characters and include at least 1 letter, 1 number!",
-          label: "Password",
+          label: "Password(*)",
           pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$`,
           required: true,
         },
         {
           id: 5,
           name: "confirm_password",
-          type: "password",
+          type: passwordShown ? "text" : "password",
           placeholder: "Confirm Password",
           errorMessage: "Passwords don't match!",
-          label: "Confirm Password",
+          label: "Confirm Password(*)",
           pattern: values.password,
           required: true,
         },
@@ -132,6 +139,7 @@ function Register({open, toggle}){
               />
               
             ))}
+            <p className='btn_show' style={{cursor:"pointer"}} onClick={togglePassword}><input type='checkbox'/> Show Password</p>
             
             <button className="btn__login">Submit</button>
             

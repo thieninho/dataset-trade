@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate} from 'react-router-dom'
 
 import React from 'react'
-import Home from '../pages/Home'
 import Shop from '../pages/Shop'
 import Cart from '../pages/Cart'
 import ProductDetails from '../pages/ProductDetails'
@@ -12,25 +11,26 @@ import Purchased from '../pages/Purchased'
 import ReviewPayment from '../pages/ReviewPayment'
 import Success from '../pages/Success'
 import Cancel from '../pages/Cancel'
+import HomeNewVer from '../pages/HomeNewVer'
 import { Base } from '../functionHelper/APIFunction'
-import Null from '../pages/Null'
 const Routers = () => {
 const token = JSON.stringify(Base.getCookie("token"));
 
 let a = 'login'
+
   if (token !== "null"){
-    a = 'home'
+    a = 'homenew'
   }
 
   return <Routes>
-    <Route path="/" element={<Navigate to='home'/>}/>
-    <Route path='*' element={<Null/>} />
-    <Route path='home' element={<Home/>} />
+    <Route path="/" element={<Navigate to='homenew'/>}/>
+    <Route path='*' element={<HomeNewVer/>} />
+    <Route path='homenew' element={<HomeNewVer/>} />
     <Route path='shop' element={<Shop/>} />
     <Route path='cart' element={<Cart/>} />
     <Route path='shop/:id' element={<ProductDetails/>} />
     <Route path='checkout' element={<Checkout/>} />
-    <Route path={a} element={<Login/>} />
+    <Route path= {a} element={<Login/>} />
     <Route path='userdetail' element={<UserDetails/>} />
     <Route path='purchased' element={<Purchased/>} />
     <Route path='payment/paypal/success' element={<Success/>} />

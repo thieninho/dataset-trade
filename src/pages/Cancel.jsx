@@ -17,7 +17,7 @@ const Cancel = () => {
                <p>Don't worry. Please try your payment again over the next few days.</p>
                <p>Have a great day!</p>
                <p>[Data-everywhere Shop]</p>
-               <a href="/home">Go to Home</a>
+               <a href="/homenew">Go to Home</a>
             </div>
             
          </div>

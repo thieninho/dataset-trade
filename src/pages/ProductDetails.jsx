@@ -11,7 +11,6 @@ import { BASE_URL} from "../global/globalVar";
 import { Base } from '../functionHelper/APIFunction'
 
 const ProductDetails = () => {
-const [tab, setTab] = useState('desc')
 
 const {id} = useParams()
 const [name, setName] = useState("")
@@ -85,6 +84,7 @@ const handleAddData =()=>{
   addData()
 }
 
+
 useEffect(() => getDataDetail(), []);
 
 const handleDownload = (datasetItemId) => {
@@ -113,9 +113,44 @@ const handlePreview =()=> {
   window.open(BASE_URL + "api/dataset_collection/preview/" + id);
     
 }; 
+const ReadMore = ({ children }) => {
+  const text = children;
+  const [isReadMore, setIsReadMore] = useState(true);
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <p className="text">
+      {isReadMore ? text.slice(0, 120) : text}
+      <span onClick={toggleReadMore} className="read-or-hide">
+        {isReadMore ? "...read more" : " show less"}
+      </span>
+    </p>
+  );
+};
+const ReadMoreLong = ({ children }) => {
+  const text = children;
+  const [isReadMore, setIsReadMore] = useState(true);
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <p className="text">
+      {isReadMore ? text.slice(0, 300) : text}
+      <span onClick={toggleReadMore} className="read-or-hide">
+        {isReadMore ? "...read more" : " show less"}
+      </span>
+    </p>
+  );
+};
+const [toggleState, setToggleState] = useState(1);
+
+const toggleTab = (index) => {
+  setToggleState(index);
+};
   return <Helmet title={name}>
 
-      <section className='section__product pt-09'>
+      <section className='section__product'>
         <Container>
           <Row>
             <Col lg="5">
@@ -135,15 +170,15 @@ const handlePreview =()=> {
                   {/* <p>(<span>{avgRating}</span> ratings)</p> */}
                 </div>
                 <span className="product__price">${amount}</span>
-                <p className='m-t-15 m-b-5' style={{color:"#fff"}}>Shor description: </p>
-                <textarea className='short__desc' class='scroll' readOnly  style={{height:"120px", width:"750px", padding:"10px", borderRadius:"10px", color:"#fff"}} value={short_description}/>
-                <div>
-                <motion.button whileTap={{scale: 1.2}} className="buy__btn" 
+                <p className='m-t-15 m-b-5' style={{color:"#1f3e72"}}>Shor description: </p>
+                <ReadMore className='short__desc'>{short_description}</ReadMore>
+                <div className='m-t-20'>
+                <motion.button whileTap={{scale: 1.2}} className="buy__btn button" 
                 style={ {width:"150px"}}
                 onClick={handlePreview}>Preview</motion.button>
                 
                 {show === false}  
-                {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn m-l-15" 
+                {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn button m-l-15" 
                 style={{color: "#fff", width:"150px" }}
                 onClick={handleAddData}>Add to Cart</motion.button>}
                 </div>
@@ -181,19 +216,34 @@ const handlePreview =()=> {
       <section className='pt-10'>
         <Container>
           <Row>
-            <Col lg='12'>
-              <div className="tab__wrapper d-flex align-items-center gap-5">
-                <h6 className={`${tab === "desc" ? "active__tab" : ""}`} onClick={()=> setTab('desc')}>Description</h6>
-                <h6 className={`${tab === "rev" ? "active__tab" : ""}`} onClick={()=> setTab('rev')}>Reviews</h6>
+          <div className="bloc-tabs">
+        <button
+          className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(1)}
+        >
+          Description
+        </button>
+        <button
+          className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+          onClick={() => toggleTab(2)}
+        >
+          Review
+        </button>
+       
+      </div>
+      <div className="content-tabs">
+        <div
+          className={toggleState === 1 ? "content  active-content" : "content"}
+        >
+          <div className='tab__content mt-5'>
+                <ReadMoreLong>{description}</ReadMoreLong>
               </div>
-              
-            {
-              tab==='desc' ? 
-              <div className='tab__content mt-5'>
-                <textarea readOnly class='scroll' value={description}/>
-              </div> : 
-              
-              <div className='product__review mt-5'>
+        </div>
+
+        <div
+          className={toggleState === 2 ? "content  active-content" : "content"}
+        >
+          <div className='product__review mt-5'>
                 <div className="review__wrapper">
                   {/* <ul>
                     {preview?.map((item, index) => (
@@ -230,14 +280,13 @@ const handlePreview =()=> {
                         />
                       </div>
 
-                      <motion.button whileTap={{scale:1.2}} type='submit' className='buy__btn'>Submit</motion.button>
+                      <motion.button whileTap={{scale:1.2}} type='submit' className='button buy__btn'>Submit</motion.button>
                     </form>
                   </div>
                 </div>
               </div>
-            }
-
-            </Col>
+        </div>
+      </div>
           </Row>
         </Container>
       </section>

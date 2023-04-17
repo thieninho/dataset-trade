@@ -57,27 +57,71 @@ const Cart = (item) => {
   }, []);
   console.log(data)
 
-  let checkboxes = document.querySelectorAll("[type='checkbox']");
-  var cartItemIds = [];
+  //let checkboxes = document.querySelectorAll("[type='checkbox']");
+ 
 
-  function myFunc() {
-    let checked = document.querySelectorAll("[type='checkbox']:checked");
-      cartItemIds = []
+  // function myFunc() {
+  //   let checked = document.querySelectorAll("[type='checkbox']:checked");
+  //     cartItemIds = []
       
-      checked.forEach(function(el){
-        cartItemIds.push(el.value)
-      })
-  }
+  //     checked.forEach(function(el){
+  //       cartItemIds.push(el.value)
+  //       console.log(el.value)
+
+  //     })
+    
+  // }
 
 
-    checkboxes.forEach(function(el) {
-      el.addEventListener("change", function(){
-        myFunc();
-        console.log(el)
-      })
-    })
-    const totalAmount1 = data.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
+  //   checkboxes.forEach(function(el) {
+  //     el.addEventListener("change", function(){
+  //       myFunc();
+  //     })
+  //   })
 
+    const [peopleInfo, setPeopleInfo] = useState({});
+    const [idInfo, setIDInfo] = useState([]);
+
+  const toggleHandler = (item) => () => {
+    setPeopleInfo((state) => ({
+      ...state,
+      [item.id]: state[item.id]
+        ? null
+        : 
+            item.id,
+    }
+    )
+    
+    );
+    setIDInfo((state) => ({
+      ...state,
+      [item.id]: state[item.id]
+        ? null
+        : 
+            item.dataset_collection.amount,
+    }
+    )
+    
+    )
+    
+  };
+
+  useEffect(() => {
+    
+  }, [peopleInfo]);
+  useEffect(() => {
+    
+  }, [idInfo]);
+  const arrayAmount = Object.values(idInfo)
+  const cartItemIds = Object.values(peopleInfo);
+  useEffect(() => {
+    
+  }, [cartItemIds]);
+  useEffect(() => {
+    
+  }, [arrayAmount]);
+  
+    const totalAmount1 = arrayAmount.reduce((a, b) => a + b, 0)
     
   const deleteData = (item) => {
     let apiURL = "api/cart_item/remove";
@@ -205,6 +249,7 @@ const Cart = (item) => {
                  className="buy__btn" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200"}}> <motion.i
         whileTap={{scale: 1.2}}
         onClick={()=>{
+          console.log(cartItemIds)
           if (cartItemIds.length === 0)
                   {
 		                toast.error("Please choose products")
@@ -229,14 +274,12 @@ const Cart = (item) => {
                   <td><Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
                   <td
                   >${item.dataset_collection.amount}</td>
-      <td> 
-        <input type="checkbox"  value={item.id}
-        onChange={() => 
-          myFunc()
-        }
-        />
-        
-      </td>
+                  <input
+                  onChange={toggleHandler(item)}
+                  checked={peopleInfo[item.id]}
+                  style={{ margin: "20px" }}
+                  type="checkbox"
+                />
                   </tr>
                 ))
               }
@@ -254,12 +297,12 @@ const Cart = (item) => {
               </h6>
             </div>
             <div>
-              <button className="buy__btn w-100 mb-4"> 
-              <Link to='/shop' style={{fontSize:"17px", fontWeight:"700"}}> Continue Shopping</Link></button>
+              <button className="button buy__btn w-100 mt-4"> 
+              <Link to='/shop' style={{fontSize:"17px", fontWeight:"700", color:"#fff"}}> Continue Shopping</Link></button>
             </div>
             <div>
             {show === true}
-          {show &&  <button className="buy__btn w-100 mt-1" style={{background:"#ffc439"}} onClick={paymentProduct} >
+          {show &&  <button className="button buy__btn w-100 mt-3" style={{background:"#ffc439"}} onClick={paymentProduct} >
               <span class="paypal-logo">
                 
                   <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"22px", color:"#253b80", fontWeight:"700"}}>Pay</i>

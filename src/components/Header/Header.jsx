@@ -1,6 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react'
 import { NavLink, useNavigate, Routes, Route } from 'react-router-dom';
-import './header.css'
 import { Base } from '../../functionHelper/APIFunction';
 import logo from '../../assets/images/logo.png'
 import { Container, Row } from 'reactstrap';

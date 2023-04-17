@@ -9,11 +9,13 @@ import { toast } from "react-toastify"
 import "../styles/login.css"
 import "../styles/login/main.css"
 import "../styles/login/util.css"
-import logo from "../assets/images/3.gif"
+import heroImg from "../assets/images/Heroo.svg"
+import { motion } from 'framer-motion'
 import Register from './Register';
 import LoginChatBot from './LoginChatBot';
 import Helmet from '../components/Helmet/Helmet';
 const LoginTest = () => {
+  
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [openLoginChatbot, setOpenLoginChatbot] = useState(false);
   const handleToogleSignup = () => {
@@ -39,7 +41,7 @@ const LoginTest = () => {
             if (res.status.http_status === "OK"){
               setCookie("token", res.payload.token, 3)
               toast.success("Login successfully");
-              navigate("/home");
+              navigate("/homenew");
               }
             if (res.status.http_status !== "OK"){
               toast.error("Username or password invalid")
@@ -55,7 +57,14 @@ const LoginTest = () => {
       };
   
       
+      const [passwordShown, setPasswordShown] = useState(false);
 
+      // Password toggle handler
+      const togglePassword = () => {
+        // When the handler is invoked
+        // chnage inverse the boolean state passwordShown
+        setPasswordShown(!passwordShown);
+      };
       const navigate = useNavigate();
       const inputs = [
         {
@@ -70,7 +79,7 @@ const LoginTest = () => {
         {
           id: 4,
           name: "password",
-          type: "password",
+          type: passwordShown ? "text" : "password",
           placeholder: "Password",
           errorMessage: "Cannot be left blank",
           label: "Password",
@@ -93,10 +102,13 @@ const LoginTest = () => {
       
       return <>
       <Helmet title="Login">
-        <div className="login__app">
-        <Row style={{background:"#fff", borderRadius:"10px"}}>
+      <section className='login__app'>
+        <div className="paddings innerWidth flexCenter hero-container">
+               
+                <div className="paddings innerWidth flexCenter">
 
-            <Col>
+
+           
           <form className="form__login" onSubmit={handleSubmit}>
             {inputs.map((input) => (
               <FormInput
@@ -106,13 +118,14 @@ const LoginTest = () => {
                 onChange={onChange}
               />
             ))}
+            <p className='btn_show m-l-6' style={{cursor:"pointer"}} onClick={togglePassword}><input type='checkbox'/>  Show Password</p>
             <button
-            className="btn__login" 
+            className="button btn__login " 
             >Login</button>
             <p
             style={{color:"#304352", border:"solid 1px #304352", background:"#fff"}}
           onClick={handleToogleLoginChatbot}
-            className="btn__loginchatbot mt-1" 
+            className="button btn__loginchatbot mt-1" 
             >Login with Chatbot account</p>
             <p className="btn__register mt-1"
             onClick={() => {
@@ -122,17 +135,17 @@ const LoginTest = () => {
             Create a new account</p>
           </form>
           
-          </Col>
-          <Col>
+          
+         
+          {/* <Col>
           <form className="form__imglogin">
           <p style={{width:"400px"}} className='p-t-70'
           >
 					<img className='login1001-pic' src={logo} alt="IMG"/>
 				  </p>
           </form>
-          </Col>
+          </Col> */}
 
-          </Row>
         </div>
         <Register
          open={openSignupModal}
@@ -142,6 +155,10 @@ const LoginTest = () => {
         open={openLoginChatbot}
         toggle={handleToogleLoginChatbot}
         />
+                </div>
+    
+    </section>
+        
         </Helmet>
         </>
 }

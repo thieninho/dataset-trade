@@ -1,3 +1,4 @@
+
 .filter__widget button {
     padding: 8px 20px;
     cursor: pointer;
@@ -23,6 +24,8 @@
     border-radius: 5px;
     padding-right: 0px;
     padding-left: 2px;
+    margin: 60px 0px;
+    height: 43px;
 }
 
 .search__box input {
