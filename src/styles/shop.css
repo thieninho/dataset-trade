@@ -3,7 +3,7 @@
     padding: 8px 20px;
     cursor: pointer;
     border-radius: 5px;
-    background: #304352;
+    background: #4161df;
     color: #fff;
 
 }
@@ -36,7 +36,7 @@
 }
 
 .search__box span{
-    color: #304352;
+    color: #4161df;
 }
 
 @media only screen and (max-width: 768px) {

@@ -110,18 +110,18 @@ function payMoment(){
           <Col lg='3'>
           <div>
             
-            <h6 className='d-flex align-items-center justify-content-between'>Total price:
+            <h6 className='d-flex align-items-center justify-content-between m-t-20'>Total price:
             <span className='fs-4 fw-bold'  style={{color:"orange"}}>${totalAmount}</span>
             </h6>
           </div>
             <div>
-              <button className="button buy__btn w-100 mb-4 m-t-10" style={{color: "#fff", fontSize: "1.1rem", fontWeight: "700"}}
+              <button className="button buy__btn w-100 mb-4 m-t-20" style={{color: "#fff", fontSize: "1.1rem", fontWeight: "700"}}
               onClick={payMoment}
               > 
                Payment Confirm</button>
             </div>
             <div>
-              <button className="button buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#076585", fontSize: "1.1rem", fontWeight: "700", border: "1px solid #076585"}}
+              <button className="button buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#4161df", fontSize: "1.1rem", fontWeight: "700", border: "1px solid #4161df"}}
               onClick={Cancel}> 
                Cancel</button>
             </div>
