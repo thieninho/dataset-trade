@@ -13,10 +13,11 @@ const Layout = () => {
   return <>
 
     <div>
-    {   pathname !== "/payment/paypal/success" && pathname !== "/payment/paypal/cancel" && <Header />} 
+     <Header />
         <Routers/>
-    {   pathname !== "/payment/paypal/success" && pathname !== "/payment/paypal/cancel" && <GetStarted />}
-    {   pathname !== "/payment/paypal/success" && pathname !== "/payment/paypal/cancel" && <Footer />}
+    {/* {   pathname === "/payment/paypal/success" }{ pathname === "/payment/paypal/cancel" &&  */}
+    <GetStarted />
+    <Footer />
 
     </div>
   </>

@@ -76,7 +76,7 @@ const Purchased = ({item}) => {
                     <tr item={item} key={index}>
                     <td><Link to={`/shop/${item.dataset_collection_id}`}> <img src={item.dataset_collection.picture} alt=""/></Link></td>
                     <td> <Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name}</Link></td>
-                    <td>${item.dataset_collection.amount}</td>
+                    <td  style={{color:"orange"}}>${item.dataset_collection.amount}</td>
                     </tr>
                   ))
                 }

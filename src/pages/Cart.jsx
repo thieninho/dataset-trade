@@ -246,10 +246,9 @@ const Cart = (item) => {
                 <th>Title</th>
                 <th>Price</th>
                 <th
-                 className="buy__btn" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200"}}> <motion.i
+                 className="buy__btn mr-10" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200", scale:"1.2"}}> <motion.i
         whileTap={{scale: 1.2}}
         onClick={()=>{
-          console.log(cartItemIds)
           if (cartItemIds.length === 0)
                   {
 		                toast.error("Please choose products")
@@ -272,12 +271,12 @@ const Cart = (item) => {
                   <tr item={item} key={index}>
                   <td><Link to={`/shop/${item.dataset_collection_id}`}><img src={item.dataset_collection.picture} alt=""/></Link></td>
                   <td><Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
-                  <td
+                  <td style={{color:"orange"}}
                   >${item.dataset_collection.amount}</td>
                   <input
                   onChange={toggleHandler(item)}
                   checked={peopleInfo[item.id]}
-                  style={{ margin: "20px" }}
+                  style={{ margin: "20px", scale:"1.5", background:"#fff"}}
                   type="checkbox"
                 />
                   </tr>
@@ -293,7 +292,7 @@ const Cart = (item) => {
             <div>
             
               <h6 className='d-flex align-items-center justify-content-between'>Subtotal
-              <span className='fs-4 fw-bold'>${totalAmount1}</span>
+              <span className='fs-4 fw-bold'  style={{color:"orange"}}>${totalAmount1}</span>
               </h6>
             </div>
             <div>

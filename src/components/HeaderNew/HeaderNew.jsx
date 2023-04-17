@@ -116,7 +116,7 @@ const menuToggle = () => menuRef.current.classList.toggle('active__menu')
                
                 {show2 &&<div >
                 
-                    <div className='nav button'> USER
+                    <div className='nav'> <i class="ri-shield-user-fill" style={{fontSize:"2rem"}}></i>
                     <ul className="navclass">
                         <li onClick={navigateToUser}>PROFILE</li>
                         <li onClick={logout}>LOGOUT</li>

@@ -28,7 +28,26 @@
     text-align: justify-center;
     color: #131110;
 }
+.text h2{
+    font-size: 1.2rem;
+}
+.text p{
+    color: #131110;
+    font-style: bold;
+}
+ .text ol> li {
+    font-size: 0.9rem;
+    font-weight: 100;
+    color: #131110;
+    list-style: circle inside;
+}
 
+.product__details .text h2{
+    font-size: 1.2rem;
+}
+.product__details .text li{
+    font-size: 0.9rem;
+}
 
 .form__group::-webkit-scrollbar{
     display: none;

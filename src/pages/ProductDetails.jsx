@@ -9,13 +9,14 @@ import { toast } from 'react-toastify'
 import { POST, GET} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
 import { Base } from '../functionHelper/APIFunction'
-
+import DOMPurify from "dompurify";
+import parse from "html-react-parser";
 const ProductDetails = () => {
 
 const {id} = useParams()
 const [name, setName] = useState("")
-const [short_description, setShort_description] = useState("")
-const [description, setDescription] = useState("")
+const [short_description, setShort_description] = useState([])
+const [description, setDescription] = useState([])
 const [picture, setPicture] = useState("")
 const [preview, setPreview] = useState("")
 const [amount, setAmount] = useState("")
@@ -120,12 +121,12 @@ const ReadMore = ({ children }) => {
     setIsReadMore(!isReadMore);
   };
   return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 120) : text}
-      <span onClick={toggleReadMore} className="read-or-hide">
+    <div className="text">
+      {isReadMore ? text.slice(0, 1) : text}
+      <div onClick={toggleReadMore} className="read-or-hide">
         {isReadMore ? "...read more" : " show less"}
-      </span>
-    </p>
+      </div>
+    </div>
   );
 };
 const ReadMoreLong = ({ children }) => {
@@ -135,12 +136,12 @@ const ReadMoreLong = ({ children }) => {
     setIsReadMore(!isReadMore);
   };
   return (
-    <p className="text">
-      {isReadMore ? text.slice(0, 300) : text}
-      <span onClick={toggleReadMore} className="read-or-hide">
+    <div className="text">
+      {isReadMore ? text.slice(0, 3) : text}
+      <div onClick={toggleReadMore} className="read-or-hide">
         {isReadMore ? "...read more" : " show less"}
-      </span>
-    </p>
+      </div>
+    </div>
   );
 };
 const [toggleState, setToggleState] = useState(1);
@@ -148,6 +149,14 @@ const [toggleState, setToggleState] = useState(1);
 const toggleTab = (index) => {
   setToggleState(index);
 };
+const html = `${short_description}`
+const htmlLong = `${description}`
+const cleanHTML = DOMPurify.sanitize(html, {
+  USE_PROFILES: { html: true },
+});
+const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
+  USE_PROFILES: { html: true },
+});
   return <Helmet title={name}>
 
       <section className='section__product'>
@@ -169,9 +178,9 @@ const toggleTab = (index) => {
                   </div>
                   {/* <p>(<span>{avgRating}</span> ratings)</p> */}
                 </div>
-                <span className="product__price">${amount}</span>
+                <span className="product__price"  style={{color:"orange"}}>${amount}</span>
                 <p className='m-t-15 m-b-5' style={{color:"#1f3e72"}}>Shor description: </p>
-                <ReadMore className='short__desc'>{short_description}</ReadMore>
+                <ReadMore className='short__desc'>{parse(cleanHTML)}</ReadMore>
                 <div className='m-t-20'>
                 <motion.button whileTap={{scale: 1.2}} className="buy__btn button" 
                 style={ {width:"150px"}}
@@ -236,7 +245,7 @@ const toggleTab = (index) => {
           className={toggleState === 1 ? "content  active-content" : "content"}
         >
           <div className='tab__content mt-5'>
-                <ReadMoreLong>{description}</ReadMoreLong>
+                <ReadMoreLong>{parse(cleanHTMLLONG)}</ReadMoreLong>
               </div>
         </div>
 

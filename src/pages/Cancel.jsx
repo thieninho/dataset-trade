@@ -10,7 +10,7 @@ const Cancel = () => {
       <div class="col-md-6 mx-auto mt-5">
          <div class="payment">
             <div class="payment1_header">
-               <div class="check1"><i class="ri-checkbox-circle-fill"></i></div>
+               <div class="check1"><i class="ri-close-circle-fill"></i></div>
             </div>
             <div class="content2">
                <h1>Payment failure !</h1>

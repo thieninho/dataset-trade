@@ -79,7 +79,6 @@ const handlePreview =()=> {
             <motion.span className='price' whileTap={{scale: 1.2}} onClick={handlePreview} >
               <i class="ri-eye-fill"></i>
             </motion.span>
-            
             )
             }
             

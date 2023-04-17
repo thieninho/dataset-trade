@@ -98,7 +98,7 @@ function payMoment(){
                   <tr item={item} key={index}>
                   <td><img src={item.dataset_collection.picture} alt=""/></td>
                   <td>{item.dataset_collection.name}</td>
-                  <td>${item.dataset_collection.amount}</td>
+                  <td  style={{color:"orange"}}>${item.dataset_collection.amount}</td>
                   </tr>
                 ))
               }
@@ -111,17 +111,17 @@ function payMoment(){
           <div>
             
             <h6 className='d-flex align-items-center justify-content-between'>Total price:
-            <span className='fs-4 fw-bold'>${totalAmount}</span>
+            <span className='fs-4 fw-bold'  style={{color:"orange"}}>${totalAmount}</span>
             </h6>
           </div>
             <div>
-              <button className="buy__btn w-100 mb-4" style={{color: "#fff", fontSize: "1.1rem", fontWeight: "700"}}
+              <button className="button buy__btn w-100 mb-4 m-t-10" style={{color: "#fff", fontSize: "1.1rem", fontWeight: "700"}}
               onClick={payMoment}
               > 
                Payment Confirm</button>
             </div>
             <div>
-              <button className="buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#076585", fontSize: "1.1rem", fontWeight: "700", border: "1px solid #076585"}}
+              <button className="button buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#076585", fontSize: "1.1rem", fontWeight: "700", border: "1px solid #076585"}}
               onClick={Cancel}> 
                Cancel</button>
             </div>

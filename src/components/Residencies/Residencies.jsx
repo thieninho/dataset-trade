@@ -50,7 +50,7 @@ const [data, setData] = useState()
                         <SwiperSlide key={i} >
                             <div className="flexColStart r-card" >
                             <Link to={`/shop/${card.id}`}> <img src={card.picture} alt="home" style={{height:"200px", width:"100%"}}/></Link>
-                                <span className="secondaryText r-price">
+                                <span className="secondaryText r-price"  style={{color:"orange"}}>
                                     <span style={{color:"orange"}}>$</span>
                                     <span>{card.amount}</span>
                                 </span>
