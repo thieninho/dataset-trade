@@ -122,9 +122,11 @@ const ReadMore = ({ children }) => {
   };
   return (
     <div className="text">
-      {isReadMore ? text.slice(0, 1) : text}
+      <div>
+      {isReadMore ? text.slice(0, 0) : text}
       <div onClick={toggleReadMore} className="read-or-hide">
         {isReadMore ? "...read more" : " show less"}
+      </div>
       </div>
     </div>
   );
@@ -168,7 +170,7 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
             <Col lg="7">
               <div className="product__details">
                 <h2>{name}</h2>
-                <div className="product__rating d-flex align-items-center gap-5 mb-3">
+                {/* <div className="product__rating d-flex align-items-center gap-5 mb-3">
                   <div>
                     <span> <i class="ri-star-s-fill"></i></span>
                     <span> <i class="ri-star-s-fill"></i></span>
@@ -176,19 +178,20 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
                     <span> <i class="ri-star-s-fill"></i></span>
                     <span> <i class="ri-star-s-fill"></i></span> 
                   </div>
-                  {/* <p>(<span>{avgRating}</span> ratings)</p> */}
-                </div>
-                <span className="product__price"  style={{color:"orange"}}>${amount}</span>
-                <p className='m-t-15 m-b-5' style={{color:"#1f3e72"}}>Shor description: </p>
-                <ReadMore className='short__desc'>{parse(cleanHTML)}</ReadMore>
+                  <p>(<span>{avgRating}</span> ratings)</p>
+                </div> */}
+                {show === false}  
+                {show && <span className="product__price"  style={{color:"orange"}}>${amount}</span> }
+                <p className='m-t-15 m-b-5' style={{color:"#1f3e72"}}>Short description: </p>
+                <div className='text1'>{parse(cleanHTML)}</div>
                 <div className='m-t-20'>
-                <motion.button whileTap={{scale: 1.2}} className="buy__btn button" 
-                style={ {width:"150px"}}
+                <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move" 
+                style={{color: "#253b80", width:"150px" }}
                 onClick={handlePreview}>Preview</motion.button>
                 
                 {show === false}  
-                {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn button m-l-15" 
-                style={{color: "#fff", width:"150px" }}
+                {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move m-l-15" 
+                style={{color: "#253b80", width:"150px" }}
                 onClick={handleAddData}>Add to Cart</motion.button>}
                 </div>
                 <div>
@@ -245,8 +248,8 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
           className={toggleState === 1 ? "content  active-content" : "content"}
         >
           <div className='tab__content mt-5'>
-                <ReadMoreLong>{parse(cleanHTMLLONG)}</ReadMoreLong>
-              </div>
+                <ReadMoreLong className="text2">{parse(cleanHTMLLONG)}</ReadMoreLong>
+          </div>
         </div>
 
         <div
@@ -299,7 +302,7 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
           </Row>
         </Container>
       </section>
-      <CommonSection/>
+      
 
     </Helmet>
 }

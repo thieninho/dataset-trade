@@ -13,13 +13,15 @@ import Success from '../pages/Success'
 import Cancel from '../pages/Cancel'
 import HomeNewVer from '../pages/HomeNewVer'
 import { Base } from '../functionHelper/APIFunction'
+import Register from '../pages/Register'
 const Routers = () => {
 const token = JSON.stringify(Base.getCookie("token"));
 
 let a = 'login'
-
+let b = 'register'
   if (token !== "null"){
     a = 'homenew'
+    b = 'homenew'
   }
 
   return <Routes>
@@ -31,6 +33,7 @@ let a = 'login'
     <Route path='shop/:id' element={<ProductDetails/>} />
     <Route path='checkout' element={<Checkout/>} />
     <Route path= {a} element={<Login/>} />
+    <Route path= {b} element={<Register/>}/>
     <Route path='userdetail' element={<UserDetails/>} />
     <Route path='purchased' element={<Purchased/>} />
     <Route path='payment/paypal/success' element={<Success/>} />

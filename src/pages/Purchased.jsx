@@ -40,8 +40,8 @@ const Purchased = ({item}) => {
   useEffect(() => addData(), [])
   return (
     <Helmet title='Purchased'>
-      <CommonSection title=''/>
-      <section>
+      <CommonSection title='PURCHASED'/>
+      <section className='pagi'>
         <Container>
           <Row>
             {/* <h2>{addData()}</h2> */}
@@ -58,7 +58,7 @@ const Purchased = ({item}) => {
                 </tr>
               </thead>
               </table>
-              <h2 className='text-center m-t-100'>No item added to the cart</h2> 
+              <h2 className='text-center m-t-100 m-b-100'>No item added to the cart</h2> 
               </div>
                 ): (
                 <table className='table bordered'>
@@ -88,7 +88,7 @@ const Purchased = ({item}) => {
             <Col lg='3'>
               <div>
                
-                <Link to='/shop'> <button className="button buy__btn w-100 mt-4" style={{color:"#fff", fontSize:"1.2rem", fontWeight:"700"}}>  Continue Shopping </button></Link>
+                <Link to='/shop'> <button className="button-background-move buy__btn w-100 mt-4" style={{color:"#253b80", fontSize:"1.2rem", fontWeight:"700"}}>  Continue Shopping </button></Link>
               </div>
               <div>
               </div>

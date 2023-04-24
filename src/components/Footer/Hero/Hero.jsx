@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import heroImg from "../../../assets/images/3.gif"
-import {HiSearch} from 'react-icons/hi'
-
+import { NavLink, useNavigate} from 'react-router-dom';
+import CommonSection from "../../UI/CommonSection"
 import "./Hero.css"
 import "../../../App.css"
 
 import { motion } from 'framer-motion'
 
 const Hero = () => {
+  const navigate = useNavigate()
+  const navigateToShop = () =>{
+    navigate('/shop')
+  }
  
   return (
     <section className='hero-wrapper'>
@@ -29,11 +33,11 @@ const Hero = () => {
                         <span className='secondaryText'>Find a variety of data that suit you very easily</span>
                         <span className='secondaryText'>Forget all difficulties in finding a data for you.</span>
                     </div>
-                    <form className="flexCenter search-bar" >
-                    <button className='button'>
+                    <div className="flexCenter search-bar" >
+                    <button className='glow-on-hover' onClick={navigateToShop}>
                         <i class="ri-shopping-cart-fill"></i> &nbsp;
                            SHOPPING NOW</button>
-                    </form>
+                    </div>
                 </div>
 
                 <div className="flexCenter hero-right">
@@ -49,6 +53,7 @@ const Hero = () => {
                     </motion.div>
                 </div>
             </div>      
+
     </section>
   )
 }

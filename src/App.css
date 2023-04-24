@@ -145,3 +145,33 @@ a {
   border-radius: 100px;
   z-index: 999;
 }
+.button-background-move {
+  padding: 10px 10px 10px;
+  outline: 0;
+  border: 0.5px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  background-color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-background-move:after {
+  content: "";
+  background: linear-gradient(97.05deg, #9baae4 3.76%, #2949c6 100%);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+  border-radius: 5px;
+}
+
+.button-background-move:hover:after {
+  top: 0px;
+  left: 0px;
+}

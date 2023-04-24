@@ -1,7 +1,7 @@
 import React from 'react'
 //import { Link } from 'react-router-dom';
 import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/public/minilogo.svg';
 import "./footer.css"
 
 

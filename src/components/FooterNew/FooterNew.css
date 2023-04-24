@@ -1,5 +1,13 @@
+.f-wrapper{
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(136, 160, 255, 0.46) 217.91%
+    );
+}
 .f-container{
     justify-content: space-between;
+    
 }
 .f-left{
     gap: 1rem;

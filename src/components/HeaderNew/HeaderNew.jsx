@@ -117,17 +117,16 @@ const menuToggle = () => menuRef.current.classList.toggle('active__menu')
                 {show2 &&<div >
                 
                     <div className='nav'> <i class="ri-shield-user-fill" style={{fontSize:"2rem"}}></i>
-                    <ul className="navclass">
-                        <li onClick={navigateToUser}>PROFILE</li>
-                        <li onClick={logout}>LOGOUT</li>
+                    <ul className="navclass ">
+                        <li className='glow-on-hover2' onClick={navigateToUser}>PROFILE</li>
+                        <li className='glow-on-hover2' onClick={logout}>LOGOUT</li>
                     </ul>
                     </div>
                     
                 </div>}
-                {show1 &&<button className='button' onClick={navigateToLogin}>
-                
-                    <p> LOGIN </p>
-                </button>}
+                {show1 &&
+                <button className='button-hl' onClick={navigateToLogin}><span>LOGIN</span><i></i></button>
+                }
                 {/* {show2 && <button className='button' onClick={logout}>
                 <BiLogOutCircle/>
                 </button>} */}

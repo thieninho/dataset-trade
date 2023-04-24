@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import FormInput from '../components/FormInput/FormInputRegis';
-import { Modal, ModalBody, Button, ModalFooter} from 'reactstrap'
 import { POST } from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
 import { BASE_URL} from "../global/globalVar";
+import { useNavigate } from "react-router-dom";
 
-function Register({open, toggle}){
+import Helmet from '../components/Helmet/Helmet';
+const Register = () => {
+  const navigate = useNavigate();
+
     const [values, setValues] = useState({
         username: "",
         full_name: "",
@@ -34,8 +37,7 @@ function Register({open, toggle}){
             }
             if (res.status.http_status === "OK"){
               toast.success("Register successfully");
-			        toggle();
-
+              navigate("/homenew");
             }
     
           });
@@ -118,18 +120,27 @@ function Register({open, toggle}){
       const handleSubmit = (e) => {
         e.preventDefault();
         handleLogin();
+        
       };
     
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
       };
+      const navigateToLogin = () =>{
+        navigate('/login')
+      }
     
       return (
         <>
-	<Modal isOpen={open} style={{ maxWidth: "440px", borderRadius:"70px"}}>
-    <ModalBody>
-        <div className="regis1__app">
-          <form onSubmit={handleSubmit}>
+	      <Helmet title="Login">
+      <section className='login__app1'>
+        <div className="paddings innerWidth flexCenter hero-container">
+               
+                <div className="innerWidth flexCenter">
+
+
+           
+          <form className="form__login" onSubmit={handleSubmit}>
             {inputs.map((input) => (
               <FormInput
                 key={input.id}
@@ -137,23 +148,38 @@ function Register({open, toggle}){
                 value={values[input.name]}
                 onChange={onChange}
               />
-              
             ))}
-            <p className='btn_show' ><input onChange={togglePassword} type='checkbox'/> Show Password</p>
-            
-            <button className="btn__login">Submit</button>
-            
+            <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
+            <button
+                     className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{background:"rgba(136, 160, 255, 0.46)",color: "#fff", fontSize: "20px", fontWeight: "700", wordSpacing:"10"}}
+
+            >Register</button>
+             <p className="btn__register mt-1"
+            onClick={() => {
+              navigateToLogin()
+                }}
+              >
+            Already have an account?</p>
           </form>
+          
+          
+         
+          {/* <Col>
+          <form className="form__imglogin">
+          <p style={{width:"400px"}} className='p-t-70'
+          >
+					<img className='login1001-pic' src={logo} alt="IMG"/>
+				  </p>
+          </form>
+          </Col> */}
+
         </div>
-        </ModalBody>
-        <ModalFooter>
-	<Button
-        style={{color:"#304352", background:"#fff"}}
-        onClick={() => {
-			  toggle();
-            }}>Close</Button>
-    </ModalFooter>
-	</Modal>
+      
+                </div>
+    
+    </section>
+        
+        </Helmet>
         </>
       )
 }

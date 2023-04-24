@@ -6,8 +6,12 @@ import { Container, Row, Col } from 'reactstrap';
 import { GET, POST, Base} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
 import { useNavigate } from 'react-router-dom';
+import loading from '../assets/images/loading.gif'
+import { toast } from "react-toastify"
 
 const ReviewPayment = () => {
+  const [show, setShow] = useState(true)
+  const [showLoading, setShowLoading] = useState(false)
 
     let paymentId = Base.getAllUrlParams().paymentId
     let PayerID = Base.getAllUrlParams().PayerID
@@ -23,9 +27,19 @@ const ReviewPayment = () => {
           BASE_URL + apiURL + paymentId
         ).then((res) => {  
           if (res.status.http_status === "OK")
-            console.log(res.payload);
             setData(res.payload)
-            console.log(res.payload.length)
+            setTimeout(()=>{
+              setShowLoading(false)
+            }, 5000)
+            if (res.status.http_status !== "OK")
+          {
+            setTimeout(()=>{
+              setShow(true)
+              setShowLoading(false)
+            }, 2000)
+
+		      toast.error("Please choose product!")
+          }
         })
       .catch ((e) => {
         console.log(e);
@@ -54,6 +68,8 @@ useEffect(()=>{
 }, [])
 function payMoment(){
   payNow()
+  setShow(!true)
+  setShowLoading(!false)
 }
 
     const totalAmount = data.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
@@ -62,8 +78,8 @@ function payMoment(){
     
   return (
     <Helmet title='Review Payment'>
-    <CommonSection title=''/>
-    <section>
+    <CommonSection title='REVIEW PAYMENT'/>
+    <section className='pagi'>
       <Container>
         <Row>
           {/* <h2>{addData()}</h2> */}
@@ -80,7 +96,7 @@ function payMoment(){
               </tr>
             </thead>
             </table>
-            <h2 className='text-center m-t-100'>No items purchased</h2> 
+            <h2 className='text-center m-t-100 m-b-100'>No items purchased</h2> 
             </div>
               ): (
               <table className='table bordered'>
@@ -114,18 +130,25 @@ function payMoment(){
             <span className='fs-4 fw-bold'  style={{color:"orange"}}>${totalAmount}</span>
             </h6>
           </div>
+          {show === true}
+          {show && <div>
             <div>
-              <button className="button buy__btn w-100 mb-4 m-t-20" style={{color: "#fff", fontSize: "1.1rem", fontWeight: "700"}}
+              <button className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{color: "#253b80", fontSize: "20px", fontWeight: "700"}}
               onClick={payMoment}
               > 
                Payment Confirm</button>
             </div>
             <div>
-              <button className="button buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#4161df", fontSize: "1.1rem", fontWeight: "700", border: "1px solid #4161df"}}
+              <button className="button-background-move buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#253b80", fontSize: "20px", fontWeight: "700", border: "1px solid #4161df"}}
               onClick={Cancel}> 
                Cancel</button>
             </div>
+            </div>}
             <div>
+            </div>
+            <div className='p-l-75'>
+            {showLoading === true}
+            {showLoading && <img src={loading} alt=""  style={{width: "70%"}}/> }
             </div>
           </Col>
         </Row>

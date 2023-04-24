@@ -1,9 +1,17 @@
+.g-wrapper{
+    background: #4161df;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    gap: 1.5rem;
+}
 .inner-container{
     gap: 1.5rem;
-    background: #4161df;
     padding: 2rem;
-    border-radius: 10px;
-    border: 6px solid #5d77d6;
     text-align: center;
 }
 

@@ -1,16 +1,31 @@
 .common__section {
     background:
-    url("../assets/images/section1.gif") no-repeat center center;
+    url("../assets/images/common.png") no-repeat center center;
     background-size: cover;
-    padding: 90px 0px;
+    padding: 80px 0px;
     display: flex;
     align-items: center;
-    
+    margin-bottom: 30px;
 }
-
+.common__section2 {
+    background:
+    url("../assets/images/dataset-cover.jpg") no-repeat center center;
+    background-size: cover;
+    padding: 150px 0px;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 .common__section h1 {
-    color: rgb(32, 38, 57) 11.4%;
-    font-weight: 600;
+    color: #fff;
+    font-weight: 900;
+    font-size: 4rem;
+}
+.common__section2 h1 {
+    color: #92daf4;
+    font-weight: 900;
+    font-size: 4rem;
 }
 
 @media only screen and (max-width: 768px){

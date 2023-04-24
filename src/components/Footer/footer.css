@@ -1,7 +1,11 @@
 .footer {
     padding-top: 50px;
     padding-bottom: 30px;
-    background: linear-gradient(to right, #bbd5de, #076585);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(136, 160, 255, 0.46) 217.91%
+    );
 
 
 }
@@ -14,15 +18,15 @@
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 15px;
-    color: #000;
+    color: #1f3e72;
 }
 .footer h5{
-    color: #000;
+    color: #1f3e72;
     margin-bottom: 20px;
 }
 .footer__logo p {
     font-size: 0.9rem;
-    color: #000;
+    color: #1f3e72;
     line-height: 28px;
 }
 
@@ -33,20 +37,20 @@
 .delivery__time-item span{
     font-weight: 600;
     font-size: 1rem;
-    color: #000;
+    color: #1f3e72;
 }
 .delivery__time-item p{
-    color: #000;
+    color: #1f3e72;
 }
 .footer_title {
     font-size: 1.1rem;
-    color: #000;
+    color: #1f3e72;
     font-weight: 600;
 }
 .newsletter   {
     padding: 7px 10px;
     background: transparent;
-    border: 1px solid #000;
+    border: 1px solid #1f3e72;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -58,18 +62,18 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #000;
+    color: #1f3e72;
 }
 .newsletter input:focus{
     outline: none;
 }
 .newsletter span{
-    background: #000;
+    background: #1f3e72;
     padding: 3px 1px;
     border-radius: 5px;
 }
 .sub {
-    color: #000;
+    color: #1f3e72;
 }
 .newsletter span i {
     color: #212245;
@@ -80,16 +84,16 @@
     color: #304352;
 }
 .social__links p {
-    color: #000;
+    color: #1f3e72;
 }
 .social__links span i {
     padding: 5px;
     font-size: 1.1rem;
-    background: #000;
+    background: #1f3e72;
     color: #fff;
     border-radius: 50%;
 }
 .copyright__text {
     font-size: 0.8rem;
-    color:#000;
+    color:#1f3e72;
 }

@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import FormInput from '../components/FormInput/FormInput';
-import { Row, Col} from 'reactstrap';
+
 import { BASE_URL} from "../global/globalVar";
 import { useNavigate } from "react-router-dom";
 import { POST } from "../functionHelper/APIFunction";
@@ -9,18 +9,20 @@ import { toast } from "react-toastify"
 import "../styles/login.css"
 import "../styles/login/main.css"
 import "../styles/login/util.css"
-import heroImg from "../assets/images/Heroo.svg"
-import { motion } from 'framer-motion'
-import Register from './Register';
 import LoginChatBot from './LoginChatBot';
 import Helmet from '../components/Helmet/Helmet';
+import CommonSection from '../components/UI/CommonSection2';
+
 const LoginTest = () => {
   
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [openLoginChatbot, setOpenLoginChatbot] = useState(false);
+  
   const handleToogleSignup = () => {
-    setOpenSignupModal(!openSignupModal)
+    navigate('/register')
+    
   }
+
   const handleToogleLoginChatbot = () => {
     setOpenLoginChatbot(!openLoginChatbot)
   }
@@ -105,7 +107,7 @@ const LoginTest = () => {
       <section className='login__app'>
         <div className="paddings innerWidth flexCenter hero-container">
                
-                <div className="paddings innerWidth flexCenter">
+                <div className="innerWidth flexCenter">
 
 
            
@@ -120,12 +122,13 @@ const LoginTest = () => {
             ))}
             <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             <button
-            className="button btn__login " 
-            >Login</button>
+            className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{background: "rgba(136, 160, 255, 0.46)", color: "#fff", fontSize: "20px", fontWeight: "700", wordSpacing:"10"}}
+            >LOGIN</button>
             <p
-            style={{color:"#304352", border:"solid 1px #304352", background:"#fff"}}
           onClick={handleToogleLoginChatbot}
-            className="button btn__loginchatbot mt-1" 
+          className="button-background-move buy__btn w-100 mb-4 m-t-20"  style={{background: "#fff", color: "black",fontSize: "20px", fontWeight: "700", border: "1px solid #304352"}}
+
+
             >Login with Chatbot account</p>
             <p className="btn__register mt-1"
             onClick={() => {
@@ -147,10 +150,7 @@ const LoginTest = () => {
           </Col> */}
 
         </div>
-        <Register
-         open={openSignupModal}
-         toggle={handleToogleSignup}
-        />
+        
         <LoginChatBot
         open={openLoginChatbot}
         toggle={handleToogleLoginChatbot}

@@ -1,7 +1,8 @@
 .product__item {
     cursor: pointer;
     border-radius: 20px;
-    box-shadow: 5px 5px 15px -5px  #3254dd ;
+    box-shadow: 5px 5px 15px -5px  #91a3e7 ;
+
     margin: 3px;
     background: linear-gradient(
         180deg,

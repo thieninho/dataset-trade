@@ -8,6 +8,7 @@ import Helmet from '../components/Helmet/Helmet';
 import { Base } from '../functionHelper/APIFunction';
 import ChangePass from './ChangePass';
 import CommonSection from '../components/UI/CommonSection';
+import GetStarted from '../components/GetStarted/GetStarted';
 const UserDetails = () => {
 const [openPassModal, setOpenPassModal] = useState(false);
 
@@ -65,8 +66,7 @@ const [birthday, setBirthday] = useState("")
     <>
     <Helmet title="Profile">
     <div class="limiter">
-    <CommonSection title='' />
-		<div class="container-login222">
+		<div class="container-login222 p-t-70 p-b-70">
 				<form class="login222-form validate-form">
 				
           {/* <div class="login100-pic js-tilt" data-tilt>
@@ -129,8 +129,8 @@ const [birthday, setBirthday] = useState("")
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					<div class="container-login100-form-btn">
-						<p class="login100-form-btn"
+					<div class="container-login100-form-btn ">
+						<p class="button-background-move buy__btn login100-form-btn"
                         onClick={() => {
                             handleSave();
                           }}
@@ -142,7 +142,7 @@ const [birthday, setBirthday] = useState("")
             class="text-center">
 						<p 
             style={{background: "#fff", color: "black", border: "1px solid #304352"}}
-            class="login100-form-btn" onClick={() => {
+            class="button-background-move buy__btn login100-form-btn" onClick={() => {
                       handleTooglePass();
                       
                     }}>
@@ -161,6 +161,7 @@ const [birthday, setBirthday] = useState("")
     open={openPassModal}
     toggle={handleTooglePass}
     />
+    <GetStarted/>
     </Helmet>
     </>
   )

@@ -57,28 +57,6 @@ const Cart = (item) => {
   }, []);
   console.log(data)
 
-  //let checkboxes = document.querySelectorAll("[type='checkbox']");
- 
-
-  // function myFunc() {
-  //   let checked = document.querySelectorAll("[type='checkbox']:checked");
-  //     cartItemIds = []
-      
-  //     checked.forEach(function(el){
-  //       cartItemIds.push(el.value)
-  //       console.log(el.value)
-
-  //     })
-    
-  // }
-
-
-  //   checkboxes.forEach(function(el) {
-  //     el.addEventListener("change", function(){
-  //       myFunc();
-  //     })
-  //   })
-
     const [peopleInfo, setPeopleInfo] = useState({});
     const [idInfo, setIDInfo] = useState([]);
 
@@ -218,8 +196,8 @@ const Cart = (item) => {
 
   return (
   <Helmet title='Cart'>
-    <CommonSection title=''/>
-    <section>
+    <CommonSection title='CART'/>
+    <section className='pagi'>
       <Container>
         <Row>
           {/* <h2>{addData()}</h2> */}
@@ -236,7 +214,7 @@ const Cart = (item) => {
                </tr>
              </thead>
              </table>
-             <h2 className='text-center m-t-100'>No item added to the cart</h2> 
+             <h2 className='text-center m-t-90 m-b-90'>No item added to the cart</h2> 
              </div>
                )  : (
               <table className='table bordered'>
@@ -296,16 +274,16 @@ const Cart = (item) => {
               </h6>
             </div>
             <div>
-              <button className="button buy__btn w-100 mt-4"> 
-              <Link to='/shop' style={{fontSize:"17px", fontWeight:"700", color:"#fff"}}> Continue Shopping</Link></button>
+              <button className="button-background-move buy__btn w-100 mt-4"> 
+              <Link to='/shop' style={{fontSize:"20px", fontWeight:"700", color:"#253b80"}}> Continue Shopping</Link></button>
             </div>
             <div>
             {show === true}
-          {show &&  <button className="button buy__btn w-100 mt-3" style={{background:"#ffc439"}} onClick={paymentProduct} >
+          {show &&  <button className="button-background-move buy__btn w-100 mt-3" style={{background:"#ffc439"}} onClick={paymentProduct} >
               <span class="paypal-logo">
                 
-                  <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"22px", color:"#253b80", fontWeight:"700"}}>Pay</i>
-                  <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"20px", color:"#179bd7", fontWeight:"700"}}>Pal</i>
+                  <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"25px", color:"#253b80", fontWeight:"700"}}>Pay</i>
+                  <i style={{fontFamily: "Verdana, Tahoma", display: "inline-block", fontSize:"22px", color:"#179bd7", fontWeight:"700"}}>Pal</i>
               </span>
             </button> }
             </div>

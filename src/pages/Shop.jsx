@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import CommonSection from '../components/UI/CommonSection';
 import Helmet from '../components/Helmet/Helmet';
 import { Container, Row, Col } from 'reactstrap';
 import '../styles/shop.css'
 import { POST} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
 import ProductCard from '../components/UI/ProductCard';
+import CommonSection from '../components/UI/CommonSection';
 import {
   Pagination,
   PaginationItem,
@@ -89,6 +89,8 @@ const Shop = () => {
   return ( <Helmet title='Shop'>
 
     <section>
+    <CommonSection title='STORE'/>
+
       <Container>
         <Row>
           <Col lg='3' md='6' className='text-end'>
@@ -119,9 +121,20 @@ const Shop = () => {
 
           </Col>
         </Row>
+        <Row>
+        <div className="filterItem">
+          <ul>
+            <li><button className='button-background-move2' style={{background: "#279bd7", border:"none", color:"#fff"}}>All</button></li>
+            <li><button className='button-background-move2'>All</button></li>
+            <li><button className='button-background-move2'>All</button></li>
+            <li><button className='button-background-move2'>All</button></li>
+            
+          </ul>
+        </div>
+        </Row>
       </Container>
     </section>
-    <section>
+    <section className='pagi'>
       
       <Container>
         <Row>
@@ -134,6 +147,7 @@ const Shop = () => {
               <ProductCard items={item} key={index}/>
           ))}
         </Row>
+       
         <Row>
         <Pagination aria-label="Page navigation example" className='p-t-20'>
         {Array.from({ length: pagination.totalPage }, (_, i) => (

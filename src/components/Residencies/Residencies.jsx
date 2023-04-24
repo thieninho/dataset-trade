@@ -5,8 +5,8 @@ import {Swiper, SwiperSlide, useSwiper} from 'swiper/react'
 import './swiper.css'
 import './Residencies.css'
 import { Link } from 'react-router-dom'
+
 import { sliderSettings } from '../../utils/common'
-import { motion } from "framer-motion"
 const Residencies = (items) => {
 
 const [data, setData] = useState()
@@ -28,6 +28,16 @@ const [data, setData] = useState()
   };
   useEffect(() => getData()
   , []);
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
+
 
   return (
     <section className='r-wrapper'>
@@ -46,16 +56,21 @@ const [data, setData] = useState()
             <Swiper {...sliderSettings}>
             <SliderButtons/>
                 { 
-                    data?.map((card, i)=> (
+                    data?.map((items, i)=> (
                         <SwiperSlide key={i} >
                             <div className="flexColStart r-card" >
-                            <Link to={`/shop/${card.id}`}> <img src={card.picture} alt="home" style={{height:"200px", width:"100%"}}/></Link>
-                                <span className="secondaryText r-price"  style={{color:"orange"}}>
+                              <div className='product__img'>
+                            <Link to={`/shop/${items.id}`}> <img src={items.picture} alt="home" style={{height:"200px", width:"240px"}} /></Link>
+                            </div>
+                            <span className="secondaryText r-price"  style={{color:"orange"}}>
                                     <span style={{color:"orange"}}>$</span>
-                                    <span>{card.amount}</span>
+                                    <span className='m-r-140'>{items.amount}</span>
+                                    {/* {isHovering && (   <span className='price' whileTap={{scale: 1.2}} onClick={window.open(BASE_URL + "api/dataset_collection/preview/" + items.id)}>
+              <i class="ri-eye-fill"></i>
+            </span> )} */}
                                 </span>
-                                <span className='primaryText'>{card.name}</span>
-                                <span className='secondaryText'>{card.detail}</span>
+                                <span className='primaryText'>{items.name}</span>
+                                
                                
                             </div>
                         </SwiperSlide>

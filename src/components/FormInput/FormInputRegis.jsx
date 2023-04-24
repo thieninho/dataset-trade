@@ -11,7 +11,7 @@ const FormInputRegis = (props) => {
   return (
     <div className="formInput">
       <label className="label__input">{label}</label>
-      <input className="input__input123"
+      <input className="input__input"
         {...inputProps}
         onChange={onChange}
         onBlur={handleFocus}
