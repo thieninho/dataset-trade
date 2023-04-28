@@ -145,7 +145,7 @@ const Cart = (item) => {
               setShow(true)
               setShowLoading(false)
             }, 2000)
-
+          setShowLoading(false)
 		      toast.error("Please choose product!")
           }
     });

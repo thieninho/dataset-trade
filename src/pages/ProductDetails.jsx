@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { useParams } from 'react-router-dom'
 import Helmet from '../components/Helmet/Helmet'
-import CommonSection from '../components/UI/CommonSection'
 import '../styles/product-details.css'
 import {motion} from "framer-motion"
 import { toast } from 'react-toastify'
@@ -18,7 +17,6 @@ const [name, setName] = useState("")
 const [short_description, setShort_description] = useState([])
 const [description, setDescription] = useState([])
 const [picture, setPicture] = useState("")
-const [preview, setPreview] = useState("")
 const [amount, setAmount] = useState("")
 const [data, setData] = useState("")
 const [dataDownload, setDataDownload] = useState([])
@@ -34,7 +32,6 @@ const getDataDetail = () => {
       setShort_description(res.payload.short_description);
       setDescription(res.payload.description);
       setPicture(res.payload.picture);
-      setPreview(res.payload.preview);
       setAmount(res.payload.amount);
       setData(res.payload)
       setDataDownload(res.payload.dataset_items)
@@ -51,7 +48,6 @@ const getDataDetail = () => {
 };
 const [show, setShow] = useState(false)
 const [show1, setShow1] = useState(false)
-
 const token = JSON.stringify(Base.getCookie("token"));
  
 const addData = () => {
@@ -114,23 +110,23 @@ const handlePreview =()=> {
   window.open(BASE_URL + "api/dataset_collection/preview/" + id);
     
 }; 
-const ReadMore = ({ children }) => {
-  const text = children;
-  const [isReadMore, setIsReadMore] = useState(true);
-  const toggleReadMore = () => {
-    setIsReadMore(!isReadMore);
-  };
-  return (
-    <div className="text">
-      <div>
-      {isReadMore ? text.slice(0, 0) : text}
-      <div onClick={toggleReadMore} className="read-or-hide">
-        {isReadMore ? "...read more" : " show less"}
-      </div>
-      </div>
-    </div>
-  );
-};
+// const ReadMore = ({ children }) => {
+//   const text = children;
+//   const [isReadMore, setIsReadMore] = useState(true);
+//   const toggleReadMore = () => {
+//     setIsReadMore(!isReadMore);
+//   };
+//   return (
+//     <div className="text">
+//       <div>
+//       {isReadMore ? text.slice(0, 0) : text}
+//       <div onClick={toggleReadMore} className="read-or-hide">
+//         {isReadMore ? "...read more" : " show less"}
+//       </div>
+//       </div>
+//     </div>
+//   );
+// };
 const ReadMoreLong = ({ children }) => {
   const text = children;
   const [isReadMore, setIsReadMore] = useState(true);
@@ -159,6 +155,8 @@ const cleanHTML = DOMPurify.sanitize(html, {
 const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
   USE_PROFILES: { html: true },
 });
+
+// const relatedProducts = 
   return <Helmet title={name}>
 
       <section className='section__product'>
@@ -182,7 +180,6 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
                 </div> */}
                 {show === false}  
                 {show && <span className="product__price"  style={{color:"orange"}}>${amount}</span> }
-                <p className='m-t-15 m-b-5' style={{color:"#1f3e72"}}>Short description: </p>
                 <div className='text1'>{parse(cleanHTML)}</div>
                 <div className='m-t-20'>
                 <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move" 

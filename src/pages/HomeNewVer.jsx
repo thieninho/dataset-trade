@@ -7,6 +7,7 @@ import Contact from '../components/Contact/Contact';
 import Helmet from '../components/Helmet/Helmet';
 import GetStarted from '../components/GetStarted/GetStarted';
 import CommonSection from '../components/UI/CommonSection2';
+import ProductHome from '../components/ProductHome/ProductHome';
 
 const HomeNewVer = () => {
   return (
@@ -18,8 +19,8 @@ const HomeNewVer = () => {
     <Hero/>
     </div>
     <CommonSection title="DATA ALWAYS BY YOUR SIDE"/>
-    
-    <Residencies/>
+    <ProductHome/>
+    {/* <Residencies/> */}
     <Value/>
     <Services/>
 

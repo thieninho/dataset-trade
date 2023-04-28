@@ -1,29 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import Helmet from '../components/Helmet/Helmet';
+import Helmet from '../../components/Helmet/Helmet';
 import { Container, Row, Col } from 'reactstrap';
-import '../styles/shop.css'
-import { POST} from "../functionHelper/APIFunction";
-import { BASE_URL} from "../global/globalVar";
-import ProductCard from '../components/UI/ProductCard';
-import { Link } from 'react-router-dom'
-
-import CommonSection from '../components/UI/CommonSection';
+import '../../styles/shop.css'
+import { POST} from "../../functionHelper/APIFunction";
+import { BASE_URL} from "../../global/globalVar";
+import ProductCard from '../../components/UI/ProductCard';
+import CommonSection from '../../components/UI/CommonSection';
 import {
   Pagination,
   PaginationItem,
   PaginationLink,
 } from "reactstrap";
-import ProductCate from '../components/UI/ProductCate';
-const Shop = () => {
+const ProductHome = () => {
 
 
   //const [data, setData] = useState({id:'', name:'', picture:'', amount:'', short_description: '', description: '', preview: ''})
   const [data, setData] = useState([])
-  const [dataNameCate, setNameDataCate] = useState([])
   const [pagination, setPagination] = useState({});
   const [keyword, setKeyword] = useState("")
   const [show, setShow] = useState(false)
-  const [show1, setShow1] = useState(true)
   const getData = (page) => {
     
     if (page === undefined) page = 1;
@@ -43,28 +38,6 @@ const Shop = () => {
       });
     });
   };
-  const getNameDataCate = (page) => {
-    
-    if (page === undefined) page = 1;
-    let apiURL = "api/dataset_category/";
-    let body = {
-      page: page,
-      size: 4,
-    };
-    POST(
-      BASE_URL + apiURL, JSON.stringify(body)
-    ).then((res) => {
-
-      setNameDataCate(res.payload.items)
-      setPagination({
-        totalItem: res.payload.total_items,
-        totalPage: res.payload.total_pages,
-      });
-      console.log(res.payload.items)
-
-    });
-  };
-
 
   const searchData = (page) => {
     
@@ -78,17 +51,19 @@ const Shop = () => {
     POST(
       BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
+
       setData(res.payload.items)
       setPagination({
         totalItem: res.payload.total_items,
         totalPage: res.payload.total_pages,
       });
       setKeyword(body.keyword)
+      
     });
   };
   
     useEffect(() => {
-      getNameDataCate()
+      getData()
       
     }, []);
     const handleSubmit = (e) => {
@@ -99,11 +74,9 @@ const Shop = () => {
       if (keyword !== "")
       {
         setShow(true)
-        setShow1(false)
       }
       if (keyword === ""){
         setShow(false)
-        setShow1(true)
       }
       
     };
@@ -116,7 +89,6 @@ const Shop = () => {
   return ( <Helmet title='Shop'>
 
     <section>
-    <CommonSection title='STORE'/>
 
       <Container>
         <Row>
@@ -148,35 +120,25 @@ const Shop = () => {
 
           </Col>
         </Row>
-        {/* <Row>
-        <div className="filterItem">
-          <ul>
-            <li><button className='button-background-move2' style={{background: "#279bd7", border:"none", color:"#fff"}}>All</button></li>
-            <li><button className='button-background-move2'>All</button></li>
-            <li><button className='button-background-move2'>All</button></li>
-            <li><button className='button-background-move2'>All</button></li>
-            
-          </ul>
-        </div>
-        </Row> */}
+        <Row>
+        </Row>
       </Container>
     </section>
     <section className='pagi'>
       
       <Container>
-       
-         
-    
-      {show && <Row >
-        <p className='p-t-10' style={{fontSize:"20px"}}>Result for "{keyword}" </p>
+        <Row>
+        {show &&<p className='p-t-10' style={{fontSize:"20px"}}>Result for "{keyword}" </p>}
 
-          { 
+          {
+            data.length === 0? <h1 className='text-center fs-4'>No datasets are found</h1>
+            : 
             data?.map((item, index) => (
               <ProductCard items={item} key={index}/>
           ))}
-        </Row>}
-
-        {show && <Row>
+        </Row>
+       
+        <Row>
         <Pagination aria-label="Page navigation example" className='p-t-20'>
         {Array.from({ length: pagination.totalPage }, (_, i) => (
           <PaginationItem key={i}>
@@ -190,44 +152,12 @@ const Shop = () => {
           </PaginationItem>
         ))}
       </Pagination>
-        </Row>}
-        <ul>
-       {dataNameCate.map((items) => <li> 
-        {show1 &&
-        <Row style={{borderBottom: "1px solid rgb(218, 220, 224)"}} className='m-t-30'>
-        <div className='category'>
-        <h3 className='title_cate'> {items.name}</h3>
-        <Link to={`/shop/${items.name}/${items.id}`}><div className='btn_cate'>
-          <span>See All</span>
-        </div></Link>
-        </div>
-        {
-          <ProductCate dataset_category_id={items.id} size={4} />  
-          }
-        </Row>}
-        </li>)}
-        </ul>
-        {show1 && <Row>
-        <Pagination aria-label="Page navigation example" className='p-t-20'>
-        {Array.from({ length: pagination.totalPage }, (_, i) => (
-          <PaginationItem key={i}>
-            <PaginationLink
-              onClick={() => {
-                getNameDataCate(i + 1);
-              }}
-            >
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
-      </Pagination>
-        </Row>}
+        </Row>
       </Container>
     </section>
 
   </Helmet>
   );
-        
 }
 
-export default Shop
+export default ProductHome

@@ -5,9 +5,7 @@ import "../styles/login/main.css"
 import "../styles/login/util.css"
 import { toast } from "react-toastify";
 import Helmet from '../components/Helmet/Helmet';
-import { Base } from '../functionHelper/APIFunction';
 import ChangePass from './ChangePass';
-import CommonSection from '../components/UI/CommonSection';
 import GetStarted from '../components/GetStarted/GetStarted';
 const UserDetails = () => {
 const [openPassModal, setOpenPassModal] = useState(false);
@@ -33,8 +31,14 @@ const [birthday, setBirthday] = useState("")
     let url = "api/user/update";
     POST(BASE_URL + url, JSON.stringify(body))
       .then((res) => {
-        console.log(res)
-        toast.success("Update successfully", "success");
+        if (res.status.http_status !== "OK")
+    {
+        toast.error("Update fail")
+    }
+    if (res.status.http_status === "OK")
+    {
+        toast.success("Update successfully");
+    }
       })
       .catch((err) => {
         console.log(err);
@@ -57,10 +61,6 @@ const [birthday, setBirthday] = useState("")
     })
   };
   useEffect(() => getData(), []);
-  const logout =()=>{
-    Base.setCookie("token", null, 0);
-    window.location.href = "/login"
-  }
   
   return (
     <>

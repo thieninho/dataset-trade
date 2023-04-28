@@ -60,17 +60,17 @@ const [data, setData] = useState()
                         <SwiperSlide key={i} >
                             <div className="flexColStart r-card" >
                               <div className='product__img'>
-                            <Link to={`/shop/${items.id}`}> <img src={items.picture} alt="home" style={{height:"200px", width:"240px"}} /></Link>
+                            <Link to={`/shop/${items.id}`}> <img src={items.picture} alt="home"/></Link>
                             </div>
-                            <span className="secondaryText r-price"  style={{color:"orange"}}>
+                            
+                                <h3 className='primaryText'>{items.name}</h3>
+                                <span className="secondaryText r-price"  style={{color:"orange"}}>
                                     <span style={{color:"orange"}}>$</span>
                                     <span className='m-r-140'>{items.amount}</span>
                                     {/* {isHovering && (   <span className='price' whileTap={{scale: 1.2}} onClick={window.open(BASE_URL + "api/dataset_collection/preview/" + items.id)}>
               <i class="ri-eye-fill"></i>
             </span> )} */}
                                 </span>
-                                <span className='primaryText'>{items.name}</span>
-                                
                                
                             </div>
                         </SwiperSlide>

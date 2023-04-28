@@ -1,8 +1,8 @@
 .common__section {
     background:
-    url("../assets/images/common.png") no-repeat center center;
+    url("../assets/images/istockphoto-1165779079-170667a.jpg") no-repeat center center;
     background-size: cover;
-    padding: 80px 0px;
+    padding: 70px 0px;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
@@ -18,12 +18,12 @@
     margin-bottom: 50px;
 }
 .common__section h1 {
-    color: #fff;
+    color: #0078d7;
     font-weight: 900;
     font-size: 4rem;
 }
 .common__section2 h1 {
-    color: #92daf4;
+    color: #0078d7;
     font-weight: 900;
     font-size: 4rem;
 }

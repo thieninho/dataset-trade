@@ -14,6 +14,7 @@ import Cancel from '../pages/Cancel'
 import HomeNewVer from '../pages/HomeNewVer'
 import { Base } from '../functionHelper/APIFunction'
 import Register from '../pages/Register'
+import ShopCate from '../pages/ShopCate'
 const Routers = () => {
 const token = JSON.stringify(Base.getCookie("token"));
 
@@ -31,6 +32,7 @@ let b = 'register'
     <Route path='shop' element={<Shop/>} />
     <Route path='cart' element={<Cart/>} />
     <Route path='shop/:id' element={<ProductDetails/>} />
+    <Route path='shop/:name_category/:dataset_category_id' element={<ShopCate/>} />
     <Route path='checkout' element={<Checkout/>} />
     <Route path= {a} element={<Login/>} />
     <Route path= {b} element={<Register/>}/>
