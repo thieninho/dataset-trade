@@ -122,17 +122,7 @@ const {name_category} = useParams()
 
           </Col>
         </Row>
-        {/* <Row>
-        <div className="filterItem">
-          <ul>
-            <li><button className='button-background-move2' style={{background: "#279bd7", border:"none", color:"#fff"}}>All</button></li>
-            <li><button className='button-background-move2'>All</button></li>
-            <li><button className='button-background-move2'>All</button></li>
-            <li><button className='button-background-move2'>All</button></li>
-            
-          </ul>
-        </div>
-        </Row> */}
+        
       </Container>
     </section>
     <section className='pagi'>

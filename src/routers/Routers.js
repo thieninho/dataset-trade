@@ -31,7 +31,7 @@ let b = 'register'
     <Route path='homenew' element={<HomeNewVer/>} />
     <Route path='shop' element={<Shop/>} />
     <Route path='cart' element={<Cart/>} />
-    <Route path='shop/:id' element={<ProductDetails/>} />
+    <Route path='shop/:dataset_category_id/:id' element={<ProductDetails/>} />
     <Route path='shop/:name_category/:dataset_category_id' element={<ShopCate/>} />
     <Route path='checkout' element={<Checkout/>} />
     <Route path= {a} element={<Login/>} />

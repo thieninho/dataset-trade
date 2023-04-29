@@ -192,6 +192,8 @@
     box-sizing: content-box;
     position: relative;
     outline: none;
+    border-radius: 5px;
+
   }
   .tabs:not(:last-child){
     border-right: 1px solid rgba(0, 0, 0, 0.274);
@@ -211,7 +213,9 @@
     transform: translateX(-50%);
     width: calc(100% + 2px);
     height: 5px;
-    background: rgb(88, 147, 241);
+    background: rgb(88, 147, 241);  
+    border-radius: 5px;
+
   }
   
   .content-tabs {

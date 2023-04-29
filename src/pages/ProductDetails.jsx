@@ -10,15 +10,19 @@ import { BASE_URL} from "../global/globalVar";
 import { Base } from '../functionHelper/APIFunction'
 import DOMPurify from "dompurify";
 import parse from "html-react-parser";
+import ProductCard from '../components/UI/ProductCard'
+import ProductCardDetail from '../components/UI/ProductCardDetail'
 const ProductDetails = () => {
 
 const {id} = useParams()
+const {dataset_category_id} = useParams()
 const [name, setName] = useState("")
 const [short_description, setShort_description] = useState([])
 const [description, setDescription] = useState([])
 const [picture, setPicture] = useState("")
 const [amount, setAmount] = useState("")
 const [data, setData] = useState("")
+const [dataAlso, setDataAlso] = useState([])
 const [dataDownload, setDataDownload] = useState([])
 const [rating, setRating] = useState()
 
@@ -81,8 +85,24 @@ const handleAddData =()=>{
   addData()
 }
 
+const getData = (page) => {
+    
+  if (page === undefined) page = 1;
+  let apiURL = "api/dataset_collection/";
+  let body = {
+    page: page,
+    size: 2,
+    dataset_category_id: dataset_category_id,
+  };
+  POST(
+    BASE_URL + apiURL, JSON.stringify(body)
+  ).then((res) => {
 
+    setDataAlso(res.payload.items)
+  });
+};
 useEffect(() => getDataDetail(), []);
+useEffect(() => getData(), []);
 
 const handleDownload = (datasetItemId) => {
   let apiURL = "api/file/?path=";
@@ -155,7 +175,10 @@ const cleanHTML = DOMPurify.sanitize(html, {
 const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
   USE_PROFILES: { html: true },
 });
+const load = () => {
+  window.location.reload(true);
 
+}
 // const relatedProducts = 
   return <Helmet title={name}>
 
@@ -222,7 +245,7 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
           </Row>
         </Container>
       </section>
-      <section className='pt-10'>
+      <section className='p-t-10'>
         <Container>
           <Row>
           <div className="bloc-tabs">
@@ -297,7 +320,27 @@ const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
         </div>
       </div>
           </Row>
+          <Col lg='12'>
+            <h2 className='related__title'> You might also like</h2>
+          </Col>
+
+          <Row>
+          
+       
+          {/* {dataAlso?.map((item) => (
+        <ProductCard items={item} />  
+         ))} */}
+              {
+              dataAlso.filter(item => item.id !== id).map((filteredItem, index) => (
+                
+              <ProductCardDetail items={filteredItem} key={index} />
+          ))}
+        </Row>
+       
         </Container>
+        <Col className='m-b-40'>
+          
+          </Col>
       </section>
       
 
