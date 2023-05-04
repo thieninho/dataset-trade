@@ -1,5 +1,4 @@
 import React, { useState} from 'react'
-import { Modal, ModalBody, Button, ModalFooter} from 'reactstrap'
 import FormInput from '../components/FormInput/FormInput';
 import {BASE_URL_CHATBOT} from "../global/globalVar";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +6,7 @@ import { POST } from "../functionHelper/APIFunction";
 import { setCookie } from "../functionHelper/GetSetCookie";
 import { toast } from "react-toastify"
 
-function LoginChatBot({open, toggle}){
+function LoginChatBot(){
 
     const [values, setValues] = useState({
         username: "",
@@ -26,7 +25,7 @@ function LoginChatBot({open, toggle}){
             if (res.http_status === "OK"){
               setCookie("token", res.token, 3)
               toast.success("Login successfully");
-              navigate("/home");
+              window.close();              
               }
               if (res.http_status !== "OK"){
                 toast.error("Username or password invalid")
@@ -39,9 +38,6 @@ function LoginChatBot({open, toggle}){
         }
       };
   
-      
-
-      const navigate = useNavigate();
       const inputs = [
         {
           id: 1,
@@ -75,8 +71,7 @@ function LoginChatBot({open, toggle}){
     
   return (
     <>
-	<Modal isOpen={open} style={{ maxWidth: "440px", borderRadius:"70px"}}>
-    <ModalBody>
+	
         <div className="regis2__app">
           <form onSubmit={handleSubmit}>
             {inputs.map((input) => (
@@ -89,19 +84,11 @@ function LoginChatBot({open, toggle}){
               
             ))}
             
-            <button className="btn__login">Submit</button>
+            <button className="btn__login2">Submit</button>
             
           </form>
         </div>
-        </ModalBody>
-        <ModalFooter>
-	<Button
-        style={{color:"#304352", background:"#fff"}}
-        onClick={() => {
-			  toggle();
-            }}>Close</Button>
-    </ModalFooter>
-	</Modal>
+
         </>
   )
 }

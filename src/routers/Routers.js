@@ -15,6 +15,7 @@ import HomeNewVer from '../pages/HomeNewVer'
 import { Base } from '../functionHelper/APIFunction'
 import Register from '../pages/Register'
 import ShopCate from '../pages/ShopCate'
+import LoginChatBot from '../pages/LoginChatBot'
 const Routers = () => {
 const token = JSON.stringify(Base.getCookie("token"));
 
@@ -31,7 +32,7 @@ let b = 'register'
     <Route path='homenew' element={<HomeNewVer/>} />
     <Route path='shop' element={<Shop/>} />
     <Route path='cart' element={<Cart/>} />
-    <Route path='shop/:dataset_category_id/:id' element={<ProductDetails/>} />
+    <Route path='shop/product_detail/:dataset_category_id/:id' element={<ProductDetails/>} />
     <Route path='shop/:name_category/:dataset_category_id' element={<ShopCate/>} />
     <Route path='checkout' element={<Checkout/>} />
     <Route path= {a} element={<Login/>} />
@@ -40,6 +41,7 @@ let b = 'register'
     <Route path='purchased' element={<Purchased/>} />
     <Route path='payment/paypal/success' element={<Success/>} />
     <Route path='payment/paypal/cancel' element={<Cancel/>} />
+    <Route path='login_with_chatbot' element={<LoginChatBot/>} />
     <Route path='payment/paypal/review_payment' element={<ReviewPayment/>}/>
   </Routes>
 }

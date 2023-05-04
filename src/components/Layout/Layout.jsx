@@ -8,15 +8,15 @@ import { Base } from '../../functionHelper/APIFunction';
 
 const Layout = () => {
   
+  const { pathname } = useLocation();
 
   return <>
 
     <div>
-     <Header />
-        <Routers/>
-    {/* {   pathname === "/payment/paypal/success" }{ pathname === "/payment/paypal/cancel" &&  */}
-    <Footer />
+    { pathname !== "/login_with_chatbot" ? <Header/> : null}
 
+        <Routers/>
+    { pathname !== "/login_with_chatbot" ? <Footer/> : null}
     </div>
   </>
   

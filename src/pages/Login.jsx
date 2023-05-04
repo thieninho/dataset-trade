@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import FormInput from '../components/FormInput/FormInput';
 
-import { BASE_URL} from "../global/globalVar";
+import { BASE_URL,  originUrl} from "../global/globalVar";
 import { useNavigate } from "react-router-dom";
 import { POST } from "../functionHelper/APIFunction";
 import { setCookie } from "../functionHelper/GetSetCookie";
@@ -9,13 +9,12 @@ import { toast } from "react-toastify"
 import "../styles/login.css"
 import "../styles/login/main.css"
 import "../styles/login/util.css"
-import LoginChatBot from './LoginChatBot';
 import Helmet from '../components/Helmet/Helmet';
 import CommonSection from '../components/UI/CommonSection2';
-
+import {over} from 'stompjs';
+import SockJS from 'sockjs-client';
 const LoginTest = () => {
   
-  const [openSignupModal, setOpenSignupModal] = useState(false);
   const [openLoginChatbot, setOpenLoginChatbot] = useState(false);
   
   const handleToogleSignup = () => {
@@ -101,7 +100,71 @@ const LoginTest = () => {
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
       };
-      
+      var screen = Screen
+      var popupWindow = null;
+      const popupCenter = ({url, title, w, h}) => {
+        // Fixes dual-screen position                             Most browsers      Firefox
+        const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
+        const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+    
+        const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+    
+        const systemZoom = width / window.screen.availWidth;
+        const left = (width - w) / 2 / systemZoom + dualScreenLeft
+        const top = (height - h) / 2 / systemZoom + dualScreenTop
+        popupWindow = window.open(url, title, 
+          `
+          scrollbars=yes,
+          width=${w / systemZoom}, 
+          height=${h / systemZoom}, 
+          top=${top}, 
+          left=${left}
+          `
+        )
+    
+        if (window.focus) popupWindow.focus();
+    }
+      var stompClient =null;
+      var socketConnected = false;
+      function logInWithChatbot() {
+        connectSocket();
+        popupCenter({url: originUrl + "login_with_chatbot", title: 'Chatbot - Login', w: 770, h: 400});
+    }
+      function socketListener(result) {
+        console.log(result);
+        if (result === null || result.body === null) {
+            alert("Log in fail!");
+            return;
+        }
+    
+        var message = JSON.parse(result.body);
+        if (message.status === null || message.user === null) {
+            alert("Something went wrong!");
+            return;
+        }
+    
+        if (message.status.http_status !== "OK") {
+            alert(message.status.exception_code);
+            return;
+        }
+    
+        setCookie("user", JSON.stringify(message.user), 60*24);
+        window.location.href = originUrl + "homenew";
+    
+    }
+      const connectSocket =()=>{
+        if (socketConnected) return;
+        var socket = new SockJS(BASE_URL + 'api/ws_endpoint');
+        stompClient = over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            socketConnected = true;
+            stompClient.subscribe('/socket_topic/log_in_with_chatbot_acc', function (result) {
+                socketListener(result);
+            });
+        });
+    }
       return <>
       <Helmet title="Login">
       <section className='login__app'>
@@ -125,7 +188,7 @@ const LoginTest = () => {
             className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{background: "rgba(136, 160, 255, 0.46)", color: "#fff", fontSize: "20px", fontWeight: "700", wordSpacing:"10"}}
             >LOGIN</button>
             <p
-          onClick={handleToogleLoginChatbot}
+          onClick={logInWithChatbot}
           className="button-background-move buy__btn w-100 mb-4 m-t-20"  style={{background: "#fff", color: "black",fontSize: "20px", fontWeight: "700", border: "1px solid #304352"}}
 
 
@@ -140,21 +203,8 @@ const LoginTest = () => {
           
           
          
-          {/* <Col>
-          <form className="form__imglogin">
-          <p style={{width:"400px"}} className='p-t-70'
-          >
-					<img className='login1001-pic' src={logo} alt="IMG"/>
-				  </p>
-          </form>
-          </Col> */}
-
         </div>
-        
-        <LoginChatBot
-        open={openLoginChatbot}
-        toggle={handleToogleLoginChatbot}
-        />
+      
                 </div>
     
     </section>
