@@ -60,7 +60,6 @@ const Shop = () => {
         totalItem: res.payload.total_items,
         totalPage: res.payload.total_pages,
       });
-      console.log(res.payload.items)
 
     });
   };
@@ -192,9 +191,9 @@ const Shop = () => {
       </Pagination>
         </Row>}
         <ul>
-       {dataNameCate.map((items) => <li> 
+       {dataNameCate.map((items, index) => <li> 
         {show1 &&
-        <Row style={{borderBottom: "1px solid rgb(218, 220, 224)"}} className='m-t-30'>
+        <Row style={{borderBottom: "1px solid rgb(218, 220, 224)"}} className='m-t-30' key={index}>
         <div className='category'>
         <h3 className='title_cate'> {items.name}</h3>
         <Link to={`/shop/${items.name}/${items.id}`}><div className='btn_cate'>

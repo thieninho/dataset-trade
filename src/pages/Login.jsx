@@ -10,21 +10,16 @@ import "../styles/login.css"
 import "../styles/login/main.css"
 import "../styles/login/util.css"
 import Helmet from '../components/Helmet/Helmet';
-import CommonSection from '../components/UI/CommonSection2';
 import {over} from 'stompjs';
 import SockJS from 'sockjs-client';
 const LoginTest = () => {
   
-  const [openLoginChatbot, setOpenLoginChatbot] = useState(false);
   
   const handleToogleSignup = () => {
     navigate('/register')
     
   }
 
-  const handleToogleLoginChatbot = () => {
-    setOpenLoginChatbot(!openLoginChatbot)
-  }
     const [values, setValues] = useState({
         username: "",
         password: "",

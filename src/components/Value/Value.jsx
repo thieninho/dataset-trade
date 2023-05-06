@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Accordion,
     AccordionItem,
@@ -13,7 +13,11 @@ import ValueImg from "../../assets/images/data-analysis.gif"
 import './Value.css'
 import data123  from '../../utils/accordion'
 const Value = () => {
-    const [className, setClassName] = useState(null)
+    const [className, setClassName] = useState()
+    useEffect(() => {
+        setClassName(null)
+
+      }, []);
 
   return (
     <section className='v-wrapper'>

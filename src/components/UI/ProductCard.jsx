@@ -58,9 +58,7 @@ const handlePreview =()=> {
   window.open(BASE_URL + "api/dataset_collection/preview/" + items.id)
     
 }; 
-const reload = () =>{
-  window.location.reload(false)
-}
+
 
   return (
     <Col lg='3' md='4' className='mb-2'>
@@ -83,8 +81,6 @@ const reload = () =>{
             </motion.span>
             )
             }
-            
-
         </div>
     </div>
     </Col>

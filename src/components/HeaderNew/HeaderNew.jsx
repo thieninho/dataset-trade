@@ -69,10 +69,10 @@ console.log(e)
             return {right: !menuOpened && "-100%"}
         }
     }
-const menuToggle = () => menuRef.current.classList.toggle('active__menu')
+//const menuToggle = () => menuRef.current.classList.toggle('active__menu')
 
   return (
-    <section className="h-wrapper" ref={headerRef} onClick={menuToggle}>
+    <section className="h-wrapper" ref={headerRef} >
         <div className="flexCenter paddings innerWidth h-container">
         <h3 className=''><img src={logo} alt="logo" width={50}/> DATA EVERYWHERE  </h3>
         <OutsideClickHandler

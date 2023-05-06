@@ -10,31 +10,49 @@ import { BASE_URL} from "../global/globalVar";
 import { Base } from '../functionHelper/APIFunction'
 import DOMPurify from "dompurify";
 import parse from "html-react-parser";
-import ProductCard from '../components/UI/ProductCard'
 import ProductCardDetail from '../components/UI/ProductCardDetail'
+import { Document,Page } from 'react-pdf/dist/esm/entry.webpack';
 const ProductDetails = () => {
+
+  
 
 const {id} = useParams()
 const {dataset_category_id} = useParams()
 const [name, setName] = useState("")
 const [short_description, setShort_description] = useState([])
-const [description, setDescription] = useState([])
+const [description, setDescription] = useState()
 const [picture, setPicture] = useState("")
 const [amount, setAmount] = useState("")
 const [data, setData] = useState("")
 const [dataAlso, setDataAlso] = useState([])
 const [dataDownload, setDataDownload] = useState([])
 const [rating, setRating] = useState()
+const pdf = 
+"http://103.200.20.180:8086/api/dataset_collection/preview/" + id
+
+const [numPages, setNumPages] = useState(null);
+const [pageNumber, setPageNumber] = useState(1);
+
+const onDocumentLoadSuccess = ({ numPages }) => {
+  setNumPages(numPages);
+};
+
+const goToPrevPage = () =>
+  setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
+
+const goToNextPage = () =>
+  setPageNumber(
+    pageNumber + 1 >= numPages ? numPages : pageNumber + 1,
+  );
 
 const getDataDetail = () => {
-  
+
   let apiURL = "api/dataset_collection/";
     GET(
       BASE_URL + apiURL + id
     ).then((res) => {
       setName(res.payload.name);
       setShort_description(res.payload.short_description);
-      setDescription(res.payload.description);
       setPicture(res.payload.picture);
       setAmount(res.payload.amount);
       setData(res.payload)
@@ -45,6 +63,19 @@ const getDataDetail = () => {
       if (res.payload.purchased){
         setShow1(true)
       }
+    })
+  .catch ((e) => {
+    console.log(e);
+  })
+};
+const getDataDes = () => {
+  
+  let apiURL = "api/dataset_collection/preview/";
+    GET(
+      BASE_URL + apiURL + id
+    ).then((res) => {
+      setDescription(res);
+      console.log(res)
     })
   .catch ((e) => {
     console.log(e);
@@ -103,6 +134,7 @@ const getData = (page) => {
 };
 useEffect(() => getDataDetail(), []);
 useEffect(() => getData(), []);
+useEffect(() => getDataDes(), []);
 
 const handleDownload = (datasetItemId) => {
   let apiURL = "api/file/?path=";
@@ -130,23 +162,23 @@ const handlePreview =()=> {
   window.open(BASE_URL + "api/dataset_collection/preview/" + id);
     
 }; 
-// const ReadMore = ({ children }) => {
-//   const text = children;
-//   const [isReadMore, setIsReadMore] = useState(true);
-//   const toggleReadMore = () => {
-//     setIsReadMore(!isReadMore);
-//   };
-//   return (
-//     <div className="text">
-//       <div>
-//       {isReadMore ? text.slice(0, 0) : text}
-//       <div onClick={toggleReadMore} className="read-or-hide">
-//         {isReadMore ? "...read more" : " show less"}
-//       </div>
-//       </div>
-//     </div>
-//   );
-// };
+const ReadMore = ({ children }) => {
+  const text = children;
+  const [isReadMore, setIsReadMore] = useState(true);
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  };
+  return (
+    <div className="text">
+      <div>
+      {isReadMore ? text.slice(0, 0) : text}
+      <div onClick={toggleReadMore} className="read-or-hide">
+        {isReadMore ? "...read more" : " show less"}
+      </div>
+      </div>
+    </div>
+  );
+};
 const ReadMoreLong = ({ children }) => {
   const text = children;
   const [isReadMore, setIsReadMore] = useState(true);
@@ -168,17 +200,14 @@ const toggleTab = (index) => {
   setToggleState(index);
 };
 const html = `${short_description}`
-const htmlLong = `${description}`
+//const htmlLong = `${description}`
 const cleanHTML = DOMPurify.sanitize(html, {
   USE_PROFILES: { html: true },
 });
-const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
-  USE_PROFILES: { html: true },
-});
-const load = () => {
-  window.location.reload(true);
+// const cleanHTMLLONG = DOMPurify.sanitize(htmlLong, {
+//   USE_PROFILES: { html: true },
+// });
 
-}
 // const relatedProducts = 
   return <Helmet title={name}>
 
@@ -204,10 +233,10 @@ const load = () => {
                 {show === false}  
                 {show && <span className="product__price"  style={{color:"orange"}}>${amount}</span> }
                 <div className='text1'>{parse(cleanHTML)}</div>
-                <div className='m-t-20'>
-                <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move" 
+                <div className='m-t-10'>
+                {/* <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move" 
                 style={{color: "#253b80", width:"150px" }}
-                onClick={handlePreview}>Preview</motion.button>
+                onClick={handlePreview}>Preview</motion.button> */}
                 
                 {show === false}  
                 {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move m-l-15" 
@@ -253,7 +282,7 @@ const load = () => {
           className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(1)}
         >
-          Description
+          Preview
         </button>
         <button
           className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
@@ -267,15 +296,35 @@ const load = () => {
         <div
           className={toggleState === 1 ? "content  active-content" : "content"}
         >
-          <div className='tab__content mt-5'>
-                <ReadMoreLong className="text2">{parse(cleanHTMLLONG)}</ReadMoreLong>
+          <div className='tab__content mt-3'>
+                
+                  {/* {parse(cleanHTMLLONG)} */}
+                  <div>
+			<nav className='nav__pdf'>
+				<button className='btn__pdf previous' onClick={goToPrevPage}>Prev</button>
+        <p className='pdf'>
+					Page  {pageNumber} of {numPages}
+				</p>
+				<button className='btn__pdf next' onClick={goToNextPage}>Next</button>
+				
+			</nav>
+
+			<Document
+				file={pdf}
+				onLoadSuccess={onDocumentLoadSuccess}
+			>
+				<Page pageNumber={pageNumber}  renderTextLayer={false} renderAnnotationLayer={false}/>
+			</Document>
+		</div>
+
+
           </div>
         </div>
 
         <div
           className={toggleState === 2 ? "content  active-content" : "content"}
         >
-          <div className='product__review mt-5'>
+          <div className='product__review mt-3'>
                 <div className="review__wrapper">
                   {/* <ul>
                     {preview?.map((item, index) => (

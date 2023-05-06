@@ -1,7 +1,6 @@
 import React, { useState} from 'react'
 import FormInput from '../components/FormInput/FormInput';
 import {BASE_URL_CHATBOT} from "../global/globalVar";
-import { useNavigate } from "react-router-dom";
 import { POST } from "../functionHelper/APIFunction";
 import { setCookie } from "../functionHelper/GetSetCookie";
 import { toast } from "react-toastify"
@@ -37,6 +36,14 @@ function LoginChatBot(){
           console.log(e);
         }
       };
+      const [passwordShown, setPasswordShown] = useState(false);
+
+      // Password toggle handler
+      const togglePassword = () => {
+        // When the handler is invoked
+        // chnage inverse the boolean state passwordShown
+        setPasswordShown(!passwordShown);
+      };
   
       const inputs = [
         {
@@ -51,7 +58,7 @@ function LoginChatBot(){
         {
           id: 4,
           name: "password",
-          type: "password",
+          type: passwordShown ? "text" : "password",
           placeholder: "Password",
           errorMessage: "Cannot be left blank",
           label: "Password",
@@ -68,6 +75,7 @@ function LoginChatBot(){
       const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value });
       };
+      
     
   return (
     <>
@@ -81,8 +89,8 @@ function LoginChatBot(){
                 value={values[input.name]}
                 onChange={onChange}
               />
-              
             ))}
+              <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             
             <button className="btn__login2">Submit</button>
             
