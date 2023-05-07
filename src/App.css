@@ -148,11 +148,11 @@ a {
 .button-background-move {
   padding: 10px 10px 10px;
   outline: 0;
-  border: 0.5px solid black;
+  border: 0.3px solid black;
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  background-color: #fff;
+  background: linear-gradient(97.05deg, #fff 3.76%, #0078d7 100%);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -160,7 +160,7 @@ a {
 
 .button-background-move:after {
   content: "";
-  background: linear-gradient(97.05deg, #9baae4 3.76%, #2949c6 100%);
+  background: linear-gradient(97.05deg, #fff 3.76%, #0078d7 100%);
   width: 100%;
   z-index: -1;
   position: absolute;

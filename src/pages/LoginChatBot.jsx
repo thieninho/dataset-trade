@@ -92,7 +92,7 @@ function LoginChatBot(){
             ))}
               <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             
-            <button className="btn__login2">Submit</button>
+            <button className="button-background-move buy__btn w-100 mb-4 m-t-20">Submit</button>
             
           </form>
         </div>

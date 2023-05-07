@@ -133,20 +133,20 @@ function payMoment(){
           {show === true}
           {show && <div>
             <div>
-              <button className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{color: "#253b80", fontSize: "20px", fontWeight: "700"}}
+              <button className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{ fontSize: "20px", fontWeight: "700"}}
               onClick={payMoment}
               > 
                Payment Confirm</button>
             </div>
             <div>
-              <button className="button-background-move buy__btn w-100 mt-2" style={{background: "#fff" ,color: "#253b80", fontSize: "20px", fontWeight: "700", border: "1px solid #4161df"}}
+              <button className="button-background-move buy__btn w-100 mt-2" style={{background: "#fff" , fontSize: "20px", fontWeight: "700", border: "1px solid #4161df"}}
               onClick={Cancel}> 
                Cancel</button>
             </div>
             </div>}
             <div>
             </div>
-            <div className='p-l-75'>
+            <div className='p-l-75 mt-3'>
             {showLoading === true}
             {showLoading && <img src={loading} alt=""  style={{width: "70%"}}/> }
             </div>

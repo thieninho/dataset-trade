@@ -259,8 +259,10 @@
 }
 .react-pdf__Page__canvas{
   border: solid 1px black;
+  border-radius: 5px;
 
 }
+
 .nav__pdf {
   display: flex;
   margin: 1rem auto;
@@ -278,6 +280,20 @@
   border-radius: 10px;
   cursor: pointer;
 }
+.btn__scale {
+
+    background-color: #fff;
+    border: none;
+    color: #000;
+    padding: 10px;
+    list-style: none;
+    margin: 0.7rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.btn__scale i {
+  font-size: 1.5rem;
+}
 
 .previous {
   background-color: #f1f1f1;
@@ -285,8 +301,7 @@
 }
 
 .next {
-  background-color: #4a8fed;
-  color: white;
+  background-color: #f1f1f1;
 }
 
 .pdf{
@@ -297,5 +312,6 @@
   color: #000;
   background-color: #f5f5f5;
   padding: 10px;
+  border: solid 1px #000;
 }
 

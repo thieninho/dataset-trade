@@ -5,7 +5,7 @@ import { BASE_URL} from "../global/globalVar";
 import FormInput from '../components/FormInput/FormInput';
 import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
-
+import { Base } from "../functionHelper/APIFunction";
 
 function ChangePass({ open, toggle, value}){
 
@@ -28,11 +28,11 @@ function ChangePass({ open, toggle, value}){
       .then((res) => {
         console.log(res)
         if (res.status.http_status !== "OK") {
-          toast.error("Register failure")
+          toast.error("Update failure")
          
         }
         if (res.status.http_status === "OK"){
-          toast.success("Register successfully");
+          toast.success("Update successfully");
         }
       })
       .catch((err) => {
@@ -41,7 +41,9 @@ function ChangePass({ open, toggle, value}){
   };
 
   const navigateLogout = () =>{
-    navigate('/login')
+        Base.setCookie("token", null, 0);
+        navigate('/login')
+
   }
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -113,7 +115,7 @@ function ChangePass({ open, toggle, value}){
             ))}
             <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             
-            <button className="btn__login">Submit</button>
+            <button className="button-background-move buy__btn w-100 mt-3">Submit</button>
           </form>
         </div>
         </ModalBody>

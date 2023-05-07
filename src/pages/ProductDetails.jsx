@@ -32,9 +32,13 @@ const pdf =
 
 const [numPages, setNumPages] = useState(null);
 const [pageNumber, setPageNumber] = useState(1);
+const [numScale, setNumScale] = useState(null)
+const [scaleNumber, setScaleNumber] = useState(1.5)
 
-const onDocumentLoadSuccess = ({ numPages }) => {
+const onDocumentLoadSuccess = ({ numPages, numScale }) => {
   setNumPages(numPages);
+  setNumScale(numScale);
+
 };
 
 const goToPrevPage = () =>
@@ -44,7 +48,16 @@ const goToNextPage = () =>
   setPageNumber(
     pageNumber + 1 >= numPages ? numPages : pageNumber + 1,
   );
-
+  const zoomOut = () => {
+    setScaleNumber(
+      scaleNumber - 0.25 <= 1 ? 1 : scaleNumber - 0.25, 
+    );
+  }
+const zoomIn = () => {
+  setScaleNumber(
+    scaleNumber + 0.25 >= 3 ? 3 : scaleNumber + 0.25, 
+  );
+}
 const getDataDetail = () => {
 
   let apiURL = "api/dataset_collection/";
@@ -240,7 +253,7 @@ const cleanHTML = DOMPurify.sanitize(html, {
                 
                 {show === false}  
                 {show && <motion.button whileTap={{scale: 1.2}} className="buy__btn button-background-move m-l-15" 
-                style={{color: "#253b80", width:"150px" }}
+                style={{ width:"150px" }}
                 onClick={handleAddData}>Add to Cart</motion.button>}
                 </div>
                 <div>
@@ -302,9 +315,13 @@ const cleanHTML = DOMPurify.sanitize(html, {
                   <div>
 			<nav className='nav__pdf'>
 				<button className='btn__pdf previous' onClick={goToPrevPage}>Prev</button>
+				<button className='btn__scale' onClick={zoomOut}><i class="ri-zoom-out-line"></i></button>
+
         <p className='pdf'>
 					Page  {pageNumber} of {numPages}
 				</p>
+				<button className='btn__scale' onClick={zoomIn}><i class="ri-zoom-in-fill"></i></button>
+
 				<button className='btn__pdf next' onClick={goToNextPage}>Next</button>
 				
 			</nav>
@@ -313,7 +330,7 @@ const cleanHTML = DOMPurify.sanitize(html, {
 				file={pdf}
 				onLoadSuccess={onDocumentLoadSuccess}
 			>
-				<Page pageNumber={pageNumber}  renderTextLayer={false} renderAnnotationLayer={false}/>
+				<Page scale={scaleNumber} pageNumber={pageNumber}  renderTextLayer={false} renderAnnotationLayer={false}/>
 			</Document>
 		</div>
 

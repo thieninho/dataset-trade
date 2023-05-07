@@ -88,7 +88,7 @@ const Purchased = ({item}) => {
             <Col lg='3'>
               <div>
                
-                <Link to='/shop'> <button className="button-background-move buy__btn w-100 mt-4" style={{color:"#253b80", fontSize:"1.2rem", fontWeight:"700"}}>  Continue Shopping </button></Link>
+                <Link to='/shop'> <button className="button-background-move buy__btn w-100 mt-4" style={{fontSize:"1.2rem", fontWeight:"700"}}>  Continue Shopping </button></Link>
               </div>
               <div>
               </div>

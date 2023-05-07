@@ -180,7 +180,7 @@ const LoginTest = () => {
             ))}
             <p className='btn_show m-l-6' ><input onChange={togglePassword} type='checkbox'/>  Show Password</p>
             <button
-            className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{background: "rgba(136, 160, 255, 0.46)", color: "#fff", fontSize: "20px", fontWeight: "700", wordSpacing:"10"}}
+            className="button-background-move buy__btn w-100 mb-4 m-t-20" style={{ color: "#000", fontSize: "20px", fontWeight: "700", wordSpacing:"10"}}
             >LOGIN</button>
             <p
           onClick={logInWithChatbot}

@@ -444,14 +444,15 @@ iframe {
   font-family: Montserrat-Bold;
   font-size: 12px;
   line-height: 1.5;
-  color: #fff;
+  color: #000;
   text-transform: uppercase;
   margin-left: 10px;
   margin-right: 10px;
   width: 120px;
   height: 50px;
   border-radius: 10px;
-  background: #304352;
+  background: linear-gradient(97.05deg, #fff 3.76%, #0078d7 100%);
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;

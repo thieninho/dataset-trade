@@ -275,7 +275,7 @@ const Cart = (item) => {
             </div>
             <div>
               <button className="button-background-move buy__btn w-100 mt-4"> 
-              <Link to='/shop' style={{fontSize:"20px", fontWeight:"700", color:"#253b80"}}> Continue Shopping</Link></button>
+              <Link to='/shop' style={{fontSize:"20px", fontWeight:"700", color:"#000"}}> Continue Shopping</Link></button>
             </div>
             <div>
             {show === true}
@@ -287,7 +287,7 @@ const Cart = (item) => {
               </span>
             </button> }
             </div>
-            <div className='p-l-75'>
+            <div className='p-l-75 mt-3'>
             {showLoading === false}
             {showLoading && <img src={loading} alt=""  style={{width: "70%"}}/> }
             </div>
