@@ -109,7 +109,7 @@ console.log(e)
                 <NavLink 
                     to="/purchased" 
                     className={(navClass) => 
-                      navClass.isActive ? "nav__active" : ""
+                      navClass.isActive ? "nav__activee" : ""
                     }>PURCHASED
                       </NavLink>
                 </p>}

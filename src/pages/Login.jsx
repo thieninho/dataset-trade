@@ -7,7 +7,7 @@ import { POST } from "../functionHelper/APIFunction";
 import { setCookie } from "../functionHelper/GetSetCookie";
 import { toast } from "react-toastify"
 import "../styles/login.css"
-import "../styles/login/main.css"
+import "../styles/login/common.css"
 import "../styles/login/util.css"
 import Helmet from '../components/Helmet/Helmet';
 import {over} from 'stompjs';

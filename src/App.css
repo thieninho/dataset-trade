@@ -152,7 +152,7 @@ a {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  background: linear-gradient(97.05deg, #fff 3.76%, #0078d7 100%);
+  background: linear-gradient(97.05deg, #fff 3.76%, #01ceee 100%);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -160,7 +160,7 @@ a {
 
 .button-background-move:after {
   content: "";
-  background: linear-gradient(97.05deg, #fff 3.76%, #0078d7 100%);
+  background: linear-gradient(97.05deg, #fff 3.76%, #01ceee 100%);
   width: 100%;
   z-index: -1;
   position: absolute;

@@ -69,18 +69,28 @@ const handlePreview =()=> {
         </div>
         <div className="p-2 product__info">
         <h3 className="product__name" >
-            <Link to={`/shop/product_detail/${items.dataset_category_id}/${items.id}`}>{items.name}</Link>
+            <Link to={`/shop/product_detail/${items.dataset_category_id}/${items.id}`}>{items.name} </Link>
         </h3>
         </div>
         <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
           
             <span className="price m-r-90" style={{color:"orange"}}>${items.amount}</span>
             {isHovering && (
-            <motion.span className='price' whileTap={{scale: 1.2}} onClick={handlePreview} >
-              <i class="ri-eye-fill"></i>
+              
+            <motion.span className='price' whileTap={{scale: 1.2}} onClick={addToCart} >
+             <i class="ri-add-circle-fill"></i>
             </motion.span>
+            
             )
             }
+             {/* {isHovering && (
+              
+              <motion.span className='price' whileTap={{scale: 1.2}} onClick={handlePreview} >
+                <i class="ri-eye-fill"></i>
+              </motion.span>
+              
+              )
+              } */}
         </div>
     </div>
     </Col>

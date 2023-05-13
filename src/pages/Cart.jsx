@@ -11,12 +11,10 @@ import { POST} from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
 import { BASE_URL} from "../global/globalVar";
 import { confirmAlert } from 'react-confirm-alert';
-import {
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-} from "reactstrap";
-import loading from '../assets/images/loading.gif'
+import { Pagination } from "antd";
+
+
+import loading from '../assets/images/loading.gif';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 const Cart = (item) => {
 
@@ -28,13 +26,13 @@ const Cart = (item) => {
   const cartItems = useSelector((state) => state.cart.cartItems)
   const totalAmount = useSelector((state) => state.cart.totalAmount)
 
-
-  const addData = (page) => {
+ 
+  const addData = (page, pageSize) => {
     if (page === undefined) page = 1;
     let apiURL = "api/cart_item/";
     let body = {
       page: page,
-      size: 5,
+      size: 4,
       purchased: false,
       has_dataset_collection: true
     };
@@ -46,6 +44,7 @@ const Cart = (item) => {
         totalPage: res.payload.total_pages,
       });
       setData(res.payload.items)
+      
       console.log(res.payload.total_pages)
 
 
@@ -55,7 +54,7 @@ const Cart = (item) => {
   useEffect(() =>{ 
     addData()
   }, []);
-  console.log(data)
+ 
 
     const [peopleInfo, setPeopleInfo] = useState({});
     const [idInfo, setIDInfo] = useState([]);
@@ -110,7 +109,6 @@ const Cart = (item) => {
     POST(
       BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
-      console.log(item.id)
       if (res.status.http_status !== "OK")
           {
 		          toast.error("Please choose products")
@@ -165,11 +163,10 @@ const Cart = (item) => {
               <button onClick={onClose}>No</button>
               <button id="btn-confirm-delete-cart"
                 onClick={() => {
-                  console.log(cartItemIds)
-                  if (cartItemIds !== 0){
+                  if (lastCartItemIds.length !== 0){
                     deleteData()
                     onClose();
-                   window.location.reload(false);
+                    window.location.reload(false);
                   }
                   
                 }}
@@ -192,8 +189,10 @@ const Cart = (item) => {
       setShow(!true)
       setShowLoading(!false)
   }
-  
-
+  const lastCartItemIds = cartItemIds.filter(item => item !== null);
+  const handleJumpPagination = (page, pageSize) => {
+    addData(page, pageSize);
+  };
   return (
   <Helmet title='Cart'>
     <CommonSection title='CART'/>
@@ -224,15 +223,15 @@ const Cart = (item) => {
                 <th>Title</th>
                 <th>Price</th>
                 <th
-                 className="buy__btn mr-10" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200", scale:"1.2"}}> <motion.i
+                 className="buy__btndelete mr-10" style={{cursor: 'pointer',height: "40px", color:"red", background:"#fff", fontSize:"1.3rem", fontWeight: "200", scale:"1.2"}}> <motion.i
         whileTap={{scale: 1.2}}
         onClick={()=>{
-          if (cartItemIds.length === 0)
+            if (lastCartItemIds.length === 0)
                   {
 		                toast.error("Please choose products")
 
                   }
-          else{
+            else{
                   deleteProduct()
                   }
         }}
@@ -247,8 +246,8 @@ const Cart = (item) => {
               {
                 data.map((item, index) =>(
                   <tr item={item} key={index}>
-                  <td><Link to={`/shop/${item.dataset_collection_id}`}><img src={item.dataset_collection.picture} alt=""/></Link></td>
-                  <td><Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
+                  <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}><img src={item.dataset_collection.picture} alt=""/></Link></td>
+                  <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
                   <td style={{color:"orange"}}
                   >${item.dataset_collection.amount}</td>
                   <input
@@ -294,19 +293,13 @@ const Cart = (item) => {
           </Col>
         </Row>
         <Row>
-        <Pagination aria-label="Page navigation example">
-        {Array.from({ length: pagination.totalPage }, (_, i) => (
-          <PaginationItem key={i}>
-            <PaginationLink
-              onClick={() => {
-                addData(i + 1);
-              }}
-            >
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
-      </Pagination>
+        <Pagination
+        showQuickJumper
+        defaultCurrent={1}
+        total={pagination.totalItem}
+        pageSize={4}
+        onChange={handleJumpPagination}
+    />
      
         </Row>
         

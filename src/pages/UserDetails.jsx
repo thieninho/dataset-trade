@@ -1,7 +1,7 @@
 import React, {useEffect, useState}  from 'react'
 import { BASE_URL} from "../global/globalVar";
 import { GET, POST } from "../functionHelper/APIFunction";
-import "../styles/login/main.css"
+import "../styles/login/common.css"
 import "../styles/login/util.css"
 import { toast } from "react-toastify";
 import Helmet from '../components/Helmet/Helmet';
@@ -161,7 +161,6 @@ const [birthday, setBirthday] = useState("")
     open={openPassModal}
     toggle={handleTooglePass}
     />
-    <GetStarted/>
     </Helmet>
     </>
   )

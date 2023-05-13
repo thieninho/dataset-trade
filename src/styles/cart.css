@@ -13,3 +13,35 @@ td,
 th {
     color: #304352
 }
+td a{
+    color: #304352;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.ant-pagination-item a{
+    margin-top: 6px;
+}
+.ant-pagination-item .ant-pagination-item-active li{
+    margin-top: 10px;
+    height: 30px;
+}
+.ant-pagination-options-quick-jumper input{
+    box-shadow: none;
+}
+.ant-pagination-options-quick-jumper {
+    margin-top: 5px;
+}
+.buy__btndelete i{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px red;
+}
+.ant-pagination-jump-next{
+    margin-top: 10px;
+
+}
+.ant-pagination-jump-prev{
+    margin-top: 10px;
+
+}

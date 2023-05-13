@@ -7,11 +7,8 @@ import { Container, Row, Col } from 'reactstrap';
 import { Link} from 'react-router-dom';
 import { POST} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
-import {
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-} from "reactstrap";
+import { Pagination } from "antd";
+
 
 
 const Purchased = ({item}) => {
@@ -38,6 +35,9 @@ const Purchased = ({item}) => {
     });
   };
   useEffect(() => addData(), [])
+  const handleJumpPagination = (page, pageSize) => {
+    addData(page, pageSize);
+  };
   return (
     <Helmet title='Purchased'>
       <CommonSection title='PURCHASED'/>
@@ -74,8 +74,8 @@ const Purchased = ({item}) => {
                 {
                   data.map((item, index) =>(
                     <tr item={item} key={index}>
-                    <td><Link to={`/shop/${item.dataset_collection_id}`}> <img src={item.dataset_collection.picture} alt=""/></Link></td>
-                    <td> <Link to={`/shop/${item.dataset_collection_id}`}>{item.dataset_collection.name}</Link></td>
+                    <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}> <img src={item.dataset_collection.picture} alt=""/></Link></td>
+                    <td> <Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}>{item.dataset_collection.name}</Link></td>
                     <td  style={{color:"orange"}}>${item.dataset_collection.amount}</td>
                     </tr>
                   ))
@@ -94,22 +94,22 @@ const Purchased = ({item}) => {
               </div>
             </Col>
           </Row>
-          <Row>
-          <Pagination aria-label="Page navigation example">
-          {Array.from({ length: pagination.totalPage }, (_, i) => (
-            <PaginationItem key={i}>
-              <PaginationLink
-                onClick={() => {
-                  addData(i + 1);
-                }}
-              >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-        </Pagination>
-       
-          </Row>
+          <Row className='m-t-20'>
+        
+        <Col lg='6' md='12'>
+           
+
+        <Pagination
+        showQuickJumper
+        defaultCurrent={1}
+        showSizeChanger={false}
+        total={pagination.totalItem}
+        pageSize={8}
+        onChange={handleJumpPagination}
+    />
+          </Col>
+        
+        </Row>
           
         </Container>
       </section>

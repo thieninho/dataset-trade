@@ -117,3 +117,30 @@
     top: 0px;
     left: 0px;
   }
+  .looking_for{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-top: 108px;
+    padding-bottom: 36px;
+  }
+  .looking_for h2{
+    margin-bottom: 28px;
+  }
+
+  .btn__look{
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(32, 33, 36);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    height: 36px;
+    padding: 5px 24px !important; 
+    transition: all 0.3s ease 0s;
+    white-space: nowrap;
+    color: #fff;
+    width: fit-content;
+  }

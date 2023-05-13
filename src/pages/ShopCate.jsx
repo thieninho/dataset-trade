@@ -4,12 +4,8 @@ import { Container, Row, Col } from 'reactstrap';
 import ProductCard from '../components/UI/ProductCard';
 import CommonSection from '../components/UI/CommonSection';
 import { useParams } from 'react-router-dom'
+import { Pagination } from "antd";
 
-import {
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-} from "reactstrap";
 import { POST} from "../functionHelper/APIFunction";
 import { BASE_URL} from "../global/globalVar";
 const ShopCate = () => {
@@ -20,13 +16,15 @@ const {name_category} = useParams()
     const [pagination, setPagination] = useState({});
     const [keyword, setKeyword] = useState("")
     const [show, setShow] = useState(false)
+  const [show1, setShow1] = useState(true)
+
     const getData = (page) => {
     
         if (page === undefined) page = 1;
         let apiURL = "api/dataset_collection/";
         let body = {
           page: page,
-          size: 4,
+          size: 8,
           dataset_category_id: dataset_category_id,
           keyword: keyword,
         };
@@ -47,7 +45,7 @@ const {name_category} = useParams()
         let apiURL = "api/dataset_collection/";
         let body = {
           page: page,
-          size: 4,
+          size: 8,
           dataset_category_id: dataset_category_id,
           keyword: keyword
         };
@@ -74,9 +72,13 @@ const {name_category} = useParams()
           if (keyword !== "")
           {
             setShow(true)
+        setShow1(false)
+
           }
           if (keyword === ""){
             setShow(false)
+        setShow1(true)
+
           }
           
         };
@@ -86,11 +88,17 @@ const {name_category} = useParams()
           setKeyword(e.target.value);
           
         };
+        const handleJumpPagination = (page, pageSize) => {
+          getData(page, pageSize);
+        };
+        const handleJumpPaginationSearch = (page, pageSize) => {
+          searchData(page, pageSize);
+        };
 
     return ( <Helmet title={name_category}>
 
     <section>
-    <CommonSection title={name_category}/>
+    <CommonSection title= {name_category}/>
 
       <Container>
         <Row>
@@ -139,21 +147,46 @@ const {name_category} = useParams()
           ))}
         </Row>
        
-        <Row>
-        <Pagination aria-label="Page navigation example" className='p-t-20'>
-        {Array.from({ length: pagination.totalPage }, (_, i) => (
-          <PaginationItem key={i}>
-            <PaginationLink
-              onClick={() => {
-                getData(i + 1);
-              }}
-            >
-              {i + 1}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
-      </Pagination>
+        {show1 && (
+        <Row className='m-t-20'>
+        <Col lg='3' md='6' className='text-end'>
+          
+          </Col>
+        <Col lg='6' md='12'>
+           
+
+        <Pagination
+        showQuickJumper
+        defaultCurrent={1}
+        showSizeChanger={false}
+        total={pagination.totalItem}
+        pageSize={8}
+        onChange={handleJumpPagination}
+    />
+          </Col>
+        
         </Row>
+        )}
+        {show && (
+           <Row className='m-t-20'>
+           <Col lg='3' md='6' className='text-end'>
+             
+             </Col>
+           <Col lg='6' md='12'>
+              
+   
+           <Pagination
+           showQuickJumper
+           defaultCurrent={1}
+           showSizeChanger={false}
+           total={pagination.totalItem}
+           pageSize={16}
+           onChange={handleJumpPaginationSearch}
+       />
+             </Col>
+           
+           </Row>
+        )}
       </Container>
     </section>
 

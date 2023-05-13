@@ -16,6 +16,7 @@ import { Base } from '../functionHelper/APIFunction'
 import Register from '../pages/Register'
 import ShopCate from '../pages/ShopCate'
 import LoginChatBot from '../pages/LoginChatBot'
+import AllProduct from '../pages/AllProduct'
 const Routers = () => {
 const token = JSON.stringify(Base.getCookie("token"));
 
@@ -43,6 +44,8 @@ let b = 'register'
     <Route path='payment/paypal/cancel' element={<Cancel/>} />
     <Route path='login_with_chatbot' element={<LoginChatBot/>} />
     <Route path='payment/paypal/review_payment' element={<ReviewPayment/>}/>
+    <Route path='shop/alldataset' element={<AllProduct/>} />
+
   </Routes>
 }
 

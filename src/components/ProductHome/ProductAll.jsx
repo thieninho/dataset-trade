@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import Helmet from '../../components/Helmet/Helmet';
+import Helmet from '../Helmet/Helmet';
 import { Container, Row, Col } from 'reactstrap';
 import '../../styles/shop.css'
 import { POST} from "../../functionHelper/APIFunction";
 import { BASE_URL} from "../../global/globalVar";
-import ProductCard from '../../components/UI/ProductCard';
-import CommonSection from '../../components/UI/CommonSection';
+import ProductCard from '../UI/ProductCard';
+import CommonSection from '../UI/CommonSection';
 import { Pagination } from "antd";
 
-const ProductHome = () => {
+const ProductAll = () => {
 
 
   //const [data, setData] = useState({id:'', name:'', picture:'', amount:'', short_description: '', description: '', preview: ''})
@@ -17,7 +17,6 @@ const ProductHome = () => {
   const [keyword, setKeyword] = useState("")
   const [show, setShow] = useState(false)
   const [show1, setShow1] = useState(true)
-
   const getData = (page, pageSize) => {
     
     if (page === undefined) page = 1;
@@ -44,7 +43,7 @@ const ProductHome = () => {
     let apiURL = "api/dataset_collection/";
     let body = {
       page: page,
-      size: 8,
+      size: 16,
       keyword: keyword
     };
     POST(
@@ -65,7 +64,7 @@ const ProductHome = () => {
     let apiURL = "api/dataset_collection/";
     let body = {
       page: page,
-      size: 8,
+      size: 16,
       keyword: keyword,
     };
     POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
@@ -79,7 +78,7 @@ const ProductHome = () => {
     });
   };
     useEffect(() => {
-      getData(1, 8)
+      getData(1, 16)
       
     }, []);
     const handleSubmit = (e) => {
@@ -91,12 +90,10 @@ const ProductHome = () => {
       {
         setShow(true)
         setShow1(false)
-
       }
       if (keyword === ""){
         setShow(false)
         setShow1(true)
-
       }
       
     };
@@ -200,7 +197,6 @@ const ProductHome = () => {
             <li><button className='button-background-move2' onClick={setCovid}>Covid-19</button></li>
             <li><button className='button-background-move2' onClick={setValorant}>Valorant</button></li>
             <li><button className='button-background-move2' onClick={setPremierLeague}>Premier League</button></li>
-
             
           </ul>
         </div>
@@ -233,7 +229,7 @@ const ProductHome = () => {
         defaultCurrent={1}
         showSizeChanger={false}
         total={pagination.totalItem}
-        pageSize={8}
+        pageSize={16}
         onChange={handleJumpPagination}
     />
           </Col>
@@ -267,4 +263,4 @@ const ProductHome = () => {
   );
 }
 
-export default ProductHome
+export default ProductAll

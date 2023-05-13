@@ -314,4 +314,14 @@
   padding: 10px;
   border: solid 1px #000;
 }
-
+.rpv-core__textbox{
+  box-shadow: none;
+}
+.pdf_view{
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  margin: 0 auto;
+  border-radius: 5px;
+}
