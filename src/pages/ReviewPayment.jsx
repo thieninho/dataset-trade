@@ -74,7 +74,10 @@ function payMoment(){
 
     const totalAmount = data.reduce((total, item) => total + Number(item.dataset_collection.amount), 0)
 
-
+    useEffect(() => {
+      // 👇️ scroll to top on page load
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, []);
     
   return (
     <Helmet title='Review Payment'>

@@ -94,7 +94,10 @@ const {name_category} = useParams()
         const handleJumpPaginationSearch = (page, pageSize) => {
           searchData(page, pageSize);
         };
-
+        useEffect(() => {
+          // 👇️ scroll to top on page load
+          window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        }, []);
     return ( <Helmet title={name_category}>
 
     <section>

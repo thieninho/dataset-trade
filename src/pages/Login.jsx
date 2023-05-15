@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import FormInput from '../components/FormInput/FormInput';
 
 import { BASE_URL,  originUrl} from "../global/globalVar";
@@ -160,6 +160,10 @@ const LoginTest = () => {
             });
         });
     }
+    useEffect(() => {
+      // 👇️ scroll to top on page load
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, []);
       return <>
       <Helmet title="Login">
       <section className='login__app'>
