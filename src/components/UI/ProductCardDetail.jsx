@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { motion } from "framer-motion"
 import '../../styles/product-card.css'
 import { Col } from "reactstrap"
@@ -61,7 +61,10 @@ const addToCart =()=> {
 const reload = () =>{
   window.location.reload(false)
 }
-
+useEffect(() => {
+  // 👇️ scroll to top on page load
+  window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+}, []);
   return (
     <Col lg='3' md='4' className='mb-2'>
     <div className="product__item" onMouseOver={handleMouseOver}

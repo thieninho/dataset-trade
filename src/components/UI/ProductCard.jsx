@@ -8,10 +8,11 @@ import { POST } from '../../functionHelper/APIFunction'
 import { toast } from "react-toastify"
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/slices/cartSlice'
-
+import { Base } from '../../functionHelper/APIFunction'
 const ProductCard = ({items}) => {
 
   const [isHovering, setIsHovering] = useState(false);
+  const token = JSON.stringify(Base.getCookie("token"));
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -59,7 +60,12 @@ const handlePreview =()=> {
     
 }; 
 
-
+const handleAddData = () => {
+  if (token === "null") {
+    toast.error("Please login with your account");
+  }
+  addData();
+};
   return (
     <Col lg='3' md='4' className='mb-2'>
     <div className="product__item" onMouseOver={handleMouseOver}
@@ -77,7 +83,7 @@ const handlePreview =()=> {
             <span className="price m-r-90" style={{color:"orange"}}>${items.amount}</span>
             {isHovering && (
               
-            <motion.span className='price' whileTap={{scale: 1.2}} onClick={addToCart} >
+            <motion.span className='price' whileTap={{scale: 1.2}} onClick={handleAddData} >
              <i class="ri-add-circle-fill"></i>
             </motion.span>
             
