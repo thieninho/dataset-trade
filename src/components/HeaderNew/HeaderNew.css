@@ -1,6 +1,6 @@
 .h-wrapper{
-    color: #fff;
-    background: #131110;
+    color: #131110;
+    background: #fff;
     position: sticky;
     z-index: 111;
 }
@@ -60,7 +60,7 @@
     justify-content: space-between;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    color: var(--secondary);
+    color: #3254dd;
 }
 .h-container p{
     color: var(--secondary);
@@ -73,10 +73,11 @@
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #fff;
+    color: #5e78e2;
 }
 .h-menu a:hover{
-    color: #0078d7;
+  color: #3254dd;
+  font-size: 1.15rem;
 }
 .h-menu p{
     font-size: 1.1rem;
@@ -94,13 +95,13 @@
 }
 .sticky__header {
     width: 100%;
-    height: 82px;
+    height: 65px;
     position: sticky;
     top: 0;
     left: 0;
     z-index: 1000;
     box-shadow: 3px 3px 8px -3px #ddd;
-    background:  #131110;
+    background: #fff;
     padding-bottom: 1rem;
 }
 .nav__activee {
@@ -153,6 +154,8 @@
     color: var(--clr);
     /* box-shadow: 0 0 35px var(--clr); */
     animation: box 3s infinite;
+    color: #fff;
+
   }
   
   .button-hl::before {
@@ -161,6 +164,8 @@
     inset: 2px;
     background: #3254dd;
     border-radius: 10px;
+    color: #fff;
+
 
   }
   
@@ -191,6 +196,7 @@
     width: 25px;
     left: 10%;
     animation: move 3s infinite;
+    color: #fff;
   }
   
   .button-hl i::after {

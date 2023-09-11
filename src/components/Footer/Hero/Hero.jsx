@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import heroImg from "../../../assets/images/3.gif"
+import heroImg from "../../../assets/images/comp_4.gif"
 import { NavLink, useNavigate} from 'react-router-dom';
 import CommonSection from "../../UI/CommonSection"
 import "./Hero.css"

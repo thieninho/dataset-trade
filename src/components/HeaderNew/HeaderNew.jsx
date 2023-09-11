@@ -74,7 +74,7 @@ console.log(e)
   return (
     <section className="h-wrapper" ref={headerRef} >
         <div className="flexCenter paddings innerWidth h-container">
-        <h3 className=''><img src={logo} alt="logo" width={50}/> DATA EVERYWHERE  </h3>
+        <h3 className=''><img src={logo} alt="logo" width={30}/> DATA EVERYWHERE  </h3>
         <OutsideClickHandler
         onOutsideClick={()=>{
             setMenuOpened(false)

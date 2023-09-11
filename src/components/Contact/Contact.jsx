@@ -1,6 +1,6 @@
 import React from 'react'
 import './Contact.css'
-import ContactImg from '../../assets/images/comp_4.gif'
+import ContactImg from '../../assets/images/1.gif'
 import { MdCall } from 'react-icons/md'
 import { BsFillChatDotsFill} from 'react-icons/bs'
 import {HiChatBubbleBottomCenter} from 'react-icons/hi2'
