@@ -10,7 +10,7 @@
 }
 
 * {
-  margin: 0;
+  margin: 0 2px;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -21,7 +21,7 @@ a {
   text-decoration: none;
 }
 .paddings {
-  padding: 1.5rem;
+  padding: 2.5rem;
 }
 
 .innerWidth {

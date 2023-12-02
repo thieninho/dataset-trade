@@ -24,7 +24,7 @@ function ChangePass({ open, toggle, value}){
       confirm_password: values.confirm_password,
     };
     let url = "api/user/update_password";
-    POST(BASE_URL + url, JSON.stringify(body))
+    POST(process.env.REACT_APP_BASE_URL + url, JSON.stringify(body))
       .then((res) => {
         console.log(res)
         if (res.status.http_status !== "OK") {

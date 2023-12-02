@@ -26,7 +26,7 @@ const ProductAll = () => {
       size: pageSize,
     };
     POST(
-      BASE_URL + apiURL, JSON.stringify(body)
+      process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
 
       setData(res.payload.items)

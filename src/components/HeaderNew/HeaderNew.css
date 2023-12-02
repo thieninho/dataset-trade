@@ -3,6 +3,7 @@
     background: #fff;
     position: sticky;
     z-index: 111;
+    padding: 0 30px;
 }
 
 
@@ -21,7 +22,7 @@
 
 }
 .nav i{
-    color: #fff;
+    color: #3254dd;
     scale: 1.3;
     
 }
@@ -40,7 +41,7 @@
 .nav li{
     padding: 10px;
     border: 1px solid #3254dd;
-    background: #131110;
+    background: #fff;
     font-size: 1rem;
     border-radius: 5px;
     margin: 2px;

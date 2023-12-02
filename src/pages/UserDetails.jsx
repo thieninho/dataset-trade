@@ -29,7 +29,7 @@ const [birthday, setBirthday] = useState("")
       birthday: birthday
     };
     let url = "api/user/update";
-    POST(BASE_URL + url, JSON.stringify(body))
+    POST(process.env.REACT_APP_BASE_URL + url, JSON.stringify(body))
       .then((res) => {
         if (res.status.http_status !== "OK")
     {
@@ -48,7 +48,7 @@ const [birthday, setBirthday] = useState("")
   const getData = () => {
     let apiURL = "api/user/detail";
       GET(
-        BASE_URL + apiURL
+        process.env.REACT_APP_BASE_URL + apiURL
       ).then((res) => {
         console.log(res.payload.username);
         setUsename(res.payload.username);

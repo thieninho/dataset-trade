@@ -11,7 +11,7 @@ import { Base } from "../functionHelper/APIFunction";
 import DOMPurify from "dompurify";
 import parse from "html-react-parser";
 import ProductCardDetail from "../components/UI/ProductCardDetail";
-
+import { useGlobalContext } from "../components/GlobalContext/GlobalContext";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 
@@ -29,33 +29,18 @@ const ProductDetails = () => {
   const [data, setData] = useState("");
   const [dataAlso, setDataAlso] = useState([]);
   const [dataDownload, setDataDownload] = useState([]);
+  const [purchase, setPurchased] = useState([]);
   const [rating, setRating] = useState();
-  const pdf = "http://103.200.20.180:8086/api/dataset_collection/preview/" + id;
-  // const [numPages, setNumPages] = useState(null);
-  // const [pageNumber, setPageNumber] = useState(1);
-  // const [numScale, setNumScale] = useState(null);
-  // const [scaleNumber, setScaleNumber] = useState(1.5);
+  const pdf = process.env.REACT_APP_BASE_URL + "api/dataset_collection/preview/" + id;
+  const { globalPackage, setGlobalPackage } = useGlobalContext();
 
-  // const onDocumentLoadSuccess = ({ numPages, numScale }) => {
-  //   setNumPages(numPages);
-  //   setNumScale(numScale);
-  // };
 
-  // const goToPrevPage = () =>
-  //   setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
-
-  // const goToNextPage = () =>
-  //   setPageNumber(pageNumber + 1 >= numPages ? numPages : pageNumber + 1);
-  // const zoomOut = () => {
-  //   setScaleNumber(scaleNumber - 0.25 <= 1 ? 1 : scaleNumber - 0.25);
-  // };
-  // const zoomIn = () => {
-  //   setScaleNumber(scaleNumber + 0.25 >= 3 ? 3 : scaleNumber + 0.25);
-  // };
+  console.log(`${globalPackage}`)
+  
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const getDataDetail = () => {
     let apiURL = "api/dataset_collection/";
-    GET(BASE_URL + apiURL + id)
+    GET(process.env.REACT_APP_BASE_URL + apiURL + id)
       .then((res) => {
         setName(res.payload.name);
         setShort_description(res.payload.short_description);
@@ -63,12 +48,15 @@ const ProductDetails = () => {
         setAmount(res.payload.amount);
         setData(res.payload);
         setDataDownload(res.payload.dataset_items);
+        setPurchased(res.payload.purchased)
+        console.log(res)
         if (!res.payload.purchased) {
           setShow(true);
         }
         if (res.payload.purchased) {
           setShow1(true);
         }
+        
       })
       .catch((e) => {
         console.log(e);
@@ -76,10 +64,9 @@ const ProductDetails = () => {
   };
   const getDataDes = () => {
     let apiURL = "api/dataset_collection/preview/";
-    GET(BASE_URL + apiURL + id)
+    GET(process.env.REACT_APP_BASE_URL + apiURL + id)
       .then((res) => {
         setDescription(res);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -94,7 +81,7 @@ const ProductDetails = () => {
     let body = {
       dataset_collection_id: id,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body))
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body))
       .then((res) => {
         if (res.status.http_status !== "OK") {
           toast.error("Dataset exist in your cart");
@@ -122,7 +109,7 @@ const ProductDetails = () => {
       size: 4,
       dataset_category_id: dataset_category_id,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setDataAlso(res.payload.items);
     });
   };
@@ -134,8 +121,7 @@ var a
     let apiURL = "api/file/?path=";
     if (
       data == null ||
-      data.dataset_items == null ||
-      data.dataset_items === []
+      data.dataset_items == null 
     ) {
       return;
     }

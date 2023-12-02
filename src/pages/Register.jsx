@@ -29,7 +29,7 @@ const Register = () => {
             birthday: values.birthday,
             address: values.address,
           };
-          POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+          POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
             console.log(res);
             if (res.status.http_status !== "OK") {
               toast.error("Register failure")

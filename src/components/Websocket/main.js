@@ -1,6 +1,6 @@
 function logIn() {
     $.ajax({
-        url: Base.baseUrl + '/api/user/log_in',
+        url:  process.env.REACT_APP_BASE_URL_CHATBOT + '/api/user/log_in',
         type: 'POST',
         async: false,
         contentType: 'application/json',
@@ -10,13 +10,13 @@ function logIn() {
         }),
         dataType: 'json',
         success: function(result) {
-            if (result == null || result.status == null || result.status.http_status == null) {
+            if (result == null || result == null || result.http_status == null) {
                 alert("Something went wrong: " + JSON.stringify(result));
                 return;
             }
 
-            if (result.status.http_status != "OK") {
-                alert("Login failed: " + result.status.exception_code);
+            if (result.http_status != "OK") {
+                alert("Login failed: " + result.exception_code);
                 return;
             }
 
@@ -28,14 +28,14 @@ function logIn() {
 
 function logInSuccess(result) {
     if (result == null || 
-        result.payload == null || 
-        result.payload.id == null || 
-        result.payload.token == null) {
+        result == null || 
+        result.user_id == null || 
+        result.token == null) {
             alert("Something went wrong");
             return;
     }
 
-    Base.setCookie("user", JSON.stringify(result.payload), 60*24);
+    Base.setCookie("user", JSON.stringify(result), 60*24);
     alert("Login successfully!");
     window.location.href = Base.originUrl + "/dashboard/index.html";
 }
@@ -97,8 +97,8 @@ function socketListener(result) {
         return;
     }
 
-    if (message.status.http_status != "OK") {
-        alert(message.status.exception_code);
+    if (message.http_status != "OK") {
+        alert(message.exception_code);
         return;
     }
 

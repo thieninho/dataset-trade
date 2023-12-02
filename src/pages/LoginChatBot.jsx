@@ -20,7 +20,7 @@ function LoginChatBot(){
             username: values.username,
             password: values.password,
           };
-          POST(BASE_URL_CHATBOT + apiURL1, JSON.stringify(body)).then((res) => {
+          POST( process.env.REACT_APP_BASE_URL_CHATBOT + apiURL1, JSON.stringify(body)).then((res) => {
             if (res.http_status === "OK"){
               setCookie("token", res.token, 3)
               toast.success("Login successfully");

@@ -27,7 +27,7 @@ const ProductHome = () => {
       size: pageSize,
     };
     POST(
-      BASE_URL + apiURL, JSON.stringify(body)
+      process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
 
       setData(res.payload.items)
@@ -37,7 +37,7 @@ const ProductHome = () => {
       });
     });
   };
-
+console.log(process.env.REACT_APP_BASE_URL)
   const searchData = (page) => {
     
     if (page === undefined) page = 1;
@@ -48,7 +48,7 @@ const ProductHome = () => {
       keyword: keyword
     };
     POST(
-      BASE_URL + apiURL, JSON.stringify(body)
+      process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
 
       setData(res.payload.items)

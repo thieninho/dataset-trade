@@ -24,7 +24,7 @@ const ReviewPayment = () => {
     const addData = () => {
       let apiURL = "api/payment/paypal/cart_items/";
         GET(
-          BASE_URL + apiURL + paymentId
+          process.env.REACT_APP_BASE_URL + apiURL + paymentId
         ).then((res) => {  
           if (res.status.http_status === "OK")
             setData(res.payload)
@@ -55,7 +55,7 @@ const ReviewPayment = () => {
         payer_id: PayerID
       };
       POST(
-        BASE_URL + apiURL, JSON.stringify(body)
+        process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
       ).then((res) => {
         if(res.status.http_status === "OK"){
           window.location.href = "/payment/paypal/success"

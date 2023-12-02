@@ -12,11 +12,13 @@ import { toast } from "react-toastify"
 import { BASE_URL} from "../global/globalVar";
 import { confirmAlert } from 'react-confirm-alert';
 import { Pagination } from "antd";
+import { useGlobalContext } from "../components/GlobalContext/GlobalContext";
 
 
 import loading from '../assets/images/loading.gif';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 const Cart = (item) => {
+  const { globalPackage, setGlobalPackage } = useGlobalContext();
 
   const [show, setShow] = useState(true)
   const [showLoading, setShowLoading] = useState(false)
@@ -37,7 +39,7 @@ const Cart = (item) => {
       has_dataset_collection: true
     };
     POST(
-      BASE_URL + apiURL, JSON.stringify(body)
+      process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
       setPagination({
         totalItem: res.payload.total_items,
@@ -107,7 +109,7 @@ const Cart = (item) => {
     };
    
     POST(
-      BASE_URL + apiURL, JSON.stringify(body)
+      process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
       if (res.status.http_status !== "OK")
           {
@@ -126,9 +128,8 @@ const Cart = (item) => {
       "cart_item_ids": cartItemIds
     };
     POST(
-      BASE_URL + apiURL, JSON.stringify(body)
+      process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
     ).then((res) => {
-      console.log(item.id)
       if (res.status.http_status === "OK")
           {
             console.log("success")
@@ -252,8 +253,14 @@ const Cart = (item) => {
                   <tr item={item} key={index}>
                   <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}><img src={item.dataset_collection.picture} alt=""/></Link></td>
                   <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
+                  {`${globalPackage}` === "PREMIUM" ? (
+                  
                   <td style={{color:"orange"}}
+                    >$0</td>
+                  ) : (
+                    <td style={{color:"orange"}}
                   >${item.dataset_collection.amount}</td>
+                  )}
                   <input
                   onChange={toggleHandler(item)}
                   checked={peopleInfo[item.id]}
@@ -273,7 +280,13 @@ const Cart = (item) => {
             <div>
             
               <h6 className='d-flex align-items-center justify-content-between'>Subtotal
+              {`${globalPackage}` === "PREMIUM" ? (
+              <span className='fs-4 fw-bold'  style={{color:"orange"}}>$0</span>
+
+              ):(
               <span className='fs-4 fw-bold'  style={{color:"orange"}}>${totalAmount1}</span>
+
+              )}
               </h6>
             </div>
             <div>

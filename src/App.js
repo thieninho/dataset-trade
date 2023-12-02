@@ -1,8 +1,14 @@
 import "./App.css";
 import Layout from "./components/Layout/Layout";
+import { GlobalProvider } from "./components/GlobalContext/GlobalContext";
 
 function App() {
-  return <Layout/>;
-}
+  return (
+  <>
+  <GlobalProvider>
+    <Layout/>;
+  </GlobalProvider>
+  </>
+)}
 
 export default App;

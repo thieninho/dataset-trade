@@ -21,7 +21,7 @@ const ProductCard = ({items}) => {
     setIsHovering(false);
   }
 const handlePreview =()=> {
-  window.open(BASE_URL + "api/dataset_collection/preview/" + items.id)
+  window.open(process.env.REACT_APP_BASE_URL + "api/dataset_collection/preview/" + items.id)
     
 }; 
 const addData = (items) => {
@@ -31,7 +31,7 @@ const addData = (items) => {
       dataset_collection_id: items.id
   };
   POST(
-    BASE_URL + apiURL, JSON.stringify(body)
+    process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
   ).then((res) => {
     if (res.status.http_status !== "OK")
     {

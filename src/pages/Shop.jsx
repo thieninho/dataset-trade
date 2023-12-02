@@ -45,7 +45,7 @@ const Shop = () => {
       page: page,
       size: pageSize,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setNameDataCate(res.payload.items);
       setPagination2({
         totalItem: res.payload.total_items,

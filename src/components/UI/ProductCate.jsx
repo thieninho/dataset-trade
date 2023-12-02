@@ -15,7 +15,7 @@ const ProductCate = ({ dataset_category_id, size }) => {
       size: size,
       dataset_category_id: dataset_category_id,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setDataCate(res.payload.items);
       console.log(res.payload.items);
     });

@@ -33,7 +33,7 @@ const LoginTest = () => {
             username: values.username,
             password: values.password,
           };
-          POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+          POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
             if (res.status.http_status === "OK"){
               setCookie("token", res.payload.token, 3)
               toast.success("Login successfully");

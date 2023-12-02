@@ -9,7 +9,9 @@ import { toast } from "react-toastify"
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/slices/cartSlice'
 import { Base } from '../../functionHelper/APIFunction'
+import { useGlobalContext } from '../GlobalContext/GlobalContext'
 const ProductCard = ({items}) => {
+  const { globalPackage, setGlobalPackage } = useGlobalContext();
 
   const [isHovering, setIsHovering] = useState(false);
   const token = JSON.stringify(Base.getCookie("token"));
@@ -28,7 +30,7 @@ const ProductCard = ({items}) => {
             dataset_collection_id: items.id
         };
         POST(
-          BASE_URL + apiURL, JSON.stringify(body)
+          process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)
         ).then((res) => {
           if (res.status.http_status !== "OK")
           {
@@ -64,7 +66,7 @@ const handleAddData = () => {
   if (token === "null") {
     toast.error("Please login with your account");
   }
-  addData();
+  addData(items);
 };
   return (
     <Col lg='3' md='4' className='mb-2'>
@@ -79,8 +81,13 @@ const handleAddData = () => {
         </h3>
         </div>
         <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
-          
+        {`${globalPackage}` === "PREMIUM" ? (
+              <span className="price m-r-90" style={{color:"orange"}}>$0</span>
+
+            ) : (
             <span className="price m-r-90" style={{color:"orange"}}>${items.amount}</span>
+
+              )}
             {isHovering && (
               
             <motion.span className='price' whileTap={{scale: 1.2}} onClick={handleAddData} >
