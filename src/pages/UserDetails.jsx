@@ -68,72 +68,72 @@ const [birthday, setBirthday] = useState("")
   return (
     <>
     <Helmet title="Profile">
-    <div class="limiter">
-		<div class="container-login222 p-t-70 p-b-70">
-				<form class="login222-form validate-form">
+    <div className="limiter">
+		<div className="container-login222 p-t-70 p-b-70">
+				<form className="login222-form validate-form">
 				
-          {/* <div class="login100-pic js-tilt" data-tilt>
+          {/* <div className="login100-pic js-tilt" data-tilt>
 					<img src={logo} alt="IMG" />
 				  </div> */}
           <p>Username</p>
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div className="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
           
 						<input
             style={{color:"black", paddingLeft:"1rem"}}
-            class="input100" type="text"
+            className="input100" type="text"
             readOnly
                         value={username}
                         onChange={(e)=> setUsename(e.target.value)}
                         />
                          
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+						<span className="focus-input100"></span>
+						<span className="symbol-input100">
+							<i className="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
           <p>Address</p>
-					<div class="wrap-input100 validate-input" data-validate = "">
+					<div className="wrap-input100 validate-input" data-validate = "">
             
 						<input 
             style={{color:"black", paddingLeft:"1rem"}}
-            class="input100" type='text' 
+            className="input100" type='text' 
                         value={address}
                         onChange={(e)=> setAddress(e.target.value)}
                          />
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+						<span className="focus-input100"></span>
+						<span className="symbol-input100">
+							<i className="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 					
           <p>Birthday</p>
-					<div class="wrap-input100 validate-input" data-validate = "">
+					<div className="wrap-input100 validate-input" data-validate = "">
             
 						<input 
             style={{color:"black", paddingLeft:"1rem"}}
-            class="input100" type='date' 
+            className="input100" type='date' 
             min="1900-01-01" max="2010-01-01"
                         value={birthday} onChange={(e)=> setBirthday(e.target.value)} />
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+						<span className="focus-input100"></span>
+						<span className="symbol-input100">
+							<i className="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 
           <p>Fullname</p>
-					<div class="wrap-input100 validate-input" data-validate = "">
+					<div className="wrap-input100 validate-input" data-validate = "">
             
 						<input 
             style={{color:"black", paddingLeft:"1rem"}}
-            class="input100" type='text' 
+            className="input100" type='text' 
                         value={fullname} onChange={(e)=> setFulname(e.target.value)} />
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+						<span className="focus-input100"></span>
+						<span className="symbol-input100">
+							<i className="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					<div class="container-login100-form-btn ">
-						<p class="button-background-move buy__btn login100-form-btn"
+					<div className="container-login100-form-btn ">
+						<p className="button-background-move buy__btn login100-form-btn"
                         onClick={() => {
                             handleSave();
                           }}
@@ -142,10 +142,10 @@ const [birthday, setBirthday] = useState("")
 						</p>
             <div  
             
-            class="text-center">
+            className="text-center">
 						<p 
             style={{background: "#fff", color: "black", border: "1px solid #304352"}}
-            class="button-background-move buy__btn login100-form-btn" onClick={() => {
+            className="button-background-move buy__btn login100-form-btn" onClick={() => {
                       handleTooglePass();
                       
                     }}>

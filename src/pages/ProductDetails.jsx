@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { useParams } from "react-router-dom";
 import Helmet from "../components/Helmet/Helmet";
@@ -11,11 +11,8 @@ import { Base } from "../functionHelper/APIFunction";
 import DOMPurify from "dompurify";
 import parse from "html-react-parser";
 import ProductCardDetail from "../components/UI/ProductCardDetail";
-import { useGlobalContext } from "../components/GlobalContext/GlobalContext";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
-
-
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 const ProductDetails = () => {
@@ -23,22 +20,14 @@ const ProductDetails = () => {
   const { dataset_category_id } = useParams();
   const [name, setName] = useState("");
   const [short_description, setShort_description] = useState([]);
-  const [description, setDescription] = useState();
   const [picture, setPicture] = useState("");
   const [amount, setAmount] = useState("");
   const [data, setData] = useState("");
   const [dataAlso, setDataAlso] = useState([]);
   const [dataDownload, setDataDownload] = useState([]);
-  const [purchase, setPurchased] = useState([]);
-  const [rating, setRating] = useState();
   const pdf = process.env.REACT_APP_BASE_URL + "api/dataset_collection/preview/" + id;
-  const { globalPackage, setGlobalPackage } = useGlobalContext();
-
-
-  console.log(`${globalPackage}`)
-  
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
-  const getDataDetail = () => {
+  const getDataDetail = useCallback( async () => {
     let apiURL = "api/dataset_collection/";
     GET(process.env.REACT_APP_BASE_URL + apiURL + id)
       .then((res) => {
@@ -48,30 +37,19 @@ const ProductDetails = () => {
         setAmount(res.payload.amount);
         setData(res.payload);
         setDataDownload(res.payload.dataset_items);
-        setPurchased(res.payload.purchased)
-        console.log(res)
         if (!res.payload.purchased) {
           setShow(true);
         }
         if (res.payload.purchased) {
           setShow1(true);
         }
-        
+
       })
       .catch((e) => {
         console.log(e);
       });
-  };
-  const getDataDes = () => {
-    let apiURL = "api/dataset_collection/preview/";
-    GET(process.env.REACT_APP_BASE_URL + apiURL + id)
-      .then((res) => {
-        setDescription(res);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  }, [id]);
+
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const token = JSON.stringify(Base.getCookie("token"));
@@ -101,7 +79,7 @@ const ProductDetails = () => {
     addData();
   };
 
-  const getData = (page) => {
+  const getData = useCallback( async (page) => {
     if (page === undefined) page = 1;
     let apiURL = "api/dataset_collection/";
     let body = {
@@ -112,16 +90,17 @@ const ProductDetails = () => {
     POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setDataAlso(res.payload.items);
     });
-  };
-  useEffect(() => getDataDetail(), []);
-  useEffect(() => getData(), []);
-  useEffect(() => getDataDes(), []);
-var a
+  }, [dataset_category_id]);
+  useEffect(() => { getDataDetail() }, [getDataDetail]);
+
+  useEffect(() => { getData() }, [getData]);
+  //useEffect(() => getDataDes(), []);
+  var a
   const handleDownload = (datasetItemId) => {
     let apiURL = "api/file/?path=";
     if (
       data == null ||
-      data.dataset_items == null 
+      data.dataset_items == null
     ) {
       return;
     }
@@ -142,42 +121,8 @@ var a
 
   };
 
-  const handlePreview = () => {
-    window.open(BASE_URL + "api/dataset_collection/preview/" + id);
-  };
-  
-  const ReadMore = ({ children }) => {
-    const text = children;
-    const [isReadMore, setIsReadMore] = useState(true);
-    const toggleReadMore = () => {
-      setIsReadMore(!isReadMore);
-    };
-    return (
-      <div className="text">
-        <div>
-          {isReadMore ? text.slice(0, 0) : text}
-          <div onClick={toggleReadMore} className="read-or-hide">
-            {isReadMore ? "...read more" : " show less"}
-          </div>
-        </div>
-      </div>
-    );
-  };
-  const ReadMoreLong = ({ children }) => {
-    const text = children;
-    const [isReadMore, setIsReadMore] = useState(true);
-    const toggleReadMore = () => {
-      setIsReadMore(!isReadMore);
-    };
-    return (
-      <div className="text">
-        {isReadMore ? text.slice(0, 3) : text}
-        <div onClick={toggleReadMore} className="read-or-hide">
-          {isReadMore ? "...read more" : " show less"}
-        </div>
-      </div>
-    );
-  };
+
+
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
@@ -193,12 +138,12 @@ var a
   // });
 
   // const relatedProducts =
-  
+
   useEffect(() => {
     // 👇️ scroll to top on page load
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
-  
+
   return (
     <Helmet title={name}>
       <section className="section__product">
@@ -262,7 +207,7 @@ var a
                               style={{ color: "#304352", fontSize: "1.4rem" }}
                             >
                               <i
-                                class="ri-download-cloud-2-fill"
+                                className="ri-download-cloud-2-fill"
                                 onClick={() => {
                                   handleDownload(item.id);
                                 }}
@@ -305,15 +250,15 @@ var a
                 <div className="tab__content mt-3">
                   {/* {parse(cleanHTMLLONG)} */}
                   <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.worker.min.js">
-            <div className="pdf_view" style={{ height: "1262px", width:"1000px" }}>
-        <Viewer fileUrl={pdf} plugins={[defaultLayoutPluginInstance]} />
-      </div>
-    </Worker>
-       
+                    <div className="pdf_view" style={{ height: "1262px", width: "1000px" }}>
+                      <Viewer fileUrl={pdf} plugins={[defaultLayoutPluginInstance]} />
+                    </div>
+                  </Worker>
+
                 </div>
-                
+
               </div>
-              
+
               <div
                 className={
                   toggleState === 2 ? "content  active-content" : "content"
@@ -334,7 +279,7 @@ var a
                       <h4>Leave your experience</h4>
                       <form
                         action=""
-                        //onSubmit={submitHandler}
+                      //onSubmit={submitHandler}
                       >
                         <div className="form__group">
                           <input
@@ -347,33 +292,33 @@ var a
                         <div className="form__group d-flex align-items-center gap-5 rating__group">
                           <motion.span
                             whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(1)}
+                          // onClick={() => setRating(1)}
                           >
-                            1 <i class="ri-star-s-fill"></i>
+                            1 <i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(2)}
+                          // onClick={() => setRating(2)}
                           >
-                            2 <i class="ri-star-s-fill"></i>
+                            2 <i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(3)}
+                          //onClick={() => setRating(3)}
                           >
-                            3 <i class="ri-star-s-fill"></i>
+                            3 <i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(4)}
+                          //  onClick={() => setRating(4)}
                           >
-                            4 <i class="ri-star-s-fill"></i>
+                            4 <i className="ri-star-s-fill"></i>
                           </motion.span>
                           <motion.span
                             whileTap={{ scale: 1.2 }}
-                            onClick={() => setRating(5)}
+                          //  onClick={() => setRating(5)}
                           >
-                            5 <i class="ri-star-s-fill"></i>
+                            5 <i className="ri-star-s-fill"></i>
                           </motion.span>
                         </div>
                         <div className="form__group">
@@ -400,7 +345,7 @@ var a
               </div>
             </div>
 
-            
+
           </Row>
           <Col lg="12">
             <h2 className="related__title"> You might also like</h2>

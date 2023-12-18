@@ -5,28 +5,23 @@ import CommonSection from '../components/UI/CommonSection'
 import { Container, Row, Col } from 'reactstrap';
 import { motion } from 'framer-motion';
 import {cartActions} from '../redux/slices/cartSlice'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link} from 'react-router-dom';
 import { POST} from "../functionHelper/APIFunction";
 import { toast } from "react-toastify"
-import { BASE_URL} from "../global/globalVar";
 import { confirmAlert } from 'react-confirm-alert';
 import { Pagination } from "antd";
-import { useGlobalContext } from "../components/GlobalContext/GlobalContext";
 
 
 import loading from '../assets/images/loading.gif';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 const Cart = (item) => {
-  const { globalPackage, setGlobalPackage } = useGlobalContext();
 
   const [show, setShow] = useState(true)
   const [showLoading, setShowLoading] = useState(false)
 
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({});
-  const cartItems = useSelector((state) => state.cart.cartItems)
-  const totalAmount = useSelector((state) => state.cart.totalAmount)
 
  
   const addData = (page, pageSize) => {
@@ -47,7 +42,6 @@ const Cart = (item) => {
       });
       setData(res.payload.items)
       
-      console.log(res.payload.total_pages)
 
 
     });
@@ -132,7 +126,6 @@ const Cart = (item) => {
     ).then((res) => {
       if (res.status.http_status === "OK")
           {
-            console.log("success")
             setTimeout(()=>{
               setShowLoading(false)
             }, 5000)
@@ -253,14 +246,10 @@ const Cart = (item) => {
                   <tr item={item} key={index}>
                   <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}><img src={item.dataset_collection.picture} alt=""/></Link></td>
                   <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
-                  {`${globalPackage}` === "PREMIUM" ? (
                   
-                  <td style={{color:"orange"}}
-                    >$0</td>
-                  ) : (
                     <td style={{color:"orange"}}
                   >${item.dataset_collection.amount}</td>
-                  )}
+                  
                   <input
                   onChange={toggleHandler(item)}
                   checked={peopleInfo[item.id]}
@@ -280,13 +269,10 @@ const Cart = (item) => {
             <div>
             
               <h6 className='d-flex align-items-center justify-content-between'>Subtotal
-              {`${globalPackage}` === "PREMIUM" ? (
-              <span className='fs-4 fw-bold'  style={{color:"orange"}}>$0</span>
-
-              ):(
+              
               <span className='fs-4 fw-bold'  style={{color:"orange"}}>${totalAmount1}</span>
 
-              )}
+             
               </h6>
             </div>
             <div>

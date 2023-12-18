@@ -35,7 +35,7 @@ const Hero = () => {
                     </div>
                     <div className="flexCenter search-bar" >
                     <button className='glow-on-hover' onClick={navigateToShop}>
-                        <i class="ri-shopping-cart-fill"></i> &nbsp;
+                        <i className="ri-shopping-cart-fill"></i> &nbsp;
                            SHOPPING NOW</button>
                     </div>
                 </div>

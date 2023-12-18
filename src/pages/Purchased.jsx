@@ -6,16 +6,13 @@ import { Container, Row, Col } from 'reactstrap';
 
 import { Link} from 'react-router-dom';
 import { POST} from "../functionHelper/APIFunction";
-import { BASE_URL} from "../global/globalVar";
 import { Pagination } from "antd";
-import { useGlobalContext } from "../components/GlobalContext/GlobalContext";
 
 
 
 const Purchased = ({item}) => {
   const [data, setData] = useState([])
   const [pagination, setPagination] = useState({});
-  const { globalPackage, setGlobalPackage } = useGlobalContext();
 
   const addData = (page) => {
     if (page === undefined) page = 1;
@@ -32,7 +29,6 @@ const Purchased = ({item}) => {
         totalPage: res.payload.total_pages,
       });
       setData(res.payload.items)
-console.log(res)
     });
   };
 
@@ -83,14 +79,9 @@ console.log(res)
                     <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}> <img src={item.dataset_collection.picture} alt=""/></Link></td>
                     <td> <Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}>{item.dataset_collection.name}</Link></td>
                     <td><Link to={`/shop/product_detail/${item.dataset_collection.dataset_category_id}/${item.dataset_collection_id}`}>{item.dataset_collection.name} </Link></td>
-                  {`${globalPackage}` === "PREMIUM" ? (
                   
-                  <td style={{color:"orange"}}
-                    >$0</td>
-                  ) : (
                     <td style={{color:"orange"}}
                   >${item.dataset_collection.amount}</td>
-                  )}
                     </tr>
                   ))
                 }

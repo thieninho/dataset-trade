@@ -5,14 +5,14 @@ const Cancel = () => {
   return (
     <>
     <Helmet title='Fail'>
- <div class="container">
-   <div class="row">
-      <div class="col-md-6 mx-auto mt-5">
-         <div class="payment">
-            <div class="payment1_header">
-               <div class="check1"><i class="ri-close-circle-fill"></i></div>
+ <div className="container">
+   <div className="row">
+      <div className="col-md-6 mx-auto mt-5">
+         <div className="payment">
+            <div className="payment1_header">
+               <div className="check1"><i className="ri-close-circle-fill"></i></div>
             </div>
-            <div class="content2">
+            <div className="content2">
                <h1>Payment failure !</h1>
                <p>Don't worry. Please try your payment again over the next few days.</p>
                <p>Have a great day!</p>

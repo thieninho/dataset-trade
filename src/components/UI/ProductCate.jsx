@@ -17,7 +17,6 @@ const ProductCate = ({ dataset_category_id, size }) => {
     };
     POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setDataCate(res.payload.items);
-      console.log(res.payload.items);
     });
   };
   useEffect(() => {

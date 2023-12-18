@@ -6,14 +6,14 @@ const Null = () => {
     <>
     <Helmet title='Unknown page'>
         <section style={{background:"#fff"}}>
- <div class="container" >
-   <div class="row">
-      <div class="col-md-6 mx-auto mt-5">
-         <div class="payment">
-            <div class="payment1_header">
-               <div class="check1"><i class="ri-checkbox-circle-fill"></i></div>
+ <div className="container" >
+   <div className="row">
+      <div className="col-md-6 mx-auto mt-5">
+         <div className="payment">
+            <div className="payment1_header">
+               <div className="check1"><i className="ri-checkbox-circle-fill"></i></div>
             </div>
-            <div class="content2">
+            <div className="content2">
                <h1>Unknown Page !</h1>
                <p>Maybe the link is broken or the page has been removed. </p>
                <p>Please check that the link you are trying to open is correct.</p>

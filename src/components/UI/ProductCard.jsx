@@ -9,9 +9,7 @@ import { toast } from "react-toastify"
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../redux/slices/cartSlice'
 import { Base } from '../../functionHelper/APIFunction'
-import { useGlobalContext } from '../GlobalContext/GlobalContext'
 const ProductCard = ({items}) => {
-  const { globalPackage, setGlobalPackage } = useGlobalContext();
 
   const [isHovering, setIsHovering] = useState(false);
   const token = JSON.stringify(Base.getCookie("token"));
@@ -81,21 +79,17 @@ const handleAddData = () => {
         </h3>
         </div>
         <div className="product__card-bottom d-flex align-items-center justify-content-between p-2">
-        {`${globalPackage}` === "PREMIUM" ? (
-              <span className="price m-r-90" style={{color:"orange"}}>$0</span>
-
-            ) : (
+        
             <span className="price m-r-90" style={{color:"orange"}}>${items.amount}</span>
-
-              )}
-            {isHovering && (
+              
+            {/* {isHovering && (
               
             <motion.span className='price' whileTap={{scale: 1.2}} onClick={handleAddData} >
              <i class="ri-add-circle-fill"></i>
             </motion.span>
             
             )
-            }
+            } */}
              {/* {isHovering && (
               
               <motion.span className='price' whileTap={{scale: 1.2}} onClick={handlePreview} >

@@ -25,7 +25,7 @@ const HomeNewVer = () => {
     <CommonSection title="DATA ALWAYS BY YOUR SIDE"/>
     <ProductHome/>
     {/* <Residencies/> */}
-    <Value/>
+    {/* <Value/> */}
     <Services/>
 
     <Contact/>

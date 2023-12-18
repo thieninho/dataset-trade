@@ -37,7 +37,6 @@ const ProductHome = () => {
       });
     });
   };
-console.log(process.env.REACT_APP_BASE_URL)
   const searchData = (page) => {
     
     if (page === undefined) page = 1;
@@ -184,7 +183,7 @@ console.log(process.env.REACT_APP_BASE_URL)
               </select> */}
               <button md='0' className='button filter__widget' 
               >
-                <i  class="ri-search-line"></i>
+                <i  className="ri-search-line"></i>
               </button>
             </div>
 
@@ -261,7 +260,6 @@ console.log(process.env.REACT_APP_BASE_URL)
            onChange={handleJumpPaginationSearch}
        />
              </Col>
-           
            </Row>
         )}
       </Container>

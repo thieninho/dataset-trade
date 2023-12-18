@@ -29,9 +29,8 @@ const Shop = () => {
       page: page,
       size: pageSize,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setData(res.payload.items);
-      console.log(res)
       setPagination({
         totalItem: res.payload.total_items,
         totalPage: res.payload.total_pages,
@@ -60,8 +59,12 @@ const Shop = () => {
       page: page,
       size: pagination2.totalItem,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
-      setNameDataCate(res.payload.items);
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+      if (res.payload && res.payload.items) {
+        setNameDataCate(res.payload.items);
+      } else {
+        
+      }
       
     });
   };
@@ -74,7 +77,7 @@ const Shop = () => {
       size: 8,
       keyword: keyword,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setData(res.payload.items);
       setPagination({
         totalItem: res.payload.total_items,
@@ -91,14 +94,13 @@ const Shop = () => {
       size: 8,
       keyword: keyword,
     };
-    POST(BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
+    POST(process.env.REACT_APP_BASE_URL + apiURL, JSON.stringify(body)).then((res) => {
       setData(res.payload.items);
       setPagination({
         totalItem: res.payload.total_items,
         totalPage: res.payload.total_pages,
       });
       setKeyword(body.keyword);
-      console.log(res.payload.items)
     });
   };
 
@@ -211,7 +213,7 @@ const Shop = () => {
                 <option value="descending">Descending</option>
               </select> */}
                     <button md="0" className="button filter__widget">
-                      <i class="ri-search-line"></i>
+                      <i className="ri-search-line"></i>
                     </button>
                   </div>
                 </div>

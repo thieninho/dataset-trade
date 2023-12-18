@@ -77,6 +77,7 @@ function connectSocket() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
+        console.log(`${Base.baseUrl}`)
         socketConnected = true;
         stompClient.subscribe('/socket_topic/log_in_with_chatbot_acc', function (result) {
             socketListener(result);

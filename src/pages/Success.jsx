@@ -5,14 +5,14 @@ const Success = () => {
   return (
     <>
     <Helmet title='Success'>
- <div class="container">
-   <div class="row">
-      <div class="col-md-6 mx-auto mt-5">
-         <div class="payment">
-            <div class="payment_header">
-               <div class="check"><i class="ri-checkbox-circle-fill"></i></div>
+ <div className="container">
+   <div className="row">
+      <div className="col-md-6 mx-auto mt-5">
+         <div className="payment">
+            <div className="payment_header">
+               <div className="check"><i className="ri-checkbox-circle-fill"></i></div>
             </div>
-            <div class="content1">
+            <div className="content1">
                <h1>Payment Success !</h1>
                <p>I just wanted to drop you a quick note and let you know that I received your payment. Thank you so much. I really appreciate it.</p>
                <p>Have a great day!</p>
