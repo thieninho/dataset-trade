@@ -22,7 +22,7 @@ const HomeNewVer = () => {
     
     <Hero/>
     </div>
-    <CommonSection title="DATA ALWAYS BY YOUR SIDE"/>
+    <CommonSection />
     <ProductHome/>
     {/* <Residencies/> */}
     {/* <Value/> */}

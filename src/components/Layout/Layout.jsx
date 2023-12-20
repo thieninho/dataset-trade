@@ -16,7 +16,7 @@ const Layout = () => {
     { pathname !== "/login_with_chatbot" ? <Header/> : null}
 
         <Routers/>
-    { pathname !== "/login_with_chatbot" ? <Footer/> : null}
+    { pathname !== "/login_with_chatbot"  ? <Footer/> : null}
     </div>
   </>
   
