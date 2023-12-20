@@ -200,7 +200,7 @@ iframe {
   align-items: center;
   padding: 0px;
   margin-top: 0px;
-  background: url("../../assets/images/br.jpg");
+  background: url("../../assets/images/111.jpg");
 
   
 }
@@ -294,7 +294,10 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 10px 100px 33px 95px;
+  background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5%;
+  padding: 20px 60px 33px 60px;
 }
 .login101-form {
   width: 500px;
