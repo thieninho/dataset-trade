@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.64d3e4f8.css",
+    "main.js": "/static/js/main.bda46cf8.js",
+    "static/media/br.jpg": "/static/media/br.77256772dd358f040ea5.jpg",
+    "static/media/ezgif-3-d79bab7cdc.gif": "/static/media/ezgif-3-d79bab7cdc.00d845f4ec27b473caaf.gif",
+    "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
+    "static/media/comp_4.gif": "/static/media/comp_4.42e839ac8f163a69a4aa.gif",
+    "static/media/1.gif": "/static/media/1.ad36a36bfeba433be850.gif",
+    "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
+    "static/media/remixicon.ttf?t=1590207869815": "/static/media/remixicon.f2616f597cf98f38d234.ttf",
+    "static/media/4.png": "/static/media/4.bfd04ac253c407dca601.png",
+    "static/media/Montserrat-Bold.ttf": "/static/media/Montserrat-Bold.0915f0a8c3367a6d05ec.ttf",
+    "static/media/loading.gif": "/static/media/loading.f490563b8f3a02065a56.gif",
+    "static/media/123.jpg": "/static/media/123.14af150ab829ac6ae910.jpg",
+    "static/media/remixicon.woff?t=1590207869815": "/static/media/remixicon.8d09fa11700ed63cf96e.woff",
+    "static/media/Poppins-Regular.ttf": "/static/media/Poppins-Regular.1c701c9a6b587802e3d0.ttf",
+    "static/media/Poppins-Medium.ttf": "/static/media/Poppins-Medium.b59f6a636397975c5409.ttf",
+    "static/media/Poppins-Bold.ttf": "/static/media/Poppins-Bold.e2abc8f5e9a67ea669ea.ttf",
+    "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
+    "static/media/1.png": "/static/media/1.d14c9d6c356de242ab80.png",
+    "static/media/111.jpg": "/static/media/111.d7c667f618d1baf77620.jpg",
+    "static/media/data-analysis.gif": "/static/media/data-analysis.e0648bc72f1d289a00f7.gif",
+    "static/media/3.png": "/static/media/3.9b939d35e5c8d1be5fad.png",
+    "static/media/2.png": "/static/media/2.0d00d85e0d97fbe8a4e4.png",
+    "static/media/minilogo.svg": "/static/media/minilogo.eaee0031f03700e347def2e9932d0c22.svg",
+    "index.html": "/index.html",
+    "main.64d3e4f8.css.map": "/static/css/main.64d3e4f8.css.map",
+    "main.bda46cf8.js.map": "/static/js/main.bda46cf8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.64d3e4f8.css",
+    "static/js/main.bda46cf8.js"
+  ]
+}
