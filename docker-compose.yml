@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     container_name: data-everywhere-fe
     ports:
-      - "3000:3000"
+      - "80:80"
     volumes:
       - ./build-config/nginx-config:/etc/nginx/conf.d
       - ./build-config/letsencrypt:/etc/letsencrypt
