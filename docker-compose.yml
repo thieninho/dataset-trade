@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: chatbot-fe
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./build-config/nginx-config:/etc/nginx/conf.d
+      - ./build-config/letsencrypt:/etc/letsencrypt
+      - ./build:/usr/share/nginx/html
+      
