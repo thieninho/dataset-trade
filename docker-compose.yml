@@ -3,7 +3,7 @@ version: '3'
 services:
   nginx:
     image: nginx:latest
-    container_name: chatbot-fe
+    container_name: data-everywhere-fe
     ports:
       - "3000:3000"
     volumes:
